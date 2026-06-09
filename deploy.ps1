@@ -26,7 +26,7 @@ Write-Host "Pushing to GitHub..." -ForegroundColor Cyan
 git push origin main
 
 Write-Host ""
-Write-Host "✓ Done! Live at: https://$(gh repo view --json nameWithOwner -q .nameWithOwner | ForEach-Object { $_ -replace '/', '.github.io/' })" -ForegroundColor Green
+Write-Host "✓ Done! Live at: https://helloitsj.github.io/classable-mockups/" -ForegroundColor Green
 Write-Host "  (GitHub Pages may take ~60 seconds to rebuild)" -ForegroundColor Gray
 
 Read-Host "Press Enter to close"
