@@ -1,0 +1,1187 @@
+<!-- mockup-detail-page.html — Classable v2 (Phase 4 updated) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hot Shots Basketball — Ages 7/8 Group — Classable</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --teal: #0D7A6E;
+    --teal-hover: #15A396;
+    --teal-light: #E6F5F4;
+    --gray-900: #0F1117;
+    --gray-700: #374151;
+    --gray-500: #6B7280;
+    --gray-300: #D1D5DB;
+    --gray-100: #F3F4F6;
+    --gray-50: #F9FAFB;
+    --green-text: #059669;
+    --green-bg: #D1FAE5;
+    --amber-text: #B45309;
+    --amber-bg: #FEF3C7;
+    --sports-bg: #EFF6FF;
+    --sports-text: #1D4ED8;
+    --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.06);
+    --shadow-card-hover: 0 4px 12px 0 rgb(0 0 0 / 0.10), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+    --shadow-modal: 0 20px 60px -10px rgb(0 0 0 / 0.25);
+    --radius-badge: 4px;
+    --radius-btn: 8px;
+    --radius-card: 12px;
+    --radius-modal: 16px;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 15px;
+    background: var(--gray-50);
+    color: var(--gray-700);
+    line-height: 1.6;
+    padding-bottom: 80px;
+  }
+
+  /* ─── HEADER ─── */
+  .site-header {
+    background: #fff;
+    border-bottom: 1px solid var(--gray-300);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .wordmark {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+  }
+  .wordmark-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--teal);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 16px;
+  }
+  .wordmark-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gray-900);
+    letter-spacing: -0.3px;
+  }
+  .wordmark-text span { color: var(--teal); }
+  .header-nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .header-nav a {
+    text-decoration: none;
+    color: var(--gray-500);
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.15s;
+  }
+  .header-nav a:hover { color: var(--teal); }
+  .header-tagline {
+    font-size: 12px;
+    color: var(--gray-500);
+    font-style: italic;
+    letter-spacing: 0.01em;
+  }
+  .header-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gray-100);
+    border: 1px solid var(--gray-300);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 14px;
+    color: var(--gray-500);
+    cursor: pointer;
+    width: 220px;
+  }
+
+  /* ─── BREADCRUMB ─── */
+  .breadcrumb {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--gray-500);
+  }
+  .breadcrumb a { color: var(--gray-500); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--teal); }
+  .breadcrumb-sep { color: var(--gray-300); }
+  .breadcrumb-current { color: var(--gray-700); font-weight: 500; }
+
+  /* ─── LAYOUT ─── */
+  .page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px 40px;
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 28px;
+    align-items: start;
+  }
+  .main-content { min-width: 0; }
+  .sidebar { position: sticky; top: 76px; }
+
+  /* ─── SECTION CARD ─── */
+  .section-card {
+    background: #fff;
+    border-radius: var(--radius-card);
+    border: 1px solid var(--gray-300);
+    box-shadow: var(--shadow-card);
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+
+  /* ─── FRESHNESS BADGE ─── */
+  /* Fresh state — green, checkmark icon */
+  .freshness-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: var(--radius-badge);
+    margin-bottom: 14px;
+    letter-spacing: 0.01em;
+  }
+  .freshness-badge.fresh {
+    background: var(--green-bg);
+    color: var(--green-text);
+  }
+  .freshness-badge.aging {
+    background: var(--amber-bg);
+    color: var(--amber-text);
+  }
+  .freshness-badge.stale {
+    background: #FEE2E2;
+    color: #B91C1C;
+  }
+  .freshness-icon { flex-shrink: 0; }
+
+  /* ─── STALE WARNING BANNER ─── */
+  .stale-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: #FFFBEB;
+    border: 1px solid #FCD34D;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+  }
+  .stale-banner-icon { color: #D97706; flex-shrink: 0; margin-top: 1px; }
+  .stale-banner-text { font-size: 13px; color: #92400E; line-height: 1.5; }
+  .stale-banner-text strong { color: #78350F; }
+
+  /* ─── HERO SECTION ─── */
+  .hero-image {
+    width: 100%;
+    height: 220px;
+    background: linear-gradient(135deg, #0EA5E9 0%, #0D7A6E 100%);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-image-watermark {
+    opacity: 0.15;
+    color: #fff;
+  }
+  .hero-image-watermark svg { width: 120px; height: 120px; }
+  .hero-image-category-chip {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(8px);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: var(--radius-badge);
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+
+  /* ─── TITLE BLOCK ─── */
+  .activity-title {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--gray-900);
+    line-height: 1.25;
+    letter-spacing: -0.4px;
+    margin-bottom: 10px;
+  }
+  .provider-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .provider-avatar-sm {
+    width: 28px;
+    height: 28px;
+    background: var(--teal);
+    border-radius: 50%;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    aria-hidden: true;
+  }
+  .provider-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gray-700);
+  }
+  .provider-tenure {
+    font-size: 13px;
+    color: var(--gray-500);
+  }
+  .badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: var(--radius-badge);
+  }
+  .badge-sports { background: var(--sports-bg); color: var(--sports-text); }
+  .badge-age { background: var(--gray-100); color: var(--gray-700); }
+  .badge-price { background: #FEF3C7; color: #92400E; }
+  .badge-price-free { background: var(--green-bg); color: #065F46; }
+
+  /* ─── SECTION HEADINGS ─── */
+  .section-heading {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-heading-icon {
+    width: 20px;
+    height: 20px;
+    color: var(--teal);
+    flex-shrink: 0;
+  }
+
+  /* ─── DESCRIPTION ─── */
+  .description-text {
+    font-size: 15px;
+    color: var(--gray-700);
+    line-height: 1.7;
+  }
+
+  /* ─── SCHEDULE ─── */
+  .schedule-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .schedule-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .schedule-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .schedule-value {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--gray-900);
+  }
+  .schedule-sub {
+    font-size: 13px;
+    color: var(--gray-500);
+  }
+  .schedule-divider {
+    border: none;
+    border-top: 1px solid var(--gray-100);
+    margin: 14px 0;
+  }
+  .sessions-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--teal-light);
+    border-radius: 8px;
+    padding: 10px 14px;
+  }
+  .sessions-icon { color: var(--teal); font-size: 16px; }
+  .sessions-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--teal);
+  }
+
+  /* ─── MAP ─── */
+  .map-placeholder {
+    width: 100%;
+    height: 180px;
+    background: var(--gray-100);
+    border-radius: 10px;
+    border: 1px solid var(--gray-300);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  .map-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--gray-300) 1px, transparent 1px),
+      linear-gradient(90deg, var(--gray-300) 1px, transparent 1px);
+    background-size: 30px 30px;
+    opacity: 0.4;
+  }
+  .map-pin-icon {
+    position: relative;
+    z-index: 1;
+    color: var(--teal);
+  }
+  .map-label {
+    position: relative;
+    z-index: 1;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-700);
+    background: #fff;
+    padding: 4px 10px;
+    border-radius: 6px;
+    box-shadow: var(--shadow-card);
+  }
+  .map-caption {
+    font-size: 12px;
+    color: var(--gray-500);
+    margin-top: 6px;
+    font-style: italic;
+  }
+  .location-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .location-icon { color: var(--gray-500); margin-top: 2px; flex-shrink: 0; }
+  .location-text { font-size: 14px; color: var(--gray-700); line-height: 1.5; }
+  .location-link {
+    font-size: 13px;
+    color: var(--teal);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .location-link:hover { text-decoration: underline; }
+
+  /* ─── PROVIDER BLOCK ─── */
+  .provider-block {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .provider-avatar {
+    width: 48px;
+    height: 48px;
+    background: var(--teal);
+    border-radius: 50%;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    letter-spacing: 0.5px;
+  }
+  .provider-info { flex: 1; min-width: 0; }
+  .provider-fullname {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 2px;
+  }
+  .provider-meta {
+    font-size: 13px;
+    color: var(--gray-500);
+    margin-bottom: 8px;
+  }
+  .provider-stats {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 10px;
+  }
+  .provider-stat {
+    display: flex;
+    flex-direction: column;
+  }
+  .provider-stat-value {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gray-900);
+  }
+  .provider-stat-label {
+    font-size: 11px;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .provider-link {
+    color: var(--teal);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .provider-link:hover { text-decoration: underline; }
+
+  /* ─── CLAIM BANNER ─── */
+  /* Shown when listing is unclaimed — aimed at owners scanning their own listing */
+  .claim-banner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #F8FAFF;
+    border: 1px solid #BFDBFE;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-top: 14px;
+  }
+  .claim-banner-icon {
+    width: 32px; height: 32px;
+    background: #EFF6FF;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: #2563EB;
+    flex-shrink: 0;
+  }
+  .claim-banner-body { flex: 1; min-width: 0; }
+  .claim-banner-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1E40AF;
+    margin-bottom: 1px;
+  }
+  .claim-banner-sub {
+    font-size: 12px;
+    color: #3B82F6;
+  }
+  .claim-banner-link {
+    font-size: 12px;
+    font-weight: 700;
+    color: #2563EB;
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 6px 12px;
+    background: #DBEAFE;
+    border-radius: 6px;
+    transition: background 0.15s;
+  }
+  .claim-banner-link:hover { background: #BFDBFE; }
+
+  /* Verified owner badge — shown when listing IS claimed */
+  .owner-verified-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #1D4ED8;
+    background: #EFF6FF;
+    border: 1px solid #BFDBFE;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-top: 8px;
+  }
+
+  /* Claim sidebar card */
+  .claim-sidebar-card {
+    background: #F8FAFF;
+    border: 1px solid #BFDBFE;
+    border-radius: var(--radius-card);
+    padding: 16px;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .claim-sidebar-icon {
+    width: 36px; height: 36px;
+    background: #EFF6FF;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: #2563EB;
+    margin: 0 auto 10px;
+  }
+  .claim-sidebar-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1E40AF;
+    margin-bottom: 4px;
+  }
+  .claim-sidebar-body {
+    font-size: 12px;
+    color: var(--gray-500);
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+  .claim-sidebar-perks {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 12px;
+  }
+  .claim-sidebar-perk {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    color: var(--gray-700);
+  }
+  .claim-sidebar-perk-icon { color: var(--teal); flex-shrink: 0; }
+  .btn-claim {
+    display: block;
+    width: 100%;
+    background: #2563EB;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 10px;
+    border-radius: var(--radius-btn);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: background 0.15s;
+    font-family: inherit;
+  }
+  .btn-claim:hover { background: #1D4ED8; }
+  .claim-sidebar-note {
+    font-size: 11px;
+    color: var(--gray-400);
+    margin-top: 7px;
+  }
+
+  /* ─── DATA SOURCE ─── */
+  .data-source {
+    background: var(--gray-100);
+    border-radius: 8px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .data-source-icon { color: var(--gray-500); flex-shrink: 0; margin-top: 1px; }
+  .data-source-text { font-size: 13px; color: var(--gray-500); line-height: 1.5; }
+  .data-source-text a { color: var(--teal); text-decoration: none; }
+
+  /* ─── SIDEBAR ─── */
+  .cta-card {
+    background: #fff;
+    border-radius: var(--radius-card);
+    border: 1px solid var(--gray-300);
+    box-shadow: var(--shadow-card);
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .cta-price-display {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-bottom: 4px;
+  }
+  .cta-price-amount {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--gray-900);
+    letter-spacing: -1px;
+  }
+  .cta-price-unit {
+    font-size: 14px;
+    color: var(--gray-500);
+    font-weight: 400;
+  }
+  .cta-price-breakdown {
+    font-size: 13px;
+    color: var(--gray-500);
+    margin-bottom: 16px;
+  }
+  .cta-enrollment-note {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--teal-light);
+    border: 1px solid #A7D9D5;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 14px;
+  }
+  .cta-enrollment-icon { color: var(--teal); flex-shrink: 0; }
+  .cta-enrollment-text {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--teal);
+  }
+  .cta-enrollment-sub {
+    font-size: 12px;
+    color: #0A6860;
+    font-weight: 400;
+  }
+  .btn-register {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    background: var(--teal);
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 14px;
+    border-radius: var(--radius-btn);
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.01em;
+    transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+    margin-bottom: 10px;
+  }
+  .btn-register:hover {
+    background: var(--teal-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgb(13 122 110 / 0.3);
+  }
+  .btn-register-sub {
+    font-size: 12px;
+    color: var(--gray-500);
+    text-align: center;
+  }
+  .sidebar-schedule-summary {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--gray-100);
+  }
+  .sidebar-schedule-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .sidebar-schedule-icon { color: var(--gray-500); flex-shrink: 0; margin-top: 2px; }
+  .sidebar-schedule-text { font-size: 14px; color: var(--gray-700); line-height: 1.5; }
+  .sidebar-schedule-label { font-size: 12px; color: var(--gray-500); }
+
+  /* Copy link button */
+  .copy-link-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    background: #fff;
+    border: 1px solid var(--gray-300);
+    color: var(--gray-700);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 11px;
+    border-radius: var(--radius-btn);
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    font-family: inherit;
+  }
+  .copy-link-btn:hover { background: var(--gray-50); border-color: var(--gray-500); }
+  /* Confirmation state — shown after click */
+  .copy-link-btn.copied {
+    border-color: var(--teal);
+    color: var(--teal);
+    background: var(--teal-light);
+  }
+  /* Screen-reader-only live region (visually hidden) */
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* ─── STICKY BOTTOM BAR (mobile) ─── */
+  .sticky-bottom {
+    display: none;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #fff;
+    border-top: 1px solid var(--gray-300);
+    padding: 12px 16px;
+    box-shadow: 0 -4px 20px 0 rgb(0 0 0 / 0.12);
+    z-index: 200;
+    align-items: center;
+    gap: 12px;
+  }
+  .sticky-bottom-price { flex: 1; }
+  .sticky-price-amount { font-size: 20px; font-weight: 800; color: var(--gray-900); }
+  .sticky-price-unit { font-size: 13px; color: var(--gray-500); }
+  .sticky-btn-register {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--teal);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 12px 20px;
+    border-radius: var(--radius-btn);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .sticky-copy-btn {
+    width: 44px; height: 44px;
+    background: var(--gray-100);
+    border: 1px solid var(--gray-300);
+    border-radius: var(--radius-btn);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    color: var(--gray-700);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .page-container { grid-template-columns: 1fr; }
+    .sidebar { position: static; display: none; }
+    .sticky-bottom { display: flex; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Screen-reader live region for status announcements -->
+<div role="status" aria-live="polite" aria-atomic="true" class="sr-only" id="status-msg"></div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href="#">
+      <div class="wordmark-icon">
+        <!-- Book icon — represents classes and learning -->
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+        </svg>
+      </div>
+      <span class="wordmark-text">Class<span>able</span></span>
+    </a>
+    <div class="header-search">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      Search activities…
+    </div>
+    <nav class="header-nav" aria-label="Site navigation">
+      <span class="header-tagline">Learn it. Play it. Do it.</span>
+      <a href="#">Browse</a>
+      <a href="#">Saved</a>
+      <a href="#">Sign in</a>
+    </nav>
+  </div>
+</header>
+
+<!-- BREADCRUMB -->
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="#">Home</a>
+  <span class="breadcrumb-sep" aria-hidden="true">›</span>
+  <a href="#">Queens, NY</a>
+  <span class="breadcrumb-sep" aria-hidden="true">›</span>
+  <a href="#">Sports &amp; Athletics</a>
+  <span class="breadcrumb-sep" aria-hidden="true">›</span>
+  <a href="#">Basketball</a>
+  <span class="breadcrumb-sep" aria-hidden="true">›</span>
+  <span class="breadcrumb-current" aria-current="page">Hot Shots Basketball — Ages 7/8 Group</span>
+</nav>
+
+<!-- PAGE LAYOUT -->
+<div class="page-container">
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- HERO + TITLE CARD -->
+    <div class="section-card">
+
+      <!-- Freshness badge — FRESH state: checkmark icon + text label (not color alone) -->
+      <div class="freshness-badge fresh" role="status">
+        <svg class="freshness-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        Verified 4 days ago
+      </div>
+
+      <!-- Hero image — basketball orange gradient -->
+      <div class="hero-image" style="background:linear-gradient(135deg,#F97316 0%,#EA580C 60%,#C2410C 100%);" role="img" aria-label="Basketball clinic — Sports &amp; Athletics, outdoor park setting">
+        <div class="hero-image-watermark" aria-hidden="true">
+          <!-- Basketball icon -->
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="50" cy="50" r="44"/>
+            <path d="M6 50 Q28 30 50 50 Q72 70 94 50"/>
+            <path d="M6 50 Q28 70 50 50 Q72 30 94 50"/>
+            <line x1="50" y1="6" x2="50" y2="94"/>
+          </svg>
+        </div>
+        <div class="hero-image-category-chip" aria-hidden="true">🏀 Sports &amp; Athletics</div>
+      </div>
+
+      <!-- Badges — no capacity/spots info -->
+      <div class="badge-row">
+        <span class="badge badge-sports">🏀 Basketball</span>
+        <span class="badge badge-age">Ages 7–8</span>
+        <span class="badge badge-age" style="background:#FFF7ED;color:#C2410C;">Outdoor · Park</span>
+        <span class="badge badge-price">$90 / 6 sessions</span>
+      </div>
+
+      <!-- Title -->
+      <h1 class="activity-title">Hot Shots Basketball — Ages 7/8 Group</h1>
+
+      <!-- Provider line -->
+      <div class="provider-line">
+        <div class="provider-avatar-sm" aria-hidden="true">HS</div>
+        <span class="provider-name">Hot Shots Basketball NYC</span>
+        <span class="provider-tenure">· Co-ed · Outdoor clinics · Middle Village, Queens</span>
+      </div>
+
+      <!-- Description — sourced from hotshotsbasketballnyc.com -->
+      <p class="description-text">
+        Co-ed outdoor basketball clinics at Juniper Valley Park for kids ages 7 and 8. Hot Shots uses kid-sized adjustable hoops (5.5–7.5 ft) and mini basketballs so players at this age can actually shoot and score — not just go through motions on a full-size rim. Sessions mix fundamental drills with small-sided games in a safe, positive, and fun environment. Sibling discount available ($10 off a second child). No prior experience needed — all skill levels welcome.
+      </p>
+    </div>
+
+    <!-- SCHEDULE CARD -->
+    <div class="section-card">
+      <div class="section-heading">
+        <svg class="section-heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Schedule
+      </div>
+      <div class="schedule-grid">
+        <div class="schedule-item">
+          <span class="schedule-label">Day &amp; Time</span>
+          <span class="schedule-value">Saturdays</span>
+          <span class="schedule-sub">10:00 AM – 11:00 AM</span>
+        </div>
+        <div class="schedule-item">
+          <span class="schedule-label">Duration per session</span>
+          <span class="schedule-value">60 minutes</span>
+          <span class="schedule-sub">Drills + small-sided games</span>
+        </div>
+        <div class="schedule-item">
+          <span class="schedule-label">Start date</span>
+          <span class="schedule-value">September 13, 2026</span>
+          <span class="schedule-sub">First session</span>
+        </div>
+        <div class="schedule-item">
+          <span class="schedule-label">End date</span>
+          <span class="schedule-value">October 18, 2026</span>
+          <span class="schedule-sub">Final session (6-week block)</span>
+        </div>
+      </div>
+      <hr class="schedule-divider">
+      <div class="sessions-row">
+        <span class="sessions-icon" aria-hidden="true">📅</span>
+        <span class="sessions-text">6 sessions total &nbsp;·&nbsp; Outdoor — dress for weather &nbsp;·&nbsp; Rain cancellations announced via email</span>
+      </div>
+    </div>
+
+    <!-- LOCATION CARD -->
+    <div class="section-card">
+      <div class="section-heading">
+        <svg class="section-heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Location
+      </div>
+
+      <!-- Static map image (Mapbox Static Images API in production) -->
+      <div class="map-placeholder" role="img" aria-label="Map showing Juniper Valley Park Basketball Court at Juniper Blvd South and 72nd Street, Middle Village, Queens, NY. Teal map pin marks the activity location.">
+        <div class="map-grid" aria-hidden="true"></div>
+        <div class="map-pin-icon" aria-hidden="true">
+          <svg width="32" height="40" viewBox="0 0 24 30" fill="currentColor">
+            <path d="M12 0C7.58 0 4 3.58 4 8c0 5.25 8 16 8 16s8-10.75 8-16c0-4.42-3.58-8-8-8zm0 11c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+          </svg>
+        </div>
+        <div class="map-label" aria-hidden="true">Juniper Valley Park, Middle Village</div>
+      </div>
+      <p class="map-caption">Static map — Mapbox Static Images API (no JS loaded)</p>
+
+      <div class="location-detail">
+        <svg class="location-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div>
+          <div class="location-text"><strong>Juniper Valley Park Basketball Court</strong><br>Juniper Blvd South &amp; 72nd Street, Middle Village, Queens, NY 11379</div>
+          <div style="font-size:12px;color:var(--amber-text);margin-top:4px;margin-bottom:4px;">
+            🌤 Outdoor venue — sessions may be cancelled due to rain or extreme heat. Cancellations announced via email.
+          </div>
+          <a class="location-link" href="https://maps.google.com/?q=Juniper+Valley+Park,+Middle+Village,+Queens,+NY" target="_blank" rel="noopener noreferrer">Get directions
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline;vertical-align:middle;margin-left:2px"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <span class="sr-only">(opens in new tab)</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROVIDER CARD -->
+    <div class="section-card">
+      <div class="section-heading">
+        <svg class="section-heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        About the Provider
+      </div>
+      <div class="provider-block">
+        <div class="provider-avatar" aria-hidden="true">HS</div>
+        <div class="provider-info">
+          <div class="provider-fullname">Hot Shots Basketball NYC</div>
+          <div class="provider-meta">Independent youth sports org · Co-ed · Middle Village, Queens, NY 11379</div>
+          <div class="provider-stats">
+            <div class="provider-stat">
+              <span class="provider-stat-value">3</span>
+              <span class="provider-stat-label">Age groups</span>
+            </div>
+            <div class="provider-stat">
+              <span class="provider-stat-value">3</span>
+              <span class="provider-stat-label">Sports offered</span>
+            </div>
+            <div class="provider-stat">
+              <span class="provider-stat-value">Park</span>
+              <span class="provider-stat-label">Outdoor only</span>
+            </div>
+          </div>
+          <!-- Also offers soccer and volleyball per site -->
+          <div style="font-size:12px;color:var(--gray-500);margin-bottom:8px;">Also offers: ⚽ Soccer &nbsp;·&nbsp; 🏐 Volleyball</div>
+          <a class="provider-link" href="#">View all programs by Hot Shots Basketball NYC →</a>
+
+          <!-- ── UNCLAIMED STATE ─────────────────────────────────────
+               Shown when listing has not been claimed by the owner.
+               Targeting owners who land on their own listing.
+          ─────────────────────────────────────────────────────────── -->
+          <div class="claim-banner" role="complementary" aria-label="Claim this listing">
+            <div class="claim-banner-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="claim-banner-body">
+              <div class="claim-banner-title">Is this your listing?</div>
+              <div class="claim-banner-sub">Free to claim · add photos, description &amp; more</div>
+            </div>
+            <a class="claim-banner-link" href="#">Claim it →</a>
+          </div>
+
+          <!-- ── CLAIMED STATE (alternate — swap above div for this) ──
+               Shown after owner has verified and claimed the listing.
+          ─────────────────────────────────────────────────────────── -->
+          <!-- <div class="owner-verified-badge">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Verified &amp; managed by owner
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- DATA SOURCE -->
+    <div class="section-card">
+      <div class="data-source">
+        <svg class="data-source-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>
+        <div class="data-source-text">
+          Information last verified <strong>3 days ago</strong> via provider website (<a href="https://hotshotsbasketballnyc.com" target="_blank" rel="noopener noreferrer">hotshotsbasketballnyc.com</a>). Classable re-checks listings every 7 days. See something wrong? <a href="#">Suggest an edit</a>.
+        </div>
+      </div>
+    </div>
+
+    <!-- STALE STATE EXAMPLE (shown for reference — hidden in fresh state) -->
+    <!-- In production this banner replaces the green freshness badge when listing is stale/aged -->
+    <div class="section-card" style="border-color:#FCD34D;">
+      <p style="font-size:11px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;">↓ Stale state example (for design reference)</p>
+      <div class="freshness-badge aging">
+        <svg class="freshness-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Last verified 38 days ago
+      </div>
+      <div class="stale-banner" role="alert">
+        <svg class="stale-banner-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <div class="stale-banner-text">
+          <strong>Listing may be outdated.</strong> This activity was last verified over 30 days ago. Details like schedule, price, or enrollment status may have changed. Contact the provider directly to confirm.
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" aria-label="Registration and sharing">
+
+    <!-- CTA CARD -->
+    <div class="cta-card">
+      <div class="cta-price-display">
+        <span class="cta-price-amount">$90</span>
+        <span class="cta-price-unit">/ 6 sessions</span>
+      </div>
+      <div class="cta-price-breakdown">6-week block · approx. $15 per class · sibling discount available</div>
+
+      <!-- Check provider note — replaces Enrollment open; enrollment details live on provider site -->
+      <div class="cta-enrollment-note" style="background:#FFFBEB;border-color:#FCD34D;">
+        <svg class="cta-enrollment-icon" style="color:#D97706;" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>
+        <div>
+          <div class="cta-enrollment-text" style="color:#92400E;">Check provider for enrollment dates</div>
+          <div class="cta-enrollment-sub" style="color:#B45309;">Session dates &amp; availability on provider website</div>
+        </div>
+      </div>
+
+      <!-- Register / Visit provider site — external link -->
+      <a
+        class="btn-register"
+        href="https://hotshotsbasketballnyc.com/register"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Visit Hot Shots Basketball NYC to register (opens provider website in new tab)"
+      >
+        Visit Provider to Register
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </a>
+      <div class="btn-register-sub">Opens hotshotsbasketballnyc.com in a new tab</div>
+
+      <div class="sidebar-schedule-summary">
+        <div class="sidebar-schedule-row">
+          <svg class="sidebar-schedule-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          <div>
+            <div class="sidebar-schedule-text">Saturdays, 10:00–11:00 AM</div>
+            <div class="sidebar-schedule-label">Sept 13 – Oct 18, 2026 · 6 sessions</div>
+          </div>
+        </div>
+        <div class="sidebar-schedule-row">
+          <svg class="sidebar-schedule-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div>
+            <div class="sidebar-schedule-text">Juniper Valley Park, Queens</div>
+            <div class="sidebar-schedule-label">Middle Village · ~0.8 mi · Outdoor</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CLAIM SIDEBAR CARD — shown to owners; drives to provider dashboard -->
+    <div class="claim-sidebar-card">
+      <div class="claim-sidebar-icon" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="claim-sidebar-title">Own this program?</div>
+      <div class="claim-sidebar-body">Claiming is free. Verified listings appear higher in local search results.</div>
+      <div class="claim-sidebar-perks">
+        <div class="claim-sidebar-perk">
+          <svg class="claim-sidebar-perk-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          Add photos, description &amp; contact
+        </div>
+        <div class="claim-sidebar-perk">
+          <svg class="claim-sidebar-perk-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          Respond to parent reviews
+        </div>
+        <div class="claim-sidebar-perk">
+          <svg class="claim-sidebar-perk-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          Keep your info accurate &amp; fresh
+        </div>
+        <div class="claim-sidebar-perk">
+          <svg class="claim-sidebar-perk-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          Boost local SEO with structured data
+        </div>
+      </div>
+      <a class="btn-claim" href="#">Claim this listing — it's free</a>
+      <div class="claim-sidebar-note">No payment needed · verify via email or phone</div>
+    </div>
+
+    <!-- COPY LINK — replaces share modal; OG tags handle WhatsApp preview automatically -->
+    <button
+      class="copy-link-btn"
+      id="copy-link-btn"
+      aria-label="Copy link to this activity"
+      onclick="
+        navigator.clipboard.writeText(window.location.href);
+        this.classList.add('copied');
+        this.innerHTML = '<svg width=\'14\' height=\'14\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'3\' stroke-linecap=\'round\' stroke-linejoin=\'round\' aria-hidden=\'true\'><polyline points=\'20 6 9 17 4 12\'/></svg> Link copied!';
+        document.getElementById('status-msg').textContent = 'Link copied to clipboard.';
+        setTimeout(() => {
+          this.classList.remove('copied');
+          this.innerHTML = '<svg width=\'14\' height=\'14\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\' aria-hidden=\'true\'><path d=\'M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\'/><path d=\'M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\'/></svg> Copy link';
+          document.getElementById('status-msg').textContent = '';
+          this.setAttribute('aria-label', 'Copy link to this activity');
+        }, 3000);
+      "
+    >
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      Copy link
+    </button>
+
+  </aside>
+
+</div>
+
+<!-- MOBILE STICKY BOTTOM BAR -->
+<div class="sticky-bottom" role="region" aria-label="Register or share">
+  <div class="sticky-bottom-price">
+    <div>
+      <span class="sticky-price-amount">$90</span>
+      <span class="sticky-price-unit"> / 6 sessions</span>
+    </div>
+    <div style="font-size:12px;color:var(--gray-500)">Check provider for enrollment</div>
+  </div>
+  <button class="sticky-copy-btn" aria-label="Copy link to this activity">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+  </button>
+  <a
+    class="sticky-btn-register"
+    href="#"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Visit provider website to register (opens in new tab)"
+  >
+    Visit Provider to Register
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+  </a>
+</div>
+
+</body>
+</html>

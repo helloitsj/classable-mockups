@@ -1,0 +1,631 @@
+<!-- mockup-share-modal.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Share — Weekend Soccer Clinics — KidQuest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --teal: #0D7A6E;
+    --teal-hover: #15A396;
+    --teal-light: #E6F5F4;
+    --gray-900: #0F1117;
+    --gray-700: #374151;
+    --gray-500: #6B7280;
+    --gray-300: #D1D5DB;
+    --gray-100: #F3F4F6;
+    --gray-50: #F9FAFB;
+    --green-bg: #D1FAE5;
+    --green-text: #059669;
+    --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.06);
+    --shadow-modal: 0 20px 60px -10px rgb(0 0 0 / 0.25);
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 15px;
+    background: var(--gray-50);
+    color: var(--gray-700);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+
+  /* ─── BACKGROUND PAGE (blurred detail page simulation) ─── */
+  .page-bg {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    filter: blur(3px);
+    transform: scale(1.02);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .bg-header {
+    background: #fff;
+    border-bottom: 1px solid var(--gray-300);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    gap: 12px;
+  }
+  .bg-wordmark {
+    display: flex; align-items: center; gap: 8px;
+  }
+  .bg-logo {
+    width: 30px; height: 30px;
+    background: var(--teal);
+    border-radius: 7px;
+  }
+  .bg-logotype {
+    width: 90px; height: 16px;
+    background: var(--gray-900);
+    border-radius: 3px;
+    opacity: 0.8;
+  }
+  .bg-search-bar {
+    flex: 1;
+    max-width: 500px;
+    height: 36px;
+    background: var(--gray-100);
+    border: 1px solid var(--gray-300);
+    border-radius: 8px;
+    margin-left: 16px;
+  }
+  .bg-nav {
+    margin-left: auto;
+    display: flex; gap: 20px;
+  }
+  .bg-nav-item { width: 40px; height: 14px; background: var(--gray-300); border-radius: 3px; }
+
+  .bg-breadcrumb {
+    height: 40px;
+    padding: 0 24px;
+    display: flex; align-items: center; gap: 8px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .bg-crumb { width: 60px; height: 11px; background: var(--gray-300); border-radius: 2px; opacity: 0.6; }
+  .bg-crumb-sep { width: 8px; height: 11px; background: var(--gray-300); border-radius: 2px; opacity: 0.3; }
+  .bg-crumb-active { width: 150px; height: 11px; background: var(--gray-500); border-radius: 2px; opacity: 0.5; }
+
+  .bg-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 28px;
+  }
+  .bg-main { }
+  .bg-card {
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid var(--gray-300);
+    margin-bottom: 14px;
+    overflow: hidden;
+  }
+  .bg-hero {
+    height: 200px;
+    background: linear-gradient(135deg, #0EA5E9 0%, #0D7A6E 100%);
+  }
+  .bg-card-body { padding: 20px; }
+  .bg-freshness {
+    width: 130px; height: 20px;
+    background: var(--green-bg);
+    border-radius: 4px;
+    margin-bottom: 12px;
+  }
+  .bg-title {
+    width: 80%;
+    height: 28px;
+    background: var(--gray-900);
+    border-radius: 5px;
+    margin-bottom: 12px;
+    opacity: 0.7;
+  }
+  .bg-badges {
+    display: flex; gap: 8px; margin-bottom: 14px;
+  }
+  .bg-badge { height: 22px; border-radius: 4px; background: var(--gray-100); }
+  .bg-text-line { height: 13px; background: var(--gray-200); border-radius: 3px; margin-bottom: 8px; }
+  .bg-text-line.w-full { width: 100%; }
+  .bg-text-line.w-80 { width: 80%; }
+  .bg-text-line.w-60 { width: 60%; }
+
+  .bg-sidebar-card {
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid var(--gray-300);
+    padding: 20px;
+    margin-bottom: 14px;
+  }
+  .bg-price { width: 100px; height: 36px; background: var(--gray-200); border-radius: 5px; margin-bottom: 12px; }
+  .bg-urgency { height: 52px; background: #FFF7ED; border-radius: 8px; margin-bottom: 12px; }
+  .bg-cta-btn { height: 48px; background: var(--teal); border-radius: 8px; opacity: 0.7; }
+
+  /* ─── OVERLAY SCRIM ─── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.52);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    padding: 20px;
+  }
+
+  /* ─── MODAL ─── */
+  .modal {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: var(--shadow-modal);
+    width: 100%;
+    max-width: 480px;
+    position: relative;
+    overflow: hidden;
+    animation: modalIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.95) translateY(8px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  /* Modal header */
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 20px 0;
+    margin-bottom: 16px;
+  }
+  .modal-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--gray-900);
+    letter-spacing: -0.2px;
+  }
+  .modal-close {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--gray-100);
+    border: none;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gray-500);
+    font-family: inherit;
+    transition: background 0.12s;
+    flex-shrink: 0;
+  }
+  .modal-close:hover { background: var(--gray-300); color: var(--gray-900); }
+
+  /* OG preview card */
+  .og-preview {
+    margin: 0 20px 18px;
+    border: 1.5px solid var(--gray-300);
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+  }
+  .og-image {
+    height: 120px;
+    background: linear-gradient(135deg, #0EA5E9 0%, #0D7A6E 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .og-watermark {
+    font-size: 72px;
+    opacity: 0.12;
+    user-select: none;
+    position: absolute;
+  }
+  .og-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(6px);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.25);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .og-app-chip {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(0,0,0,0.45);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 9px;
+    border-radius: 5px;
+  }
+  .og-app-icon {
+    width: 14px; height: 14px;
+    background: var(--teal);
+    border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+    font-size: 8px;
+    font-weight: 800;
+  }
+  .og-body { padding: 12px 14px; }
+  .og-domain {
+    font-size: 11px;
+    color: var(--gray-400);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .og-domain-dot { width: 10px; height: 10px; background: var(--teal); border-radius: 2px; }
+  .og-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 4px;
+    line-height: 1.35;
+  }
+  .og-desc {
+    font-size: 12px;
+    color: var(--gray-500);
+    line-height: 1.5;
+  }
+
+  /* Share targets */
+  .share-targets-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gray-400);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0 20px;
+    margin-bottom: 10px;
+  }
+  .share-targets {
+    display: flex;
+    gap: 8px;
+    padding: 0 20px;
+    margin-bottom: 18px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .share-targets::-webkit-scrollbar { display: none; }
+
+  .share-btn-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    flex-shrink: 0;
+    min-width: 64px;
+    padding: 10px 6px;
+    border-radius: 10px;
+    transition: background 0.12s;
+    border: none;
+    background: none;
+    font-family: inherit;
+  }
+  .share-btn-item:hover { background: var(--gray-100); }
+
+  .share-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .share-icon-whatsapp { background: #25D366; }
+  .share-icon-imessage { background: linear-gradient(135deg, #3CAAFF 0%, #007AFF 100%); }
+  .share-icon-copy { background: var(--gray-500); }
+  .share-icon-facebook { background: #1877F2; }
+  .share-icon-email { background: #6B7280; }
+
+  .share-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--gray-600);
+    white-space: nowrap;
+  }
+
+  /* SVG icons inside share buttons */
+  .share-icon svg { width: 22px; height: 22px; fill: #fff; }
+
+  /* Divider */
+  .modal-divider {
+    border: none;
+    border-top: 1px solid var(--gray-100);
+    margin: 0 0 16px;
+  }
+
+  /* Ready-made message */
+  .ready-message-section {
+    padding: 0 20px 20px;
+  }
+  .ready-message-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .ready-message-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gray-700);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .ready-message-tag {
+    font-size: 10px;
+    font-weight: 700;
+    background: #EFF6FF;
+    color: #1D4ED8;
+    padding: 1px 7px;
+    border-radius: 10px;
+    letter-spacing: 0.03em;
+  }
+  .copy-btn {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--teal);
+    background: var(--teal-light);
+    border: 1px solid rgba(13,122,110,0.2);
+    padding: 5px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background 0.12s;
+    white-space: nowrap;
+  }
+  .copy-btn:hover { background: #C5EDE9; }
+
+  .ready-message-body {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-300);
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 14px;
+    color: var(--gray-700);
+    line-height: 1.65;
+    position: relative;
+  }
+  .ready-message-link {
+    color: var(--teal);
+    text-decoration: underline;
+    text-decoration-color: rgba(13,122,110,0.4);
+    word-break: break-all;
+  }
+  .ready-message-quote {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    background: var(--gray-100);
+    border: 1px solid var(--gray-300);
+    border-radius: 0 10px 0 8px;
+    padding: 3px 8px;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--gray-500);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* Footer note */
+  .modal-footer-note {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 20px;
+    background: var(--gray-50);
+    border-top: 1px solid var(--gray-100);
+    font-size: 11px;
+    color: var(--gray-400);
+  }
+
+</style>
+</head>
+<body>
+
+<!-- BACKGROUND PAGE (blurred simulation of detail page) -->
+<div class="page-bg">
+  <div class="bg-header">
+    <div class="bg-wordmark">
+      <div class="bg-logo"></div>
+      <div class="bg-logotype"></div>
+    </div>
+    <div class="bg-search-bar"></div>
+    <div class="bg-nav">
+      <div class="bg-nav-item"></div>
+      <div class="bg-nav-item"></div>
+    </div>
+  </div>
+  <div class="bg-breadcrumb">
+    <div class="bg-crumb"></div>
+    <div class="bg-crumb-sep"></div>
+    <div class="bg-crumb"></div>
+    <div class="bg-crumb-sep"></div>
+    <div class="bg-crumb-active"></div>
+  </div>
+  <div class="bg-content">
+    <div class="bg-main">
+      <div class="bg-card">
+        <div class="bg-hero"></div>
+        <div class="bg-card-body">
+          <div class="bg-freshness"></div>
+          <div class="bg-badges">
+            <div class="bg-badge" style="width:80px"></div>
+            <div class="bg-badge" style="width:70px"></div>
+            <div class="bg-badge" style="width:90px"></div>
+          </div>
+          <div class="bg-title"></div>
+          <div class="bg-text-line w-full"></div>
+          <div class="bg-text-line w-80"></div>
+          <div class="bg-text-line w-60"></div>
+        </div>
+      </div>
+      <div class="bg-card">
+        <div class="bg-card-body">
+          <div class="bg-title" style="width:100px;height:16px;opacity:0.4;margin-bottom:14px;"></div>
+          <div class="bg-text-line w-full"></div>
+          <div class="bg-text-line w-80"></div>
+          <div class="bg-text-line w-full"></div>
+          <div class="bg-text-line w-60"></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="bg-sidebar-card">
+        <div class="bg-price"></div>
+        <div class="bg-urgency"></div>
+        <div class="bg-cta-btn"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OVERLAY + MODAL -->
+<div class="modal-overlay">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+
+    <!-- Modal header -->
+    <div class="modal-header">
+      <div class="modal-title" id="modal-title">Share this activity</div>
+      <button class="modal-close" aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <!-- OG preview card -->
+    <div class="og-preview" role="img" aria-label="Link preview as it will appear in WhatsApp">
+      <div class="og-image">
+        <span class="og-watermark">⚽</span>
+        <div class="og-badge">Sports</div>
+        <div class="og-app-chip">
+          <div class="og-app-icon">K</div>
+          kidquest.app
+        </div>
+      </div>
+      <div class="og-body">
+        <div class="og-domain">
+          <div class="og-domain-dot"></div>
+          kidquest.app
+        </div>
+        <div class="og-title">Weekend Soccer Clinics — Ages 6-10 · San Francisco</div>
+        <div class="og-desc">Saturdays 9:00–10:30 AM · $180/season · Dolores Park · Starts Sept 6</div>
+      </div>
+    </div>
+
+    <!-- Share target buttons -->
+    <div class="share-targets-label">Share via</div>
+    <div class="share-targets" role="group" aria-label="Share options">
+
+      <button class="share-btn-item">
+        <div class="share-icon share-icon-whatsapp">
+          <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 3C9.373 3 4 8.373 4 15c0 2.385.832 4.584 2.205 6.332L4.5 28l6.853-1.695A11.934 11.934 0 0 0 16 27c6.627 0 12-5.373 12-12S22.627 3 16 3zm6.06 16.02c-.252.71-1.474 1.39-2.018 1.432-.514.04-1.003.192-3.388-.706-2.85-1.08-4.665-3.97-4.807-4.153-.14-.183-1.148-1.527-1.148-2.914 0-1.387.726-2.069.984-2.353.258-.284.563-.355.75-.355l.543.01c.172.009.403-.065.631.481.252.6.855 2.077.93 2.228.076.152.127.33.025.532-.1.202-.15.33-.298.51-.148.18-.31.4-.442.537-.148.152-.303.32-.13.627.173.307.77 1.27 1.655 2.058 1.138 1.01 2.096 1.322 2.403 1.474.307.152.487.127.667-.076.18-.203.768-.897 1.005-.1206.236-.308.473-.252.797-.099.325.152 2.067.973 2.42 1.123.354.151.59.228.677.354.086.127.086.736-.165 1.445z"/>
+          </svg>
+        </div>
+        <span class="share-label">WhatsApp</span>
+      </button>
+
+      <button class="share-btn-item">
+        <div class="share-icon share-icon-imessage">
+          <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 4C9.373 4 4 8.925 4 15c0 3.39 1.59 6.425 4.1 8.505L7 28l4.745-2.475A13.09 13.09 0 0 0 16 26c6.627 0 12-4.925 12-11S22.627 4 16 4zm-2 12H9v-2h5v2zm6 0h-5v-2h5v2zm2-4H9v-2h13v2z"/>
+          </svg>
+        </div>
+        <span class="share-label">iMessage</span>
+      </button>
+
+      <button class="share-btn-item">
+        <div class="share-icon share-icon-copy">
+          <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 2H8C6.9 2 6 2.9 6 4v16h2V4h12V2zm3 4H12C10.9 6 10 6.9 10 8v16c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 18H12V8h11v16z"/>
+          </svg>
+        </div>
+        <span class="share-label">Copy Link</span>
+      </button>
+
+      <button class="share-btn-item">
+        <div class="share-icon share-icon-facebook">
+          <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.525 28v-9.525h3.2l.48-3.72h-3.68V12.4c0-1.077.298-1.81 1.84-1.81H21.3V7.24A24.782 24.782 0 0 0 18.36 7.1c-2.84 0-4.785 1.734-4.785 4.915v2.74H10.3v3.72h3.275V28h3.95z"/>
+          </svg>
+        </div>
+        <span class="share-label">Facebook</span>
+      </button>
+
+      <button class="share-btn-item">
+        <div class="share-icon share-icon-email">
+          <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M27 6H5a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h22a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2zm0 4-11 7L5 10V8l11 7 11-7v2z"/>
+          </svg>
+        </div>
+        <span class="share-label">Email</span>
+      </button>
+
+    </div>
+
+    <hr class="modal-divider">
+
+    <!-- Ready-made message -->
+    <div class="ready-message-section">
+      <div class="ready-message-header">
+        <div class="ready-message-label">
+          Ready-made message
+          <span class="ready-message-tag">PASTE-READY</span>
+        </div>
+        <button class="copy-btn">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy
+        </button>
+      </div>
+      <div class="ready-message-body">
+        <div class="ready-message-quote">Message</div>
+        Hey! Found this soccer program for kids 6-10 at Dolores Park. Saturdays 9–10:30am, $180 for the season (12 sessions). Coach Marcus has been running clinics in the Mission for 10 years — only 4 spots left.<br><br>
+        <span class="ready-message-link">kidquest.app/sf/soccer/weekend-soccer-clinics</span>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="modal-footer-note">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>
+      Link shows live spot count — recipients see current availability when they open it.
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
