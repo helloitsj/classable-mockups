@@ -835,11 +835,13 @@
   </div>
 </header>
 
-<!-- BREADCRUMB -->
+<!-- BREADCRUMB — reflects URL structure: /nyc/queens/sports/basketball/slug/ -->
 <nav class="breadcrumb" aria-label="Breadcrumb">
   <a href="#">Home</a>
   <span class="breadcrumb-sep" aria-hidden="true">›</span>
-  <a href="#">Queens, NY</a>
+  <a href="#">New York City</a>
+  <span class="breadcrumb-sep" aria-hidden="true">›</span>
+  <a href="#">Queens</a>
   <span class="breadcrumb-sep" aria-hidden="true">›</span>
   <a href="#">Sports &amp; Athletics</a>
   <span class="breadcrumb-sep" aria-hidden="true">›</span>
@@ -1022,6 +1024,47 @@
             Verified &amp; managed by owner
           </div> -->
         </div>
+      </div>
+    </div>
+
+    <!-- MORE PROGRAMS FROM THIS PROVIDER -->
+    <!-- Reflects two-tier org+program model: org page aggregates all programs -->
+    <div class="section-card">
+      <div class="section-heading">
+        <svg class="section-heading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        More programs from Hot Shots Basketball NYC
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:2px;">
+
+        <!-- Ages 5/6 -->
+        <a href="mockup-filter-panel.html" style="text-decoration:none;display:block;border:1.5px solid var(--gray-300);border-radius:10px;overflow:hidden;transition:border-color 0.15s,box-shadow 0.15s;" onmouseover="this.style.borderColor='#F97316';this.style.boxShadow='0 4px 12px rgb(0 0 0 / 0.08)'" onmouseout="this.style.borderColor='var(--gray-300)';this.style.boxShadow='none'">
+          <div style="height:60px;background:linear-gradient(135deg,#FB923C 0%,#F97316 100%);display:flex;align-items:center;justify-content:center;font-size:24px;color:rgba(255,255,255,0.3);">🏀</div>
+          <div style="padding:10px 12px;">
+            <div style="font-size:12px;font-weight:700;color:#0F1117;margin-bottom:2px;">Ages 5/6 Group</div>
+            <div style="font-size:11px;color:#6B7280;margin-bottom:5px;">Sat 9:00–10:00 AM · $75 / 6 sessions</div>
+            <div style="display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:700;color:#059669;background:#D1FAE5;padding:2px 6px;border-radius:3px;">
+              <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Fresh
+            </div>
+          </div>
+        </a>
+
+        <!-- Ages 9/10 -->
+        <a href="#" style="text-decoration:none;display:block;border:1.5px solid var(--gray-300);border-radius:10px;overflow:hidden;transition:border-color 0.15s,box-shadow 0.15s;" onmouseover="this.style.borderColor='#F97316';this.style.boxShadow='0 4px 12px rgb(0 0 0 / 0.08)'" onmouseout="this.style.borderColor='var(--gray-300)';this.style.boxShadow='none'">
+          <div style="height:60px;background:linear-gradient(135deg,#EA580C 0%,#C2410C 100%);display:flex;align-items:center;justify-content:center;font-size:24px;color:rgba(255,255,255,0.3);">🏀</div>
+          <div style="padding:10px 12px;">
+            <div style="font-size:12px;font-weight:700;color:#0F1117;margin-bottom:2px;">Ages 9/10 Group</div>
+            <div style="font-size:11px;color:#6B7280;margin-bottom:5px;">Sat 11:00 AM–12:00 PM · $90 / 6 sessions</div>
+            <div style="display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:700;color:#059669;background:#D1FAE5;padding:2px 6px;border-radius:3px;">
+              <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Fresh
+            </div>
+          </div>
+        </a>
+
+      </div>
+      <div style="margin-top:12px;">
+        <a href="#" style="font-size:13px;font-weight:600;color:var(--teal);text-decoration:none;">View all Hot Shots Basketball NYC programs →</a>
       </div>
     </div>
 
