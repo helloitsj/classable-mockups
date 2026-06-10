@@ -528,6 +528,38 @@
     font-size: 12px; color: #065F46;
   }
   .verify-badge strong { color: #064E3B; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    /* Nav scrolls horizontally */
+    .top-nav-inner { padding: 0 12px; gap: 8px; }
+    .dash-nav { overflow-x: auto; padding: 0 4px; flex-shrink: 1; gap: 0; }
+    .dash-nav-link { font-size: 12px; padding: 8px 10px; white-space: nowrap; }
+    .nav-provider-chip span:not(.nav-avatar):not(.nav-verified-dot) { display: none; }
+    /* Page stacks: form above sidebar */
+    .page { grid-template-columns: 1fr; padding: 16px 16px 60px; gap: 16px; }
+    .sidebar { position: static; }
+    /* Form rows collapse */
+    .form-row { grid-template-columns: 1fr !important; }
+    /* Completeness items: single column */
+    .completeness-items { grid-template-columns: 1fr; }
+    /* Photo grid: 2 col */
+    .photo-grid { grid-template-columns: repeat(2, 1fr); }
+    /* Save bar */
+    .save-bar-inner { padding: 8px 12px; }
+    .btn-preview span { display: none; }
+  }
+
+  @media (max-width: 480px) {
+    .card-body { padding: 14px; }
+    .form-section { padding: 14px; }
+    .card-header { padding: 12px 14px; flex-wrap: wrap; gap: 6px; }
+    .completeness-wrap { padding: 14px; }
+    .nbhd-grid { gap: 5px; }
+    .nbhd-chip { font-size: 11px; padding: 4px 10px; }
+    .keyword-chips { gap: 5px; }
+    .photo-grid { grid-template-columns: repeat(2, 1fr); }
+  }
 </style>
 </head>
 <body>

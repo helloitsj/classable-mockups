@@ -397,6 +397,41 @@
   }
   .fsr-chip-done { background: var(--green-light); color: var(--green); }
   .fsr-chip-missing { background: var(--amber-light); color: var(--amber); border: 1px solid var(--amber-border); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    /* Nav scrolls horizontally */
+    .top-nav-inner { padding: 0 12px; gap: 8px; }
+    .dash-nav { overflow-x: auto; padding: 0 4px; flex-shrink: 1; gap: 0; }
+    .dash-nav-link { font-size: 12px; padding: 8px 10px; white-space: nowrap; }
+    .nav-provider-chip span:not(.nav-avatar):not(.nav-verified-dot) { display: none; }
+    /* Page: program list on top, form below */
+    .page { grid-template-columns: 1fr; padding: 16px 16px 60px; gap: 16px; }
+    .program-list-panel { position: static; }
+    /* Program list: horizontal scroll row on mobile */
+    .program-list { display: flex; overflow-x: auto; gap: 6px; padding: 8px 6px; }
+    .program-list-item { flex-shrink: 0; min-width: 160px; margin-bottom: 0; }
+    /* Form rows collapse */
+    .form-row,
+    .form-row.three { grid-template-columns: 1fr !important; }
+    /* Save bar */
+    .save-bar-inner { padding: 8px 12px; }
+    /* Prog header */
+    .prog-header { flex-wrap: wrap; gap: 10px; }
+    .prog-status-toggle { width: 100%; justify-content: center; }
+  }
+
+  @media (max-width: 480px) {
+    .card-header { padding: 12px 14px; flex-wrap: wrap; gap: 6px; }
+    .form-section { padding: 14px; }
+    .day-picker { gap: 5px; }
+    .day-btn { width: 34px; height: 34px; font-size: 10px; }
+    .toggle-group { flex-direction: column; border-radius: var(--radius-md); }
+    .toggle-opt + .toggle-opt { border-left: none; border-top: 1.5px solid var(--gray-300); }
+    .price-tier-row { flex-direction: column; }
+    .price-tier-btn { text-align: left; }
+    .pill-row { gap: 6px; }
+  }
 </style>
 </head>
 <body>

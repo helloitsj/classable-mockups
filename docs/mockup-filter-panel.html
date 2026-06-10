@@ -637,6 +637,50 @@
     padding: 2px 7px;
     border-radius: 4px;
   }
+
+  /* ─── RESPONSIVE ─── */
+
+  .mobile-filter-btn {
+    display: none;
+    align-items: center; gap: 6px;
+    padding: 8px 14px; border-radius: 8px;
+    background: #fff; border: 1.5px solid var(--gray-300);
+    font-size: 13px; font-weight: 600; color: var(--gray-700);
+    cursor: pointer; font-family: inherit;
+  }
+  .mobile-filter-btn svg { color: var(--teal); }
+  .filter-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.4); z-index: 199;
+  }
+  .filter-overlay.open { display: block; }
+
+  @media (max-width: 860px) {
+    .search-bar-inner { flex-wrap: wrap; gap: 0; }
+    .search-input-wrap { flex: 1 1 100%; }
+    .search-input-wrap + .search-input-wrap { border-top: 1px solid var(--gray-200); border-left: none; }
+    .search-btn { border-radius: 0 0 12px 12px; width: 100%; justify-content: center; }
+    .page-layout { grid-template-columns: 1fr; gap: 0; }
+    .filter-sidebar {
+      position: fixed; top: 0; left: -320px;
+      width: 300px; height: 100vh; overflow-y: auto;
+      z-index: 200; border-radius: 0;
+      border-right: 1px solid var(--gray-200);
+      box-shadow: 4px 0 24px rgb(0 0 0 / 0.15);
+      transition: left 0.25s ease;
+    }
+    .filter-sidebar.mobile-open { left: 0; }
+    .mobile-filter-btn { display: flex; }
+    .active-chips-bar { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; }
+    .results-topbar { flex-wrap: wrap; gap: 8px; }
+  }
+
+  @media (max-width: 480px) {
+    .search-bar { margin: 0 0 12px; }
+    .result-card { border-radius: 10px; }
+    .card-hero { height: 120px; }
+    .card-meta { flex-wrap: wrap; gap: 6px; }
+  }
 </style>
 </head>
 <body>
@@ -989,7 +1033,13 @@
 
     <!-- Top bar -->
     <div class="results-topbar">
-      <div class="results-count"><span>18</span> results near Middle Village, Queens</div>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+        <button class="mobile-filter-btn" onclick="document.querySelector('.filter-sidebar').classList.toggle('mobile-open');document.querySelector('.filter-overlay').classList.toggle('open');" aria-label="Show filters">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+          Filters
+        </button>
+        <div class="results-count"><span>18</span> results near Middle Village, Queens</div>
+      </div>
       <div class="results-sort">
         Sort by:
         <select class="sort-select">
@@ -1131,5 +1181,29 @@
   </div>
 
 </div>
+
+<!-- Mobile filter overlay — tap to close drawer -->
+<div class="filter-overlay" onclick="document.querySelector('.filter-sidebar').classList.remove('mobile-open');this.classList.remove('open');" aria-hidden="true"></div>
+
+<script>
+  // Add a close button inside the filter sidebar for mobile
+  (function() {
+    var sidebar = document.querySelector('.filter-sidebar');
+    var closeBtn = document.createElement('button');
+    closeBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Close filters';
+    closeBtn.style.cssText = 'display:none;width:100%;padding:10px 16px;background:#F3F4F6;border:none;border-bottom:1px solid #E5E7EB;font-size:13px;font-weight:600;color:#374151;cursor:pointer;font-family:inherit;text-align:left;gap:8px;align-items:center;';
+    closeBtn.onclick = function() {
+      sidebar.classList.remove('mobile-open');
+      document.querySelector('.filter-overlay').classList.remove('open');
+    };
+    sidebar.insertBefore(closeBtn, sidebar.firstChild);
+    // Show close button only on mobile
+    function checkMobile() {
+      closeBtn.style.display = window.innerWidth <= 860 ? 'flex' : 'none';
+    }
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+  })();
+</script>
 </body>
 </html>
