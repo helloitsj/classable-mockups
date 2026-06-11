@@ -37,7 +37,7 @@
     margin: 0 auto;
     padding: 20px 24px 40px;
     display: grid;
-    grid-template-columns: 280px 1fr;
+    grid-template-columns: 300px 1fr;
     gap: 24px;
     align-items: start;
   }
@@ -699,9 +699,9 @@
       </button>
     </div>
     <nav class="header-nav" aria-label="Site navigation">
-      <a href="#">Browse</a>
-      <a href="#" onclick="openAuthModal('save'); return false;">Saved</a>
-      <a href="mockup-provider-landing.html">For Providers</a>
+      <a href="#" class="nav-link">Browse</a>
+      <a href="#" class="nav-link" onclick="openAuthModal('save'); return false;">Saved</a>
+      <a href="mockup-provider-landing.html" class="nav-link">For Providers</a>
       <button class="btn-login" onclick="openAuthModal('login'); return false;">Log in</button>
       <a href="#" class="btn-signup" onclick="openAuthModal('signup'); return false;">Sign up</a>
     </nav>

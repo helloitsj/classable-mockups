@@ -47,7 +47,7 @@
     margin: 0 auto;
     padding: 28px 24px 60px;
     display: grid;
-    grid-template-columns: 1fr 280px;
+    grid-template-columns: 1fr 300px;
     gap: 24px;
     align-items: start;
   }
@@ -432,7 +432,7 @@
   /* ─── RESPONSIVE ─── */
   @media (max-width: 900px) {
     /* Nav scrolls horizontally */
-    .top-nav-inner { padding: 0 12px; gap: 8px; }
+    .header-inner { padding: 0 12px; gap: 8px; }
     .header-nav a:not(.btn-signup) { display: none; }
     .provider-subnav-inner { padding: 0 12px; }
     .dash-nav { overflow-x: auto; }
@@ -504,8 +504,8 @@
 <body>
 
 <!-- TOP NAV (same as consumer pages) -->
-<nav class="top-nav" aria-label="Site navigation">
-  <div class="top-nav-inner">
+<nav class="site-header" aria-label="Site navigation">
+  <div class="header-inner">
     <a class="wordmark" href="mockup-filter-panel.html">
       <div class="wordmark-icon">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
