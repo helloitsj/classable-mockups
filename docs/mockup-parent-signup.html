@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up — Classable</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal: #0D7A6E;
+      --teal-hover: #15A396;
+      --teal-dark: #0A5F56;
+      --teal-light: #E6F5F4;
+      --gray-900: #0F1117;
+      --gray-700: #374151;
+      --gray-500: #6B7280;
+      --gray-300: #D1D5DB;
+      --gray-100: #F3F4F6;
+      --gray-50: #F9FAFB;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--gray-900);
+      background: var(--gray-50);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── FOCUSED HEADER ── */
+    header {
+      height: 56px;
+      background: #fff;
+      border-bottom: 1px solid var(--gray-300);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--teal);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .back-link {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gray-500);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: var(--gray-700); }
+
+    /* ── MAIN CONTENT ── */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 48px 24px 64px;
+    }
+
+    .signup-card {
+      background: #fff;
+      border: 1px solid var(--gray-300);
+      border-radius: 16px;
+      padding: 40px;
+      width: 100%;
+      max-width: 460px;
+    }
+
+    /* ── STEP INDICATOR ── */
+    .step-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 32px;
+    }
+
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .step-circle {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .step.active .step-circle {
+      background: var(--teal);
+      color: #fff;
+    }
+
+    .step.inactive .step-circle {
+      background: var(--gray-100);
+      color: var(--gray-500);
+    }
+
+    .step.active .step-label {
+      color: var(--teal);
+    }
+
+    .step.inactive .step-label {
+      color: var(--gray-500);
+    }
+
+    .step-connector {
+      flex: 1;
+      height: 1px;
+      background: var(--gray-300);
+      margin: 0 12px;
+    }
+
+    /* ── FORM ── */
+    .step-content { display: none; }
+    .step-content.visible { display: block; }
+
+    .step-heading {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 6px;
+    }
+
+    .step-subtext {
+      font-size: 14px;
+      color: var(--gray-500);
+      line-height: 1.5;
+      margin-bottom: 28px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray-700);
+      margin-bottom: 6px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="number"],
+    select {
+      width: 100%;
+      height: 42px;
+      border: 1.5px solid var(--gray-300);
+      border-radius: 8px;
+      padding: 0 12px;
+      font-size: 14px;
+      font-family: inherit;
+      color: var(--gray-900);
+      background: #fff;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--teal);
+    }
+
+    .password-wrap {
+      position: relative;
+    }
+
+    .password-wrap input {
+      padding-right: 42px;
+    }
+
+    .eye-toggle {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--gray-500);
+      display: flex;
+      align-items: center;
+      padding: 0;
+    }
+    .eye-toggle:hover { color: var(--gray-700); }
+
+    .btn-primary {
+      width: 100%;
+      height: 44px;
+      background: var(--teal);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.15s;
+      margin-top: 4px;
+    }
+    .btn-primary:hover { background: var(--teal-hover); }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 20px 0;
+      color: var(--gray-500);
+      font-size: 13px;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--gray-300);
+    }
+
+    .btn-google {
+      width: 100%;
+      height: 44px;
+      background: #fff;
+      border: 1.5px solid var(--gray-300);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gray-700);
+      cursor: pointer;
+      font-family: inherit;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .btn-google:hover { border-color: var(--gray-500); background: var(--gray-50); }
+
+    .auth-footer {
+      text-align: center;
+      font-size: 13px;
+      color: var(--gray-500);
+      margin-top: 20px;
+    }
+    .auth-footer a {
+      color: var(--teal);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .auth-footer a:hover { text-decoration: underline; }
+
+    .footnote {
+      text-align: center;
+      font-size: 12px;
+      color: var(--gray-500);
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    /* ── STEP 2 ── */
+    .optional-label {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--gray-500);
+      margin-left: 4px;
+    }
+
+    .chips-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .chip {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 7px 12px;
+      border: 1.5px solid var(--gray-300);
+      border-radius: 20px;
+      background: #fff;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--gray-700);
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s, color 0.15s;
+      user-select: none;
+    }
+
+    .chip:hover {
+      border-color: var(--teal);
+    }
+
+    .chip.selected {
+      border-color: var(--teal);
+      background: var(--teal-light);
+      color: var(--teal-dark);
+      font-weight: 600;
+    }
+
+    .add-kid-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--teal);
+      text-decoration: none;
+      cursor: pointer;
+      margin-top: 20px;
+      background: none;
+      border: none;
+      font-family: inherit;
+      padding: 0;
+    }
+    .add-kid-link:hover { text-decoration: underline; }
+
+    .back-step-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 13px;
+      color: var(--gray-500);
+      text-decoration: none;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: inherit;
+      padding: 0;
+      margin-bottom: 12px;
+      transition: color 0.15s;
+    }
+    .back-step-link:hover { color: var(--gray-700); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--gray-900);
+      padding: 40px 24px 32px;
+      color: #fff;
+    }
+
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--teal-hover);
+      letter-spacing: -0.5px;
+    }
+
+    .footer-tagline {
+      font-size: 13px;
+      color: #9CA3AF;
+      margin-top: 2px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px 24px;
+      margin-top: 4px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: #9CA3AF;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: #fff; }
+
+    .footer-copy {
+      font-size: 12px;
+      color: #6B7280;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FOCUSED HEADER -->
+  <header>
+    <a href="mockup-homepage.html" class="logo">Classable</a>
+    <a href="mockup-homepage.html" class="back-link">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Back
+    </a>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <div class="signup-card">
+
+      <!-- STEP INDICATOR -->
+      <div class="step-indicator">
+        <div class="step active" id="indicator-1">
+          <div class="step-circle">1</div>
+          <span class="step-label">Your account</span>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step inactive" id="indicator-2">
+          <div class="step-circle">2</div>
+          <span class="step-label">Your kids</span>
+        </div>
+      </div>
+
+      <!-- STEP 1: YOUR ACCOUNT -->
+      <div class="step-content visible" id="step-1">
+        <h1 class="step-heading">Create your free account</h1>
+        <p class="step-subtext">Save programs, get enrollment reminders, and never miss an opening.</p>
+
+        <div class="form-group">
+          <label for="first-name">First name</label>
+          <input type="text" id="first-name" placeholder="e.g. Sarah" autocomplete="given-name" />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="you@email.com" autocomplete="email" />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="password-wrap">
+            <input type="password" id="password" placeholder="At least 8 characters" autocomplete="new-password" />
+            <button class="eye-toggle" type="button" onclick="togglePassword()" aria-label="Show or hide password">
+              <svg id="eye-icon" width="18" height="18" viewBox="0 0 20 20" fill="none">
+                <path d="M2 10s3-6 8-6 8 6 8 6-3 6-8 6-8-6-8-6z" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="10" cy="10" r="2.5" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <button class="btn-primary" onclick="showStep(2)">Continue</button>
+
+        <div class="divider">or</div>
+
+        <button class="btn-google">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.64 9.205c0-.639-.057-1.252-.164-1.841H9v3.481h4.844a4.14 4.14 0 0 1-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z" fill="#4285F4"/>
+            <path d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z" fill="#34A853"/>
+            <path d="M3.964 10.71A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.042l3.007-2.332z" fill="#FBBC05"/>
+            <path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z" fill="#EA4335"/>
+          </svg>
+          Continue with Google
+        </button>
+
+        <p class="auth-footer">Already have an account? <a href="#">Log in</a></p>
+        <p class="footnote">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0 3.5c.414 0 .75.336.75.75v3.5a.75.75 0 0 1-1.5 0v-3.5c0-.414.336-.75.75-.75z" fill="currentColor"/></svg>
+          Free for parents, always. No spam.
+        </p>
+      </div>
+
+      <!-- STEP 2: YOUR KIDS -->
+      <div class="step-content" id="step-2">
+        <h1 class="step-heading">Tell us about your kid</h1>
+        <p class="step-subtext">We'll use this to surface the most relevant programs. You can always update this later.</p>
+
+        <div class="form-group">
+          <label for="kid-name">Kid's name <span class="optional-label">(optional)</span></label>
+          <input type="text" id="kid-name" placeholder="e.g. Alex" autocomplete="off" />
+        </div>
+
+        <div class="form-group">
+          <label for="kid-age">How old are they?</label>
+          <select id="kid-age">
+            <option value="" disabled selected>Select age</option>
+            <option value="3">3 years old</option>
+            <option value="4">4 years old</option>
+            <option value="5">5 years old</option>
+            <option value="6">6 years old</option>
+            <option value="7">7 years old</option>
+            <option value="8">8 years old</option>
+            <option value="9">9 years old</option>
+            <option value="10">10 years old</option>
+            <option value="11">11 years old</option>
+            <option value="12">12 years old</option>
+            <option value="13">13 years old</option>
+            <option value="14">14 years old</option>
+            <option value="15">15 years old</option>
+            <option value="16">16 years old</option>
+            <option value="17">17 years old</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Interests <span class="optional-label">(pick any)</span></label>
+          <div class="chips-grid" id="chips-grid">
+            <div class="chip" onclick="toggleChip(this)"><span>⚽</span> Soccer</div>
+            <div class="chip" onclick="toggleChip(this)"><span>🏀</span> Basketball</div>
+            <div class="chip" onclick="toggleChip(this)"><span>🎨</span> Drawing &amp; Painting</div>
+            <div class="chip" onclick="toggleChip(this)"><span>💻</span> Coding</div>
+            <div class="chip" onclick="toggleChip(this)"><span>🎸</span> Music</div>
+            <div class="chip" onclick="toggleChip(this)"><span>🩰</span> Dance</div>
+            <div class="chip" onclick="toggleChip(this)"><span>🥋</span> Martial Arts</div>
+            <div class="chip" onclick="toggleChip(this)"><span>🍳</span> Cooking</div>
+            <div class="chip" onclick="toggleChip(this)"><span>📚</span> Tutoring</div>
+            <div class="chip" onclick="toggleChip(this)"><span>🤖</span> Robotics</div>
+            <div class="chip" onclick="toggleChip(this)"><span>🏊</span> Swimming</div>
+            <div class="chip" onclick="toggleChip(this)"><span>🎭</span> Theater</div>
+          </div>
+        </div>
+
+        <button class="add-kid-link" type="button">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          Add another kid
+        </button>
+
+        <div style="margin-top: 24px;">
+          <button class="back-step-link" type="button" onclick="showStep(1)">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Back
+          </button>
+          <a href="mockup-filter-panel.html" style="text-decoration: none; display: block;">
+            <button class="btn-primary" type="button" style="margin-top: 0;">Start exploring</button>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">Classable</div>
+        <div class="footer-tagline">Learn it. Play it. Do it.</div>
+      </div>
+      <nav class="footer-links">
+        <a href="#">About</a>
+        <a href="mockup-provider-landing.html">For Providers</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </nav>
+      <p class="footer-copy">&copy; 2026 Classable</p>
+    </div>
+  </footer>
+
+  <script>
+    function showStep(n) {
+      document.querySelectorAll('.step-content').forEach(el => el.classList.remove('visible'));
+      document.getElementById('step-' + n).classList.add('visible');
+
+      // Update indicators
+      document.querySelectorAll('.step').forEach((el, i) => {
+        el.classList.toggle('active', i + 1 === n);
+        el.classList.toggle('inactive', i + 1 !== n);
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleChip(el) {
+      el.classList.toggle('selected');
+    }
+
+    function togglePassword() {
+      const input = document.getElementById('password');
+      const isHidden = input.type === 'password';
+      input.type = isHidden ? 'text' : 'password';
+      document.getElementById('eye-icon').innerHTML = isHidden
+        ? '<path d="M2 10s3-6 8-6 8 6 8 6-3 6-8 6-8-6-8-6z" stroke="currentColor" stroke-width="1.5"/><line x1="2" y1="2" x2="18" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>'
+        : '<path d="M2 10s3-6 8-6 8 6 8 6-3 6-8 6-8-6-8-6z" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="2.5" stroke="currentColor" stroke-width="1.5"/>';
+    }
+  </script>
+</body>
+</html>
