@@ -8,26 +8,17 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="classable.css">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --teal: #0D7A6E;
-    --teal-hover: #15A396;
-    --teal-light: #E6F5F4;
-    --gray-900: #0F1117;
-    --gray-700: #374151;
-    --gray-500: #6B7280;
-    --gray-300: #D1D5DB;
-    --gray-100: #F3F4F6;
-    --gray-50: #F9FAFB;
     --green-text: #059669;
     --green-bg: #D1FAE5;
     --sports-bg: #EFF6FF;
     --sports-text: #1D4ED8;
     --arts-bg: #FDF4FF;
     --arts-text: #7C3AED;
-    --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.06);
     --shadow-card-hover: 0 4px 12px 0 rgb(0 0 0 / 0.10), 0 2px 4px -2px rgb(0 0 0 / 0.06);
   }
 
@@ -41,38 +32,6 @@
   }
 
   /* ─── HEADER ─── */
-  .site-header {
-    background: #fff;
-    border-bottom: 1px solid var(--gray-300);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  .header-inner {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 24px;
-    height: 56px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-  .wordmark {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    flex-shrink: 0;
-  }
-  .wordmark-icon {
-    width: 30px; height: 30px;
-    background: var(--teal);
-    border-radius: 7px;
-    display: flex; align-items: center; justify-content: center;
-    color: #fff; font-size: 15px;
-  }
-  .wordmark-text { font-size: 17px; font-weight: 700; color: var(--gray-900); letter-spacing: -0.3px; }
-  .wordmark-text span { color: var(--teal); }
   .search-bar {
     flex: 1;
     display: flex;
@@ -767,17 +726,6 @@
   .auth-modal-divider { font-size: 13px; color: var(--gray-400); margin: 14px 0; }
   .auth-modal-note { font-size: 12px; color: var(--gray-400); margin-top: 14px; line-height: 1.5; }
 
-  /* ─── FOOTER ─── */
-  .site-footer { background: #0F1117; padding: 40px 24px 32px; }
-  .site-footer-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
-  .footer-brand { display: flex; flex-direction: column; gap: 4px; }
-  .footer-wordmark { font-size: 16px; font-weight: 800; color: #fff; letter-spacing: -0.3px; }
-  .footer-wordmark span { color: #E6F5F4; }
-  .footer-tagline { font-size: 12px; color: rgba(255,255,255,0.4); font-style: italic; }
-  .footer-links { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
-  .footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.15s; }
-  .footer-links a:hover { color: #fff; }
-  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); white-space: nowrap; }
 </style>
 </head>
 <body>
