@@ -91,9 +91,10 @@
 
   /* ─── PROVIDER SUB-NAV ─── */
   .provider-subnav {
-    background: #fff;
-    border-bottom: 1px solid var(--gray-200);
+    background: #374151;
+    border-bottom: none;
     position: sticky; top: 56px; z-index: 99;
+    box-shadow: 0 1px 4px rgb(0 0 0 / 0.15);
   }
   .provider-subnav-inner {
     max-width: 1200px; margin: 0 auto;
@@ -104,14 +105,14 @@
   .dash-nav-link {
     display: flex; align-items: center; gap: 6px;
     padding: 0 14px;
-    font-size: 13px; font-weight: 500; color: var(--gray-500);
+    font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.6);
     text-decoration: none;
     border-bottom: 2px solid transparent;
     transition: color 0.12s, border-color 0.12s;
     white-space: nowrap;
   }
-  .dash-nav-link:hover { color: var(--gray-900); }
-  .dash-nav-link.active { color: var(--teal); font-weight: 600; border-bottom-color: var(--teal); }
+  .dash-nav-link:hover { color: #fff; }
+  .dash-nav-link.active { color: #fff; font-weight: 600; border-bottom-color: #fff; }
   .nav-provider-chip {
     display: flex; align-items: center; gap: 8px;
     padding: 5px 12px 5px 5px; background: var(--gray-100);
@@ -141,28 +142,33 @@
   /* ─── SAVE BAR ─── */
   .save-bar {
     position: sticky; top: 100px; z-index: 90;
-    background: #fff; border-bottom: 1px solid var(--gray-300);
-    box-shadow: 0 2px 8px rgb(0 0 0 / 0.06);
+    background: var(--teal);
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.18);
   }
   .save-bar-inner {
     max-width: 1200px; margin: 0 auto; padding: 10px 24px;
     display: flex; align-items: center; justify-content: space-between; gap: 12px;
   }
-  .save-bar-status { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--amber); }
+  .save-bar-status { display: flex; align-items: center; gap: 6px; font-size: 13px; color: rgba(255,255,255,0.9); font-weight: 500; }
   .save-bar-actions { display: flex; gap: 8px; }
   .btn-save {
-    background: var(--teal); color: #fff; font-size: 13px; font-weight: 700;
+    background: #fff; color: var(--teal); font-size: 13px; font-weight: 700;
     padding: 8px 20px; border-radius: var(--radius-md); border: none; cursor: pointer;
-    font-family: inherit; transition: background 0.15s;
+    font-family: inherit; transition: opacity 0.15s;
   }
-  .btn-save:hover { background: var(--teal-hover); }
+  .btn-save:hover { opacity: 0.9; }
   .btn-secondary {
-    background: var(--gray-100); color: var(--gray-700); font-size: 13px; font-weight: 600;
-    padding: 8px 16px; border-radius: var(--radius-md); border: 1px solid var(--gray-300);
+    background: rgba(255,255,255,0.15); color: #fff; font-size: 13px; font-weight: 600;
+    padding: 8px 16px; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.35);
     cursor: pointer; font-family: inherit; transition: background 0.15s;
     display: flex; align-items: center; gap: 6px; text-decoration: none;
   }
-  .btn-secondary:hover { background: var(--gray-200); }
+  .btn-secondary:hover { background: rgba(255,255,255,0.25); }
+
+  /* Hide verified dot when chip is in the top nav */
+  .header-nav .nav-verified-dot { display: none; }
+  .header-nav .nav-provider-chip { background: var(--gray-100); color: var(--gray-700); }
+  .header-nav .nav-provider-chip:hover { background: var(--gray-200); }
 
   /* ─── PAGE LAYOUT ─── */
   .page {
@@ -466,23 +472,6 @@
 </head>
 <body>
 
-<!-- SAVE BAR -->
-<div class="save-bar" role="region" aria-label="Unsaved changes">
-  <div class="save-bar-inner">
-    <div class="save-bar-status">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>
-      Unsaved changes — Ages 7/8 Group
-    </div>
-    <div class="save-bar-actions">
-      <a class="btn-secondary" href="mockup-detail-page.html" target="_blank">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-        Preview listing
-      </a>
-      <button class="btn-save">Save program</button>
-    </div>
-  </div>
-</div>
-
 <!-- TOP NAV (same as consumer pages) -->
 <nav class="top-nav" aria-label="Site navigation">
   <div class="top-nav-inner">
@@ -534,6 +523,23 @@
     </div>
   </div>
 </nav>
+
+<!-- SAVE BAR — sticky below both nav bars -->
+<div class="save-bar" role="region" aria-label="Unsaved changes">
+  <div class="save-bar-inner">
+    <div class="save-bar-status">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>
+      Unsaved changes — Ages 7/8 Group
+    </div>
+    <div class="save-bar-actions">
+      <a class="btn-secondary" href="mockup-detail-page.html" target="_blank">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview listing
+      </a>
+      <button class="btn-save">Save program</button>
+    </div>
+  </div>
+</div>
 
 <!-- PAGE -->
 <div class="page">
