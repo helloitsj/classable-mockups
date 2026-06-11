@@ -33,38 +33,24 @@
     }
 
     /* ── FOCUSED HEADER ── */
-    header {
-      height: 56px;
-      background: #fff;
-      border-bottom: 1px solid var(--gray-300);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 24px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
+    .site-header { background: #fff; border-bottom: 1px solid var(--gray-300); }
+    .header-inner {
+      max-width: 800px; margin: 0 auto; padding: 0 24px;
+      height: 56px; display: flex; align-items: center; justify-content: space-between;
     }
-
-    .logo {
-      font-size: 20px;
-      font-weight: 800;
-      color: var(--teal);
-      text-decoration: none;
-      letter-spacing: -0.5px;
+    .wordmark { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+    .wordmark-icon {
+      width: 30px; height: 30px; background: var(--teal); border-radius: 7px;
+      display: flex; align-items: center; justify-content: center; color: #fff;
     }
-
-    .back-link {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--gray-500);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      transition: color 0.15s;
+    .wordmark-text { font-size: 17px; font-weight: 700; color: var(--gray-900); letter-spacing: -0.3px; }
+    .wordmark-text span { color: var(--teal); }
+    .header-exit {
+      font-size: 13px; font-weight: 500; color: var(--gray-500);
+      text-decoration: none; display: flex; align-items: center; gap: 4px;
+      padding: 6px 10px; border-radius: 8px; transition: color 0.15s, background 0.15s;
     }
-    .back-link:hover { color: var(--gray-700); }
+    .header-exit:hover { color: var(--gray-900); background: var(--gray-100); }
 
     /* ── MAIN CONTENT ── */
     main {
@@ -363,67 +349,44 @@
     .back-step-link:hover { color: var(--gray-700); }
 
     /* ── FOOTER ── */
-    footer {
+    .site-footer {
       background: var(--gray-900);
       padding: 40px 24px 32px;
       color: #fff;
     }
 
-    .footer-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-      text-align: center;
+    .site-footer-inner {
+      max-width: 1280px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
     }
-
-    .footer-logo {
-      font-size: 20px;
-      font-weight: 800;
-      color: var(--teal-hover);
-      letter-spacing: -0.5px;
-    }
-
-    .footer-tagline {
-      font-size: 13px;
-      color: #9CA3AF;
-      margin-top: 2px;
-    }
-
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 6px 24px;
-      margin-top: 4px;
-    }
-
-    .footer-links a {
-      font-size: 13px;
-      color: #9CA3AF;
-      text-decoration: none;
-      transition: color 0.15s;
-    }
+    .footer-brand { display: flex; flex-direction: column; gap: 4px; }
+    .footer-wordmark { font-size: 16px; font-weight: 800; color: #fff; letter-spacing: -0.3px; }
+    .footer-wordmark span { color: #E6F5F4; }
+    .footer-tagline { font-size: 12px; color: rgba(255,255,255,0.4); font-style: italic; }
+    .footer-links { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+    .footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.15s; }
     .footer-links a:hover { color: #fff; }
-
-    .footer-copy {
-      font-size: 12px;
-      color: #6B7280;
-      margin-top: 4px;
-    }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); white-space: nowrap; }
   </style>
 </head>
 <body>
 
   <!-- FOCUSED HEADER -->
-  <header>
-    <a href="mockup-homepage.html" class="logo">Classable</a>
-    <a href="mockup-homepage.html" class="back-link">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Back
-    </a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="wordmark" href="mockup-homepage.html">
+        <div class="wordmark-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+          </svg>
+        </div>
+        <span class="wordmark-text">Class<span>able</span></span>
+      </a>
+      <a class="header-exit" href="mockup-homepage.html">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to Classable
+      </a>
+    </div>
   </header>
 
   <!-- MAIN -->
@@ -562,11 +525,11 @@
   </main>
 
   <!-- FOOTER -->
-  <footer>
-    <div class="footer-inner">
-      <div>
-        <div class="footer-logo">Classable</div>
-        <div class="footer-tagline">Learn it. Play it. Do it.</div>
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div class="footer-brand">
+        <span class="footer-wordmark">Class<span>able</span></span>
+        <span class="footer-tagline">Learn it. Play it. Do it.</span>
       </div>
       <nav class="footer-links">
         <a href="#">About</a>
@@ -574,7 +537,7 @@
         <a href="#">Privacy Policy</a>
         <a href="#">Terms of Service</a>
       </nav>
-      <p class="footer-copy">&copy; 2026 Classable</p>
+      <span class="footer-copy">&copy; 2026 Classable</span>
     </div>
   </footer>
 
