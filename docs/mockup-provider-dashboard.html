@@ -543,22 +543,6 @@
     padding: 2px 7px; border-radius: 3px;
   }
 
-  /* Schema preview */
-  .schema-box {
-    background: #0F1117;
-    color: #D1FAE5;
-    font-family: 'SF Mono', 'Fira Code', monospace;
-    font-size: 10.5px;
-    line-height: 1.6;
-    padding: 14px 16px;
-    border-radius: var(--radius-md);
-    overflow: auto;
-    margin-top: 12px;
-  }
-  .schema-key { color: #7DD3FC; }
-  .schema-val { color: #BBF7D0; }
-  .schema-str { color: #FDE68A; }
-
   /* Verification badge */
   .verify-badge {
     display: flex; align-items: center; gap: 8px;
@@ -815,7 +799,6 @@
           <div class="form-group">
             <label class="form-label" for="f-name">
               Business / provider name
-              <span class="seo-tag seo-med" style="font-size:10px;">schema.org name</span>
               <span style="font-size:10px;font-weight:600;color:var(--teal);background:var(--teal-light);padding:1px 5px;border-radius:3px;">Auto-detected</span>
             </label>
             <input id="f-name" class="form-input filled" type="text" value="Hot Shots Basketball NYC" placeholder="e.g. Westside Basketball Academy">
@@ -878,7 +861,6 @@
           <div class="form-group">
             <label class="form-label" for="f-website">
               Website
-              <span class="seo-tag seo-med" style="font-size:10px;">schema.org url</span>
               <span style="font-size:10px;font-weight:600;color:var(--teal);background:var(--teal-light);padding:1px 5px;border-radius:3px;">Auto-detected</span>
             </label>
             <input id="f-website" class="form-input filled" type="url" value="https://hotshotsbasketballnyc.com" placeholder="https://yourwebsite.com">
@@ -886,7 +868,6 @@
           <div class="form-group">
             <label class="form-label" for="f-phone">
               Phone
-              <span class="seo-tag seo-low" style="font-size:10px;">schema.org telephone</span>
             </label>
             <input id="f-phone" class="form-input filled" type="tel" value="(718) 555-0147" placeholder="(718) 555-0000">
           </div>
@@ -925,8 +906,8 @@
       </div>
       <div class="form-section">
         <div class="form-section-hint" style="margin-bottom:12px;">
-          Service area neighborhoods feed directly into <code style="font-size:11px;background:var(--gray-100);padding:1px 5px;border-radius:3px;">schema.org/areaServed</code>.
-          Parents searching "soccer classes Mission District" will find you.
+          Each neighborhood you add is used to match your listing to local searches.
+          Parents searching "soccer classes Forest Hills" will find you.
         </div>
         <div class="form-row">
           <div class="form-group">
@@ -1016,7 +997,7 @@
       <div class="form-section">
         <div class="form-section-hint" style="margin-bottom:12px;">
           Add terms parents search for — activity types, age groups, styles, or skills.
-          These map to <code style="font-size:11px;background:var(--gray-100);padding:1px 5px;border-radius:3px;">schema.org/keywords</code> in structured data.
+          Tags help parents filter by activity type and improve how your listing appears in search results.
         </div>
         <div class="keyword-chips">
           <span class="kchip">basketball clinics Queens <span class="kchip-x">×</span></span>
