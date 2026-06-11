@@ -34,8 +34,9 @@
   h2 {
     font-size: 11px; font-weight: 700; color: #9CA3AF;
     text-transform: uppercase; letter-spacing: 0.1em;
-    margin-bottom: 12px;
+    margin-bottom: 12px; margin-top: 32px;
   }
+  h2:first-of-type { margin-top: 0; }
 
   .cards { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; }
 
@@ -86,99 +87,108 @@
   </div>
   <div class="tagline">Learn it. Play it. Do it. — Design mockups</div>
 
-  <h2>Pages</h2>
+  <h2>Reference</h2>
   <div class="cards">
+    <a class="mockup-card" href="mockup-journey-map.html">
+      <div class="card-icon" style="background:#F0FDF4;">🗺️</div>
+      <div class="card-body">
+        <div class="card-title">Journey Map</div>
+        <div class="card-desc">How users move between pages · consumer, parent, and provider flows</div>
+      </div>
+      <span class="card-arrow">›</span>
+    </a>
+  </div>
 
+  <h2>Consumer discovery</h2>
+  <div class="cards">
     <a class="mockup-card" href="mockup-homepage.html">
-      <div class="card-icon" style="background:#F0FDF4;">🏠</div>
+      <div class="card-icon" style="background:#EFF6FF;">🏠</div>
       <div class="card-body">
         <div class="card-title">Homepage</div>
         <div class="card-desc">Hero search · category browse · featured activities · provider CTA</div>
       </div>
       <span class="card-arrow">›</span>
     </a>
-
     <a class="mockup-card" href="mockup-filter-panel.html">
       <div class="card-icon" style="background:#EFF6FF;">🔍</div>
       <div class="card-body">
         <div class="card-title">Search &amp; Filter</div>
-        <div class="card-desc">Results grid · sidebar filters · Age, Day, Time, Price, Distance, Program Format</div>
+        <div class="card-desc">Results grid · sidebar filters · age, day, price, distance, format</div>
       </div>
       <span class="card-arrow">›</span>
     </a>
-
     <a class="mockup-card" href="mockup-detail-page.html">
-      <div class="card-icon" style="background:#FFF7ED;">🏀</div>
+      <div class="card-icon" style="background:#EFF6FF;">🏀</div>
       <div class="card-body">
-        <div class="card-title">Activity Detail Page</div>
-        <div class="card-desc">Hot Shots Basketball NYC · schedule, location, provider info, claim flow</div>
+        <div class="card-title">Activity Detail</div>
+        <div class="card-desc">Schedule, location, provider info, enroll CTA</div>
       </div>
       <span class="card-arrow">›</span>
     </a>
+  </div>
 
-    <a class="mockup-card" href="mockup-provider-dashboard.html">
-      <div class="card-icon" style="background:#F5F3FF;">⚙️</div>
-      <div class="card-body">
-        <div class="card-title">Provider Dashboard</div>
-        <div class="card-desc">Claimed owner portal · profile completeness · SEO status · listing preview</div>
-      </div>
-      <span class="card-arrow">›</span>
-    </a>
-
-    <a class="mockup-card" href="mockup-program-editor.html">
-      <div class="card-icon" style="background:#FFF7ED;">📋</div>
-      <div class="card-body">
-        <div class="card-title">Program Editor</div>
-        <div class="card-desc">Provider Programs tab · schedule, age, pricing, skill level, format per program</div>
-      </div>
-      <span class="card-arrow">›</span>
-    </a>
-
+  <h2>Parent account</h2>
+  <div class="cards">
     <a class="mockup-card" href="mockup-parent-signup.html">
-      <div class="card-icon" style="background:#FFF7ED;">👋</div>
+      <div class="card-icon" style="background:#F5F3FF;">👋</div>
       <div class="card-body">
         <div class="card-title">Parent Sign Up</div>
         <div class="card-desc">2-step onboarding · account creation · kid profile &amp; interests</div>
       </div>
       <span class="card-arrow">›</span>
     </a>
-
     <a class="mockup-card" href="mockup-parent-profile.html">
-      <div class="card-icon" style="background:#EFF6FF;">👤</div>
+      <div class="card-icon" style="background:#F5F3FF;">👤</div>
       <div class="card-body">
         <div class="card-title">Parent Profile</div>
-        <div class="card-desc">Logged-in parent · saved programs · kid profiles · notifications</div>
+        <div class="card-desc">Saved programs · kid profiles · notification preferences</div>
       </div>
       <span class="card-arrow">›</span>
     </a>
+  </div>
 
+  <h2>Provider</h2>
+  <div class="cards">
+    <a class="mockup-card" href="mockup-provider-landing.html">
+      <div class="card-icon" style="background:#F0FDF4;">🏢</div>
+      <div class="card-body">
+        <div class="card-title">Provider Landing</div>
+        <div class="card-desc">Value prop · provider types · features · claim or add CTA</div>
+      </div>
+      <span class="card-arrow">›</span>
+    </a>
+    <a class="mockup-card" href="mockup-claim-flow.html">
+      <div class="card-icon" style="background:#F0FDF4;">🛡️</div>
+      <div class="card-body">
+        <div class="card-title">Claim Flow</div>
+        <div class="card-desc">Confirm existing listing · SMS verify · instant dashboard access</div>
+      </div>
+      <span class="card-arrow">›</span>
+    </a>
     <a class="mockup-card" href="mockup-provider-onboarding.html">
       <div class="card-icon" style="background:#F0FDF4;">➕</div>
       <div class="card-body">
         <div class="card-title">Provider Onboarding</div>
-        <div class="card-desc">Add your organization · 3-step wizard · account, org, first program</div>
+        <div class="card-desc">New org wizard · account, org, first program · staff review</div>
       </div>
       <span class="card-arrow">›</span>
     </a>
-
-    <a class="mockup-card" href="mockup-provider-landing.html">
-      <div class="card-icon" style="background:#F0FDF4;">🏢</div>
+    <a class="mockup-card" href="mockup-provider-dashboard.html">
+      <div class="card-icon" style="background:#F0FDF4;">⚙️</div>
       <div class="card-body">
-        <div class="card-title">Provider Landing Page</div>
-        <div class="card-desc">For providers · value prop · provider types · features · claim or add CTA</div>
+        <div class="card-title">Provider Dashboard</div>
+        <div class="card-desc">Profile completeness · SEO status · listing preview</div>
       </div>
       <span class="card-arrow">›</span>
     </a>
-
-    <a class="mockup-card" href="mockup-claim-flow.html">
-      <div class="card-icon" style="background:#EFF6FF;">🛡️</div>
+    <a class="mockup-card" href="mockup-program-editor.html">
+      <div class="card-icon" style="background:#F0FDF4;">📋</div>
       <div class="card-body">
-        <div class="card-title">Provider Claim Flow</div>
-        <div class="card-desc">3-step wizard · confirm listing · SMS verify or manual review · dashboard entry</div>
+        <div class="card-title">Program Editor</div>
+        <div class="card-desc">Schedule, age, pricing, skill level, format per program</div>
       </div>
       <span class="card-arrow">›</span>
     </a>
-
   </div>
 
   <div class="updated">

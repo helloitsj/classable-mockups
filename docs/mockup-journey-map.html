@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Classable — Journey Map</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --teal:       #0D7A6E;
+    --teal-light: #E6F5F4;
+    --teal-dark:  #0A5F56;
+    --gray-900: #0F1117;
+    --gray-700: #374151;
+    --gray-500: #6B7280;
+    --gray-400: #9CA3AF;
+    --gray-300: #D1D5DB;
+    --gray-200: #E5E7EB;
+    --gray-100: #F3F4F6;
+    --gray-50:  #F9FAFB;
+
+    --blue:       #2563EB;
+    --blue-light: #EFF6FF;
+    --purple:     #7C3AED;
+    --purple-light: #F5F3FF;
+    --amber:      #D97706;
+    --amber-light: #FFFBEB;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--gray-50);
+    color: var(--gray-700);
+    min-height: 100vh;
+  }
+
+  /* ─── HEADER ─── */
+  .site-header { background: #fff; border-bottom: 1px solid var(--gray-200); }
+  .header-inner { max-width: 800px; margin: 0 auto; padding: 0 24px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+  .wordmark { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+  .wordmark-icon { width: 30px; height: 30px; background: var(--teal); border-radius: 7px; display: flex; align-items: center; justify-content: center; color: #fff; }
+  .wordmark-text { font-size: 17px; font-weight: 700; color: var(--gray-900); letter-spacing: -0.3px; }
+  .wordmark-text span { color: var(--teal); }
+  .header-exit { font-size: 13px; font-weight: 500; color: var(--gray-500); text-decoration: none; display: flex; align-items: center; gap: 4px; padding: 6px 10px; border-radius: 8px; transition: color 0.15s, background 0.15s; }
+  .header-exit:hover { color: var(--gray-900); background: var(--gray-100); }
+
+  /* ─── PAGE TITLE ─── */
+  .page-header { max-width: 1200px; margin: 0 auto; padding: 40px 32px 8px; }
+  .page-title { font-size: 22px; font-weight: 800; color: var(--gray-900); letter-spacing: -0.4px; margin-bottom: 6px; }
+  .page-desc { font-size: 14px; color: var(--gray-500); }
+
+  /* ─── MAIN ─── */
+  .main-content { max-width: 1200px; margin: 0 auto; padding: 32px 32px 80px; display: flex; flex-direction: column; gap: 28px; }
+
+  /* ─── JOURNEY SECTION ─── */
+  .journey-section { background: #fff; border: 1px solid var(--gray-200); border-radius: 16px; overflow: hidden; }
+  .journey-header { padding: 16px 24px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--gray-100); }
+  .journey-badge { font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 3px 9px; border-radius: 20px; white-space: nowrap; }
+  .journey-title { font-size: 14px; font-weight: 600; color: var(--gray-900); }
+  .journey-subtitle { font-size: 12px; color: var(--gray-400); margin-left: auto; }
+
+  .journey-body { padding: 24px; overflow-x: auto; }
+  .flow-row { display: flex; align-items: center; gap: 0; flex-wrap: nowrap; min-width: max-content; }
+
+  /* second row in provider section (new listing path) */
+  .provider-paths { display: flex; flex-direction: column; gap: 16px; }
+  .path-label-chip {
+    font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 2px 7px; border-radius: 4px; margin-right: 4px; white-space: nowrap;
+    align-self: center;
+  }
+
+  /* ─── NODE ─── */
+  .node {
+    display: flex; flex-direction: column; gap: 4px;
+    background: #fff;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 12px;
+    padding: 12px 14px;
+    width: 148px;
+    flex-shrink: 0;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.15s, border-color 0.15s, transform 0.12s;
+    cursor: pointer;
+    position: relative;
+  }
+  .node:hover { box-shadow: 0 4px 14px rgb(0 0 0 / 0.08); transform: translateY(-1px); }
+  .node-icon { font-size: 18px; line-height: 1; margin-bottom: 2px; }
+  .node-name { font-size: 12px; font-weight: 700; color: var(--gray-900); line-height: 1.3; }
+  .node-desc { font-size: 11px; color: var(--gray-400); line-height: 1.4; }
+
+  /* color variants */
+  .node.consumer { border-color: #BFDBFE; }
+  .node.consumer:hover { border-color: var(--blue); }
+  .node.parent { border-color: #DDD6FE; }
+  .node.parent:hover { border-color: var(--purple); }
+  .node.provider { border-color: #99D4CE; }
+  .node.provider:hover { border-color: var(--teal); }
+  .node.shared { border-style: dashed; border-color: var(--gray-300); }
+  .node.shared:hover { border-color: var(--gray-500); border-style: solid; }
+
+  /* "shared page" badge */
+  .shared-badge {
+    position: absolute; top: -8px; right: 8px;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+    background: var(--gray-100); color: var(--gray-500); border: 1px solid var(--gray-300);
+    padding: 1px 5px; border-radius: 4px;
+  }
+
+  /* "pending" node state */
+  .node.pending { background: #FFFBEB; border-color: #FDE68A; border-style: dashed; cursor: default; }
+  .node.pending .node-name { color: var(--amber); }
+  .node.pending .node-desc { color: #B45309; }
+
+  /* ─── ARROW ─── */
+  .arrow { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 0 4px; flex-shrink: 0; width: 72px; }
+  .arrow-line { display: flex; align-items: center; width: 100%; }
+  .arrow-shaft { flex: 1; height: 1.5px; background: var(--gray-300); }
+  .arrow-shaft.dashed { background: none; border-top: 1.5px dashed var(--amber); }
+  .arrow-head {
+    width: 0; height: 0;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-left: 7px solid var(--gray-300);
+    flex-shrink: 0;
+  }
+  .arrow-head.dashed { border-left-color: var(--amber); }
+  .arrow-label { font-size: 10px; color: var(--gray-400); text-align: center; line-height: 1.3; white-space: nowrap; }
+
+  /* entry note (no arrow, just an entry point indicator) */
+  .entry-note {
+    font-size: 11px; color: var(--gray-400); font-style: italic;
+    padding: 0 8px 0 0; white-space: nowrap; align-self: center;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .entry-note::before { content: '↳'; font-style: normal; color: var(--gray-300); }
+
+  /* ─── LEGEND ─── */
+  .legend { display: flex; flex-wrap: wrap; gap: 20px; padding: 0 32px 40px; }
+  .legend-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--gray-500); }
+  .legend-swatch { width: 28px; height: 3px; border-radius: 2px; }
+  .legend-swatch.solid { background: var(--gray-300); }
+  .legend-swatch.dashed { background: none; border-top: 2px dashed var(--amber); }
+  .legend-box { width: 20px; height: 16px; border-radius: 4px; border: 1.5px dashed var(--gray-300); }
+
+  /* ─── FOOTER ─── */
+  .site-footer { background: #0F1117; padding: 40px 24px 32px; }
+  .site-footer-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .footer-brand { display: flex; flex-direction: column; gap: 4px; }
+  .footer-wordmark { font-size: 16px; font-weight: 800; color: #fff; letter-spacing: -0.3px; }
+  .footer-wordmark span { color: #E6F5F4; }
+  .footer-tagline { font-size: 12px; color: rgba(255,255,255,0.4); font-style: italic; }
+  .footer-links { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.15s; }
+  .footer-links a:hover { color: #fff; }
+  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); white-space: nowrap; }
+</style>
+</head>
+<body>
+
+<!-- ─── HEADER ─── -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href="mockup-homepage.html">
+      <div class="wordmark-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+        </svg>
+      </div>
+      <span class="wordmark-text">Class<span>able</span></span>
+    </a>
+    <a class="header-exit" href="index.html">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Back to index
+    </a>
+  </div>
+</header>
+
+<div class="page-header">
+  <h1 class="page-title">Journey Map</h1>
+  <p class="page-desc">How users move between pages across each flow. Click any page to open the mockup.</p>
+</div>
+
+<main class="main-content">
+
+  <!-- ══════════════════════════════════════
+       CONSUMER DISCOVERY
+  ══════════════════════════════════════ -->
+  <section class="journey-section">
+    <div class="journey-header">
+      <span class="journey-badge" style="background:var(--blue-light);color:var(--blue);">Consumer</span>
+      <span class="journey-title">Discovery</span>
+      <span class="journey-subtitle">Any visitor browsing for activities</span>
+    </div>
+    <div class="journey-body">
+      <div class="flow-row">
+
+        <a class="node consumer" href="mockup-homepage.html" target="_blank">
+          <span class="node-icon">🏠</span>
+          <span class="node-name">Homepage</span>
+          <span class="node-desc">Hero search, categories, featured picks</span>
+        </a>
+
+        <div class="arrow">
+          <div class="arrow-line">
+            <div class="arrow-shaft"></div>
+            <div class="arrow-head"></div>
+          </div>
+          <span class="arrow-label">Search or browse category</span>
+        </div>
+
+        <a class="node consumer" href="mockup-filter-panel.html" target="_blank">
+          <span class="node-icon">🔍</span>
+          <span class="node-name">Search &amp; Filter</span>
+          <span class="node-desc">Results grid, age / day / price filters</span>
+        </a>
+
+        <div class="arrow">
+          <div class="arrow-line">
+            <div class="arrow-shaft"></div>
+            <div class="arrow-head"></div>
+          </div>
+          <span class="arrow-label">Click a result</span>
+        </div>
+
+        <a class="node consumer" href="mockup-detail-page.html" target="_blank">
+          <span class="node-icon">🏀</span>
+          <span class="node-name">Activity Detail</span>
+          <span class="node-desc">Schedule, location, provider info, enroll</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       PARENT ACCOUNT
+  ══════════════════════════════════════ -->
+  <section class="journey-section">
+    <div class="journey-header">
+      <span class="journey-badge" style="background:var(--purple-light);color:var(--purple);">Parent</span>
+      <span class="journey-title">Account creation</span>
+      <span class="journey-subtitle">Triggered by "Save" or "Sign up" from Homepage or Activity Detail</span>
+    </div>
+    <div class="journey-body">
+      <div class="flow-row">
+
+        <span class="entry-note">from Homepage or Activity Detail</span>
+
+        <a class="node parent" href="mockup-parent-signup.html" target="_blank">
+          <span class="node-icon">👋</span>
+          <span class="node-name">Parent Sign Up</span>
+          <span class="node-desc">Account + kid profiles &amp; interests</span>
+        </a>
+
+        <div class="arrow">
+          <div class="arrow-line">
+            <div class="arrow-shaft"></div>
+            <div class="arrow-head"></div>
+          </div>
+          <span class="arrow-label">Complete both steps</span>
+        </div>
+
+        <a class="node parent" href="mockup-parent-profile.html" target="_blank">
+          <span class="node-icon">👤</span>
+          <span class="node-name">Parent Profile</span>
+          <span class="node-desc">Saved programs, kid cards, notifications</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       PROVIDER — CLAIM EXISTING LISTING
+  ══════════════════════════════════════ -->
+  <section class="journey-section">
+    <div class="journey-header">
+      <span class="journey-badge" style="background:var(--teal-light);color:var(--teal-dark);">Provider</span>
+      <span class="journey-title">Claim an existing listing</span>
+      <span class="journey-subtitle">Provider finds their org already in Classable and takes ownership</span>
+    </div>
+    <div class="journey-body">
+      <div class="flow-row">
+
+        <a class="node provider" href="mockup-provider-landing.html" target="_blank">
+          <span class="node-icon">🏢</span>
+          <span class="node-name">Provider Landing</span>
+          <span class="node-desc">Value prop, claim or add CTA</span>
+        </a>
+
+        <div class="arrow">
+          <div class="arrow-line">
+            <div class="arrow-shaft"></div>
+            <div class="arrow-head"></div>
+          </div>
+          <span class="arrow-label">Find your listing</span>
+        </div>
+
+        <a class="node provider" href="mockup-filter-panel.html" target="_blank">
+          <span class="node-icon">🔍</span>
+          <span class="node-name">Search &amp; Filter</span>
+          <span class="node-desc">Provider searches for their own listing</span>
+          <span class="shared-badge">shared</span>
+        </a>
+
+        <div class="arrow">
+          <div class="arrow-line">
+            <div class="arrow-shaft"></div>
+            <div class="arrow-head"></div>
+          </div>
+          <span class="arrow-label">Select their listing</span>
+        </div>
+
+        <a class="node provider" href="mockup-claim-flow.html" target="_blank">
+          <span class="node-icon">🛡️</span>
+          <span class="node-name">Claim Flow</span>
+          <span class="node-desc">Confirm listing, SMS verify ownership</span>
+        </a>
+
+        <div class="arrow">
+          <div class="arrow-line">
+            <div class="arrow-shaft"></div>
+            <div class="arrow-head"></div>
+          </div>
+          <span class="arrow-label">SMS verified</span>
+        </div>
+
+        <a class="node provider" href="mockup-provider-dashboard.html" target="_blank">
+          <span class="node-icon">⚙️</span>
+          <span class="node-name">Provider Dashboard</span>
+          <span class="node-desc">Profile completeness, SEO, listing preview</span>
+        </a>
+
+        <div class="arrow">
+          <div class="arrow-line">
+            <div class="arrow-shaft"></div>
+            <div class="arrow-head"></div>
+          </div>
+          <span class="arrow-label">Manage programs</span>
+        </div>
+
+        <a class="node provider" href="mockup-program-editor.html" target="_blank">
+          <span class="node-icon">📋</span>
+          <span class="node-name">Program Editor</span>
+          <span class="node-desc">Schedule, pricing, age range, format</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       PROVIDER — NEW LISTING
+  ══════════════════════════════════════ -->
+  <section class="journey-section">
+    <div class="journey-header">
+      <span class="journey-badge" style="background:var(--teal-light);color:var(--teal-dark);">Provider</span>
+      <span class="journey-title">Add a new listing</span>
+      <span class="journey-subtitle">Provider and program are both new to Classable — requires staff review before going live</span>
+    </div>
+    <div class="journey-body">
+      <div class="flow-row">
+
+        <a class="node provider" href="mockup-provider-landing.html" target="_blank">
+          <span class="node-icon">🏢</span>
+          <span class="node-name">Provider Landing</span>
+          <span class="node-desc">Value prop, claim or add CTA</span>
+          <span class="shared-badge">shared</span>
+        </a>
+
+        <div class="arrow">
+          <div class="arrow-line">
+            <div class="arrow-shaft"></div>
+            <div class="arrow-head"></div>
+          </div>
+          <span class="arrow-label">Add now</span>
+        </div>
+
+        <a class="node provider" href="mockup-provider-onboarding.html" target="_blank">
+          <span class="node-icon">➕</span>
+          <span class="node-name">Provider Onboarding</span>
+          <span class="node-desc">Account → org → program → submit</span>
+        </a>
+
+        <div class="arrow">
+          <div class="arrow-line">
+            <div class="arrow-shaft dashed"></div>
+            <div class="arrow-head dashed"></div>
+          </div>
+          <span class="arrow-label" style="color:#D97706;">Staff review · up to 24h</span>
+        </div>
+
+        <div class="node pending" style="cursor:default;">
+          <span class="node-icon">⏳</span>
+          <span class="node-name">Under review</span>
+          <span class="node-desc">Org + program pending Classable approval</span>
+        </div>
+
+        <div class="arrow">
+          <div class="arrow-line">
+            <div class="arrow-shaft"></div>
+            <div class="arrow-head"></div>
+          </div>
+          <span class="arrow-label">Approved · email notification</span>
+        </div>
+
+        <a class="node provider" href="mockup-provider-dashboard.html" target="_blank">
+          <span class="node-icon">⚙️</span>
+          <span class="node-name">Provider Dashboard</span>
+          <span class="node-desc">Profile completeness, SEO, listing preview</span>
+          <span class="shared-badge">shared</span>
+        </a>
+
+        <div class="arrow">
+          <div class="arrow-line">
+            <div class="arrow-shaft"></div>
+            <div class="arrow-head"></div>
+          </div>
+          <span class="arrow-label">Manage programs</span>
+        </div>
+
+        <a class="node provider" href="mockup-program-editor.html" target="_blank">
+          <span class="node-icon">📋</span>
+          <span class="node-name">Program Editor</span>
+          <span class="node-desc">Schedule, pricing, age range, format</span>
+          <span class="shared-badge">shared</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ─── LEGEND ─── -->
+<div class="legend" style="max-width:1200px;margin:0 auto;">
+  <div class="legend-item">
+    <div class="legend-swatch solid"></div>
+    Immediate transition
+  </div>
+  <div class="legend-item">
+    <div class="legend-swatch dashed"></div>
+    Async / time gap (staff review)
+  </div>
+  <div class="legend-item">
+    <div class="legend-box"></div>
+    Shared page (appears in multiple journeys)
+  </div>
+</div>
+
+<!-- ─── FOOTER ─── -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-brand">
+      <span class="footer-wordmark">Class<span>able</span></span>
+      <span class="footer-tagline">Learn it. Play it. Do it.</span>
+    </div>
+    <nav class="footer-links">
+      <a href="#">About</a>
+      <a href="mockup-provider-landing.html">For Providers</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </nav>
+    <span class="footer-copy">&copy; 2026 Classable</span>
+  </div>
+</footer>
+
+</body>
+</html>
