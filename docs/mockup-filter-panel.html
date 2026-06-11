@@ -701,10 +701,12 @@
   }
   .header-nav .btn-login:hover { border-color: var(--teal); color: var(--teal); }
   .header-nav .btn-signup {
-    background: var(--teal); color: #fff !important;
-    font-weight: 600; padding: 7px 14px; border: 1.5px solid transparent;
+    font-size: 14px; font-weight: 600; color: #fff;
+    background: var(--teal); border: 1.5px solid transparent; padding: 7px 14px;
+    border-radius: 8px; cursor: pointer; font-family: inherit;
+    transition: background 0.15s;
   }
-  .header-nav .btn-signup:hover { background: var(--teal-hover) !important; color: #fff !important; }
+  .header-nav .btn-signup:hover { background: var(--teal-hover); }
   @media (max-width: 860px) { .header-nav { display: none; } }
 
   /* ─── CARD SAVE BUTTON ─── */
