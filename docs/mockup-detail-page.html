@@ -116,6 +116,13 @@
     white-space: nowrap;
   }
   .header-nav a:hover { background: var(--gray-100); color: var(--gray-900); }
+  .btn-login {
+    font-size: 14px; font-weight: 600; color: var(--gray-700);
+    background: none; border: 1.5px solid var(--gray-300); padding: 6px 14px;
+    border-radius: 8px; cursor: pointer; font-family: inherit;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .btn-login:hover { border-color: var(--teal); color: var(--teal); }
   .btn-signup {
     background: var(--teal) !important; color: #fff !important;
     font-weight: 600 !important; padding: 7px 14px !important;
@@ -950,7 +957,8 @@
     <nav class="header-nav" aria-label="Site navigation">
       <a href="mockup-filter-panel.html">Browse</a>
       <a href="#" onclick="openAuthModal('save');return false;">Saved</a>
-      <a href="#" onclick="openAuthModal('login');return false;">Log in</a>
+      <a href="mockup-provider-landing.html">For Providers</a>
+      <button class="btn-login" onclick="openAuthModal('login');return false;">Log in</button>
       <a href="#" class="btn-signup" onclick="openAuthModal('signup');return false;">Sign up</a>
     </nav>
   </div>
