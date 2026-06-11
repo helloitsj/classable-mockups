@@ -755,6 +755,63 @@
     border: 0;
   }
 
+  /* ─── AUTH MODAL ─── */
+  .auth-modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.4); backdrop-filter: blur(4px);
+    z-index: 500; align-items: center; justify-content: center;
+  }
+  .auth-modal-overlay.open { display: flex; }
+  .auth-modal {
+    background: #fff; border-radius: 16px;
+    box-shadow: var(--shadow-modal);
+    padding: 32px 28px; width: 360px; max-width: calc(100vw - 32px);
+    position: relative; text-align: center;
+  }
+  .auth-modal-close {
+    position: absolute; top: 14px; right: 14px;
+    width: 28px; height: 28px; border-radius: 50%;
+    border: none; background: var(--gray-100); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gray-500);
+  }
+  .auth-modal-close:hover { background: var(--gray-300); }
+  .auth-modal-icon {
+    width: 48px; height: 48px; background: #FFF1F2; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 14px; color: #E11D48;
+  }
+  .auth-modal-title { font-size: 18px; font-weight: 800; color: var(--gray-900); margin-bottom: 6px; letter-spacing: -0.3px; }
+  .auth-modal-sub { font-size: 14px; color: var(--gray-500); margin-bottom: 24px; line-height: 1.5; }
+  .auth-modal-btn-primary {
+    display: block; width: 100%; background: var(--teal); color: #fff;
+    font-size: 15px; font-weight: 700; padding: 12px; border-radius: var(--radius-btn);
+    border: none; cursor: pointer; margin-bottom: 10px; font-family: inherit;
+    text-decoration: none; transition: background 0.15s;
+  }
+  .auth-modal-btn-primary:hover { background: var(--teal-hover); }
+  .auth-modal-btn-secondary {
+    display: block; width: 100%; background: var(--gray-100); color: var(--gray-700);
+    font-size: 15px; font-weight: 600; padding: 12px; border-radius: var(--radius-btn);
+    border: 1px solid var(--gray-300); cursor: pointer; font-family: inherit;
+    text-decoration: none; transition: background 0.15s;
+  }
+  .auth-modal-btn-secondary:hover { background: #E5E7EB; }
+  .auth-modal-divider { font-size: 13px; color: var(--gray-400); margin: 14px 0; }
+  .auth-modal-note { font-size: 12px; color: var(--gray-400); margin-top: 14px; line-height: 1.5; }
+
+  /* Save button in sidebar */
+  .btn-save-program {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; background: #fff; border: 1.5px solid var(--gray-300);
+    color: var(--gray-700); font-size: 14px; font-weight: 600;
+    padding: 11px; border-radius: var(--radius-btn);
+    cursor: pointer; font-family: inherit; margin-bottom: 10px;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+  }
+  .btn-save-program:hover { border-color: #E11D48; color: #E11D48; background: #FFF1F2; }
+  .btn-save-program.saved { border-color: #E11D48; color: #E11D48; background: #FFF1F2; }
+
   /* ─── STICKY BOTTOM BAR (mobile) ─── */
   .sticky-bottom {
     display: none;
@@ -865,10 +922,10 @@
       Search activities…
     </div>
     <nav class="header-nav" aria-label="Site navigation">
-      <span class="header-tagline">Learn it. Play it. Do it.</span>
-      <a href="#">Browse</a>
-      <a href="#">Saved</a>
-      <a href="#">Sign in</a>
+      <a href="mockup-filter-panel.html">Browse</a>
+      <a href="#" onclick="openAuthModal('save');return false;">Saved</a>
+      <a href="#" onclick="openAuthModal('login');return false;">Log in</a>
+      <a href="#" onclick="openAuthModal('signup');return false;" style="background:var(--teal);color:#fff;padding:7px 14px;border-radius:var(--radius-btn);font-weight:600;">Sign up</a>
     </nav>
   </div>
 </header>
@@ -1051,7 +1108,7 @@
               <div class="claim-banner-title">Is this your listing?</div>
               <div class="claim-banner-sub">Free to claim · add photos, description &amp; more</div>
             </div>
-            <a class="claim-banner-link" href="#">Claim it →</a>
+            <a class="claim-banner-link" href="mockup-claim-flow.html">Claim it →</a>
           </div>
 
           <!-- ── CLAIMED STATE (alternate — swap above div for this) ──
@@ -1154,6 +1211,12 @@
         </div>
       </div>
 
+      <!-- Save for later — anonymous users see auth modal -->
+      <button class="btn-save-program" id="save-btn" onclick="openAuthModal('save');" aria-label="Save this program for later">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Save program
+      </button>
+
       <!-- Register / Visit provider site — external link -->
       <a
         class="btn-register"
@@ -1210,7 +1273,7 @@
           Boost local SEO with structured data
         </div>
       </div>
-      <a class="btn-claim" href="#">Claim this listing — it's free</a>
+      <a class="btn-claim" href="mockup-claim-flow.html">Claim this listing — it's free</a>
       <div class="claim-sidebar-note">No payment needed · verify via email or phone</div>
     </div>
 
@@ -1239,6 +1302,50 @@
   </aside>
 
 </div>
+
+<!-- AUTH MODAL -->
+<div class="auth-modal-overlay" id="auth-modal" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title" onclick="if(event.target===this)closeAuthModal();">
+  <div class="auth-modal">
+    <button class="auth-modal-close" onclick="closeAuthModal();" aria-label="Close">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="auth-modal-icon" id="auth-modal-icon" aria-hidden="true">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </div>
+    <div class="auth-modal-title" id="auth-modal-title">Save programs for later</div>
+    <div class="auth-modal-sub" id="auth-modal-sub">Create a free account to save activities, compare options, and get back to them anytime.</div>
+    <a href="#" class="auth-modal-btn-primary" onclick="closeAuthModal();">Create free account</a>
+    <div class="auth-modal-divider">Already have an account?</div>
+    <a href="#" class="auth-modal-btn-secondary" onclick="closeAuthModal();">Log in</a>
+    <div class="auth-modal-note">Free forever for parents · No credit card needed</div>
+  </div>
+</div>
+
+<script>
+function openAuthModal(intent) {
+  var title = document.getElementById('auth-modal-title');
+  var sub = document.getElementById('auth-modal-sub');
+  var icon = document.getElementById('auth-modal-icon');
+  if (intent === 'save') {
+    title.textContent = 'Save programs for later';
+    sub.textContent = 'Create a free account to save activities, compare options, and get back to them anytime.';
+    icon.style.background = '#FFF1F2'; icon.style.color = '#E11D48';
+    icon.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
+  } else {
+    title.textContent = 'Welcome back';
+    sub.textContent = 'Log in to see your saved programs and pick up where you left off.';
+    icon.style.background = 'var(--teal-light)'; icon.style.color = 'var(--teal)';
+    icon.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>';
+  }
+  document.getElementById('auth-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeAuthModal() {
+  document.getElementById('auth-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeAuthModal(); });
+</script>
 
 <!-- MOBILE STICKY BOTTOM BAR -->
 <div class="sticky-bottom" role="region" aria-label="Register or share">

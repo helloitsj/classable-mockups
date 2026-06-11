@@ -681,6 +681,82 @@
     .card-hero { height: 120px; }
     .card-meta { flex-wrap: wrap; gap: 6px; }
   }
+
+  /* ─── HEADER NAV (auth + browse) ─── */
+  .header-nav {
+    display: flex; align-items: center; gap: 8px; flex-shrink: 0; margin-left: auto;
+  }
+  .header-nav a {
+    font-size: 13px; font-weight: 500; color: var(--gray-500);
+    text-decoration: none; padding: 6px 10px; border-radius: 8px;
+    transition: color 0.15s, background 0.15s;
+    white-space: nowrap;
+  }
+  .header-nav a:hover { color: var(--teal); background: var(--teal-light); }
+  .header-nav .btn-signup {
+    background: var(--teal); color: #fff !important;
+    font-weight: 600; padding: 7px 14px;
+  }
+  .header-nav .btn-signup:hover { background: var(--teal-hover) !important; color: #fff !important; }
+  @media (max-width: 860px) { .header-nav { display: none; } }
+
+  /* ─── CARD SAVE BUTTON ─── */
+  .card-save-btn {
+    position: absolute; top: 8px; right: 8px;
+    width: 32px; height: 32px;
+    background: rgba(255,255,255,0.9); border: none; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; color: var(--gray-500);
+    transition: color 0.15s, background 0.15s, transform 0.1s;
+    z-index: 2;
+  }
+  .card-save-btn:hover { color: #E11D48; background: #fff; transform: scale(1.1); }
+  .card-save-btn.saved { color: #E11D48; background: #fff; }
+
+  /* ─── AUTH MODAL ─── */
+  .auth-modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.4); backdrop-filter: blur(4px);
+    z-index: 500; align-items: center; justify-content: center;
+  }
+  .auth-modal-overlay.open { display: flex; }
+  .auth-modal {
+    background: #fff; border-radius: 16px;
+    box-shadow: 0 20px 60px -10px rgb(0 0 0 / 0.25);
+    padding: 32px 28px; width: 360px; max-width: calc(100vw - 32px);
+    position: relative; text-align: center;
+  }
+  .auth-modal-close {
+    position: absolute; top: 14px; right: 14px;
+    width: 28px; height: 28px; border-radius: 50%;
+    border: none; background: var(--gray-100); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gray-500); font-size: 14px;
+  }
+  .auth-modal-close:hover { background: var(--gray-300); }
+  .auth-modal-icon {
+    width: 48px; height: 48px; background: #FFF1F2; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 14px; color: #E11D48;
+  }
+  .auth-modal-title { font-size: 18px; font-weight: 800; color: var(--gray-900); margin-bottom: 6px; letter-spacing: -0.3px; }
+  .auth-modal-sub { font-size: 14px; color: var(--gray-500); margin-bottom: 24px; line-height: 1.5; }
+  .auth-modal-btn-primary {
+    display: block; width: 100%; background: var(--teal); color: #fff;
+    font-size: 15px; font-weight: 700; padding: 12px; border-radius: 8px;
+    border: none; cursor: pointer; margin-bottom: 10px; font-family: inherit;
+    text-decoration: none; transition: background 0.15s;
+  }
+  .auth-modal-btn-primary:hover { background: var(--teal-hover); }
+  .auth-modal-btn-secondary {
+    display: block; width: 100%; background: var(--gray-100); color: var(--gray-700);
+    font-size: 15px; font-weight: 600; padding: 12px; border-radius: 8px;
+    border: 1px solid var(--gray-300); cursor: pointer; font-family: inherit;
+    text-decoration: none; transition: background 0.15s;
+  }
+  .auth-modal-btn-secondary:hover { background: var(--gray-200); }
+  .auth-modal-divider { font-size: 13px; color: var(--gray-400); margin: 14px 0; }
+  .auth-modal-note { font-size: 12px; color: var(--gray-400); margin-top: 14px; line-height: 1.5; }
 </style>
 </head>
 <body>
@@ -712,6 +788,12 @@
         Search
       </button>
     </div>
+    <nav class="header-nav" aria-label="Site navigation">
+      <a href="#">Browse</a>
+      <a href="#" onclick="openAuthModal('save'); return false;">Saved</a>
+      <a href="#" onclick="openAuthModal('login'); return false;">Log in</a>
+      <a href="#" class="btn-signup" onclick="openAuthModal('signup'); return false;">Sign up</a>
+    </nav>
   </div>
 </header>
 
@@ -1073,6 +1155,9 @@
       <a class="activity-card" href="mockup-detail-page.html">
         <div class="card-image" style="background:linear-gradient(135deg,#F97316 0%,#EA580C 100%);">
           <span class="card-image-watermark">🏀</span>
+          <button class="card-save-btn" aria-label="Save this program" onclick="event.preventDefault();event.stopPropagation();openAuthModal('save');">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
         </div>
         <div class="card-body">
           <div class="card-freshness" role="status">
@@ -1110,6 +1195,9 @@
       <a class="activity-card" href="#">
         <div class="card-image" style="background:linear-gradient(135deg,#DC2626 0%,#B91C1C 50%,#92400E 100%);">
           <span class="card-image-watermark" style="font-size:32px;opacity:0.25;">文</span>
+          <button class="card-save-btn" aria-label="Save this program" onclick="event.preventDefault();event.stopPropagation();openAuthModal('save');">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
         </div>
         <div class="card-body">
           <!-- Aging badge — details not recently re-confirmed -->
@@ -1150,6 +1238,9 @@
       <a class="activity-card" href="#">
         <div class="card-image" style="background:linear-gradient(135deg,#1D4ED8 0%,#0D7A6E 100%);">
           <span class="card-image-watermark">🏟️</span>
+          <button class="card-save-btn" aria-label="Save this program" onclick="event.preventDefault();event.stopPropagation();openAuthModal('save');">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
         </div>
         <div class="card-body">
           <div class="card-freshness" role="status">
@@ -1182,10 +1273,53 @@
 
 </div>
 
+<!-- AUTH MODAL — shown when anonymous user tries to save/access Saved -->
+<div class="auth-modal-overlay" id="auth-modal" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title" onclick="if(event.target===this)closeAuthModal();">
+  <div class="auth-modal">
+    <button class="auth-modal-close" onclick="closeAuthModal();" aria-label="Close">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="auth-modal-icon" id="auth-modal-icon" aria-hidden="true">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </div>
+    <div class="auth-modal-title" id="auth-modal-title">Save programs for later</div>
+    <div class="auth-modal-sub" id="auth-modal-sub">Create a free account to save activities, compare options, and get back to them anytime.</div>
+    <a href="#" class="auth-modal-btn-primary" onclick="closeAuthModal();">Create free account</a>
+    <div class="auth-modal-divider">Already have an account?</div>
+    <a href="#" class="auth-modal-btn-secondary" onclick="closeAuthModal();">Log in</a>
+    <div class="auth-modal-note">Free forever for parents · No credit card needed</div>
+  </div>
+</div>
+
 <!-- Mobile filter overlay — tap to close drawer -->
 <div class="filter-overlay" onclick="document.querySelector('.filter-sidebar').classList.remove('mobile-open');this.classList.remove('open');" aria-hidden="true"></div>
 
 <script>
+  function openAuthModal(intent) {
+    var modal = document.getElementById('auth-modal');
+    var title = document.getElementById('auth-modal-title');
+    var sub = document.getElementById('auth-modal-sub');
+    var icon = document.getElementById('auth-modal-icon');
+    if (intent === 'save') {
+      title.textContent = 'Save programs for later';
+      sub.textContent = 'Create a free account to save activities, compare options, and get back to them anytime.';
+      icon.style.background = '#FFF1F2'; icon.style.color = '#E11D48';
+      icon.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
+    } else {
+      title.textContent = 'Welcome back';
+      sub.textContent = 'Log in to see your saved programs and pick up where you left off.';
+      icon.style.background = 'var(--teal-light)'; icon.style.color = 'var(--teal)';
+      icon.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>';
+    }
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeAuthModal() {
+    document.getElementById('auth-modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeAuthModal(); });
+
   // Add a close button inside the filter sidebar for mobile
   (function() {
     var sidebar = document.querySelector('.filter-sidebar');
