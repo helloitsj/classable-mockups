@@ -215,7 +215,7 @@
 
     <!-- Account type tabs -->
     <div class="account-tabs" role="tablist" aria-label="Account type">
-      <button class="account-tab active" id="tab-parent" role="tab" aria-selected="true" onclick="switchTab('parent')">Parent</button>
+      <button class="account-tab active" id="tab-parent" role="tab" aria-selected="true" onclick="switchTab('parent')">Parent or Guardian</button>
       <button class="account-tab" id="tab-provider" role="tab" aria-selected="false" onclick="switchTab('provider')">Provider</button>
     </div>
 
@@ -225,7 +225,7 @@
     </div>
 
     <h1 class="card-heading" id="card-heading">Welcome back</h1>
-    <p class="card-subtext" id="card-subtext">Log in to your parent account.</p>
+    <p class="card-subtext" id="card-subtext">Log in to your parent or guardian account.</p>
 
     <div class="form-group">
       <label for="email">Email</label>
@@ -299,7 +299,7 @@
     document.getElementById('provider-hint').classList.toggle('visible', tab === 'provider');
     document.getElementById('card-heading').textContent = 'Welcome back';
     document.getElementById('card-subtext').textContent = tab === 'parent'
-      ? 'Log in to your parent account.'
+      ? 'Log in to your parent or guardian account.'
       : 'Log in to your provider account.';
     document.getElementById('signup-link').href = tab === 'parent'
       ? 'mockup-parent-signup.html'
