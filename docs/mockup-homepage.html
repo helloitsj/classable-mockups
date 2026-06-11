@@ -444,11 +444,19 @@
   .stat-label { font-size: 12px; color: var(--gray-500); font-weight: 500; }
 
   /* ─── TESTIMONIALS ─── */
-  .testimonials-section { background: #fff; border-top: 1px solid var(--gray-100); border-bottom: 1px solid var(--gray-100); }
+  .testimonials-section {
+    background: #fff;
+    border-top: 1px solid var(--gray-100);
+    border-bottom: 1px solid var(--gray-100);
+    padding: 52px 24px;
+    /* full-width feel via body-level background change */
+  }
   .testimonials-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+    max-width: 1280px;
+    margin: 0 auto;
   }
   .testimonial-card {
     background: var(--gray-50);
@@ -472,14 +480,31 @@
 
   /* ─── FOOTER ─── */
   .site-footer {
-    border-top: 1px solid var(--gray-100);
-    padding: 28px 24px;
-    text-align: center;
-    font-size: 13px;
-    color: var(--gray-500);
+    background: var(--gray-900);
+    padding: 40px 24px 32px;
   }
-  .site-footer a { color: var(--teal); text-decoration: none; }
-  .site-footer a:hover { text-decoration: underline; }
+  .site-footer-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .footer-brand { display: flex; flex-direction: column; gap: 4px; }
+  .footer-wordmark { font-size: 16px; font-weight: 800; color: #fff; letter-spacing: -0.3px; }
+  .footer-wordmark span { color: var(--teal-light); }
+  .footer-tagline { font-size: 12px; color: rgba(255,255,255,0.4); font-style: italic; }
+  .footer-links {
+    display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+  }
+  .footer-links a {
+    font-size: 13px; color: rgba(255,255,255,0.55); text-decoration: none;
+    transition: color 0.15s;
+  }
+  .footer-links a:hover { color: #fff; }
+  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); white-space: nowrap; }
 
   /* ─── AUTH MODAL ─── */
   .modal-overlay {
@@ -583,6 +608,8 @@
         Search
       </button>
     </div>
+
+    <p style="font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:20px;">No account needed to browse</p>
 
     <div class="hero-chips">
       <span class="hero-chips-label">Popular:</span>
@@ -750,6 +777,12 @@
     </a>
 
   </div>
+  <div style="text-align:center;margin-top:32px;">
+    <a href="mockup-filter-panel.html" style="display:inline-flex;align-items:center;gap:8px;background:var(--teal);color:#fff;text-decoration:none;font-size:15px;font-weight:700;padding:13px 28px;border-radius:8px;transition:background 0.15s;" onmouseover="this.style.background='#15A396'" onmouseout="this.style.background='var(--teal)'">
+      Browse all programs
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+    </a>
+  </div>
 </section>
 
 <!-- ─── PROVIDER CTA ─── -->
@@ -762,14 +795,14 @@
     </div>
     <div class="provider-strip-actions">
       <button class="btn-provider-primary" onclick="window.location='mockup-claim-flow.html'">Claim your listing</button>
-      <a class="btn-provider-ghost" href="mockup-provider-dashboard.html">See provider dashboard →</a>
+      <a class="btn-provider-ghost" href="mockup-claim-flow.html" style="font-size:13px;padding:12px 18px;">Already listed? Sign in →</a>
     </div>
   </div>
 </div>
 
 <!-- ─── TESTIMONIALS ─── -->
-<section class="section testimonials-section">
-  <div class="section-header">
+<section class="testimonials-section">
+  <div style="max-width:1280px;margin:0 auto 24px;" class="section-header">
     <h2 class="section-title">What parents are saying</h2>
   </div>
   <div class="testimonials-grid">
@@ -815,7 +848,19 @@
 
 <!-- ─── FOOTER ─── -->
 <footer class="site-footer">
-  <p>© 2025 Classable · New York, NY · <a href="index.html">View all mockups</a></p>
+  <div class="site-footer-inner">
+    <div class="footer-brand">
+      <span class="footer-wordmark">Class<span>able</span></span>
+      <span class="footer-tagline">Learn it. Play it. Do it.</span>
+    </div>
+    <nav class="footer-links">
+      <a href="#">About</a>
+      <a href="mockup-claim-flow.html">For Providers</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </nav>
+    <span class="footer-copy">© 2026 Classable</span>
+  </div>
 </footer>
 
 <!-- ─── AUTH MODAL ─── -->

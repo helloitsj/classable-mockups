@@ -1,4 +1,4 @@
-<!-- mockup-detail-page.html — Classable v2 (Phase 4 updated) -->
+﻿<!-- mockup-detail-page.html — Classable v2 (Phase 4 updated) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -901,6 +901,18 @@
   @media (max-width: 640px) {
     [style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
   }
+
+  /* ─── FOOTER ─── */
+  .site-footer { background: #0F1117; padding: 40px 24px 32px; }
+  .site-footer-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .footer-brand { display: flex; flex-direction: column; gap: 4px; }
+  .footer-wordmark { font-size: 16px; font-weight: 800; color: #fff; letter-spacing: -0.3px; }
+  .footer-wordmark span { color: #E6F5F4; }
+  .footer-tagline { font-size: 12px; color: rgba(255,255,255,0.4); font-style: italic; }
+  .footer-links { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.15s; }
+  .footer-links a:hover { color: #fff; }
+  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); white-space: nowrap; }
 </style>
 </head>
 <body>
@@ -1379,5 +1391,22 @@ document.addEventListener('keydown', function(e) { if (e.key === 'Escape') close
   </a>
 </div>
 
+
+<!-- ─── FOOTER ─── -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-brand">
+      <span class="footer-wordmark">Class<span>able</span></span>
+      <span class="footer-tagline">Learn it. Play it. Do it.</span>
+    </div>
+    <nav class="footer-links">
+      <a href="#">About</a>
+      <a href="mockup-claim-flow.html">For Providers</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </nav>
+    <span class="footer-copy">&copy; 2026 Classable</span>
+  </div>
+</footer>
 </body>
 </html>
