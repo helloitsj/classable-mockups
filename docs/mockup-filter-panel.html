@@ -99,10 +99,10 @@
     color: var(--gray-500); font-size: 13px;
   }
   .search-btn {
-    background: var(--teal); color: #fff; border: none; padding: 0 16px;
-    height: 100%; cursor: pointer; font-size: 14px; font-weight: 600;
+    background: var(--teal); color: #fff; border: none; padding: 0 18px;
+    align-self: stretch; cursor: pointer; font-size: 14px; font-weight: 600;
     display: flex; align-items: center; gap: 6px; white-space: nowrap;
-    font-family: inherit;
+    font-family: inherit; border-radius: 0 8px 8px 0;
   }
 
   /* ─── PAGE LAYOUT ─── */
@@ -468,7 +468,7 @@
     color: var(--gray-900);
     white-space: nowrap;
   }
-  .results-count span { color: var(--teal); }
+  .results-count span { color: var(--gray-900); font-weight: 800; }
   .results-sort {
     display: flex;
     align-items: center;
@@ -963,12 +963,11 @@
         <legend class="sr-only">Time of day</legend>
         <div class="pill-grid">
           <label title="Before 12 PM"><input type="checkbox" class="sr-only"><span class="pill" style="font-size:11px;">🌅 Morning</span></label>
-          <label title="3:00 – 6:00 PM · most popular"><input type="checkbox" class="sr-only"><span class="pill" style="font-size:11px;">🎒 After school</span></label>
+          <label title="12:00 – 6:00 PM"><input type="checkbox" class="sr-only"><span class="pill" style="font-size:11px;">⛅ Afternoon</span></label>
           <label title="6:00 – 9:00 PM"><input type="checkbox" class="sr-only"><span class="pill" style="font-size:11px;">🌙 Evening</span></label>
-          <label title="9 AM – 4 PM · weekends &amp; school holidays"><input type="checkbox" class="sr-only"><span class="pill" style="font-size:11px;">☀️ All day</span></label>
         </div>
       </fieldset>
-      <div style="font-size:11px;color:var(--gray-400);margin-top:6px;">After school = 3–6 PM · combine with Day of Week</div>
+      <div style="font-size:11px;color:var(--gray-400);margin-top:6px;">Afternoon = 12–6 PM · combine with Day of Week</div>
     </div>
 
     <!-- DAY OF WEEK -->
@@ -992,18 +991,21 @@
       </fieldset>
     </div>
 
-    <!-- PRICE TIER -->
-    <div class="filter-section">
-      <div class="filter-section-header">
-        <div class="filter-section-title">Price <span class="filter-section-badge">Active</span></div>
+    <!-- PRICE TIER (collapsed by default — discover first, filter by price second) -->
+    <div class="filter-section filter-section-collapsed">
+      <div class="filter-section-header" style="margin-bottom:0" id="price-filter-header">
+        <div class="filter-section-title">Price</div>
+        <svg class="filter-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
-      <div class="pill-grid">
-        <button class="pill price-pill">Free</button>
-        <button class="pill price-pill">$</button>
-        <button class="pill price-pill selected">$$</button>
-        <button class="pill price-pill">$$$</button>
+      <div id="price-filter-content" style="display:none;padding-top:12px;">
+        <div class="pill-grid">
+          <button class="pill price-pill">Free</button>
+          <button class="pill price-pill">$</button>
+          <button class="pill price-pill">$$</button>
+          <button class="pill price-pill">$$$</button>
+        </div>
+        <div style="font-size:11px;color:var(--gray-400);margin-top:8px;">$ &lt; $100 · $$ $100–$300 · $$$ $300+ per season</div>
       </div>
-      <div style="font-size:11px;color:var(--gray-400);margin-top:8px;">$$ = $100–$300/season</div>
     </div>
 
     <!-- DISTANCE -->
@@ -1139,7 +1141,6 @@
       <div class="active-chip">Ages 5–10 <span class="active-chip-x">×</span></div>
       <div class="active-chip">🏀 Basketball <span class="active-chip-x">×</span></div>
       <div class="active-chip">Saturday <span class="active-chip-x">×</span></div>
-      <div class="active-chip">$ – $$ Price <span class="active-chip-x">×</span></div>
       <div class="active-chip">Within 5 mi <span class="active-chip-x">×</span></div>
       <button class="clear-all-chip">Clear all</button>
     </div>
@@ -1169,8 +1170,6 @@
           <div class="card-badges">
             <span class="cbadge cbadge-sports">🏀 Basketball</span>
             <span class="cbadge cbadge-age">Ages 5–6</span>
-            <span class="cbadge cbadge-age" style="background:#FFF7ED;color:#C2410C;">Outdoor</span>
-            <span class="cbadge cbadge-price-$">$ ~$15/class</span>
           </div>
           <div class="card-meta">
             <span class="card-meta-item">
@@ -1214,7 +1213,6 @@
           <div class="card-badges">
             <span class="cbadge" style="background:#FEF3C7;color:#92400E;">🗣 Language</span>
             <span class="cbadge cbadge-age">Ages 5–10</span>
-            <span class="cbadge cbadge-price-$">$ Low cost</span>
           </div>
           <div class="card-meta">
             <span class="card-meta-item">
@@ -1252,8 +1250,6 @@
           <div class="card-badges">
             <span class="cbadge cbadge-sports">⚽ Multi-Sport</span>
             <span class="cbadge cbadge-age">Ages 8–14</span>
-            <span class="cbadge" style="background:#F0FDF4;color:#065F46;">🍽 Meals included</span>
-            <span class="cbadge cbadge-price-$$">$$$ From $1,250</span>
           </div>
           <div class="card-meta">
             <span class="card-meta-item">
@@ -1295,6 +1291,15 @@
 <div class="filter-overlay" onclick="document.querySelector('.filter-sidebar').classList.remove('mobile-open');this.classList.remove('open');" aria-hidden="true"></div>
 
 <script>
+  // Price filter toggle
+  document.getElementById('price-filter-header').addEventListener('click', function() {
+    var content = document.getElementById('price-filter-content');
+    var chevron = this.querySelector('.filter-chevron');
+    var open = content.style.display !== 'none';
+    content.style.display = open ? 'none' : 'block';
+    chevron.style.transform = open ? '' : 'rotate(180deg)';
+  });
+
   function openAuthModal(intent) {
     var modal = document.getElementById('auth-modal');
     var title = document.getElementById('auth-modal-title');

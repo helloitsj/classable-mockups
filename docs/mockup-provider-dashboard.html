@@ -55,9 +55,10 @@
   }
 
   /* ─── TOP NAV ─── */
+  /* ─── TOP NAV (shared with consumer) ─── */
   .top-nav {
     background: #fff;
-    border-bottom: 1px solid var(--gray-300);
+    border-bottom: 1px solid var(--gray-200);
     position: sticky; top: 0; z-index: 100;
   }
   .top-nav-inner {
@@ -84,22 +85,56 @@
   .wordmark-text { font-size: 17px; font-weight: 700; color: var(--gray-900); letter-spacing: -0.3px; }
   .wordmark-text span { color: var(--teal); }
 
+  .header-nav {
+    display: flex; align-items: center; gap: 4px;
+  }
+  .header-nav a {
+    font-size: 13px; font-weight: 500; color: var(--gray-600);
+    text-decoration: none; padding: 6px 10px; border-radius: var(--radius-md);
+    transition: background 0.12s, color 0.12s;
+  }
+  .header-nav a:hover { background: var(--gray-100); color: var(--gray-900); }
+  .header-nav .btn-signup {
+    background: var(--teal); color: #fff !important; font-weight: 600;
+    padding: 7px 14px; border-radius: var(--radius-md);
+  }
+  .header-nav .btn-signup:hover { background: var(--teal-hover) !important; }
+
+  /* ─── PROVIDER SUB-NAV ─── */
+  .provider-subnav {
+    background: #fff;
+    border-bottom: 1px solid var(--gray-200);
+    position: sticky; top: 56px; z-index: 99;
+    box-shadow: 0 1px 0 var(--gray-100);
+  }
+  .provider-subnav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
   .dash-nav {
-    display: flex; align-items: center; gap: 2px;
-    flex: 1; padding: 0 24px;
+    display: flex; align-items: stretch; gap: 0;
+    height: 100%;
   }
   .dash-nav-link {
     display: flex; align-items: center; gap: 6px;
-    padding: 8px 14px;
-    border-radius: var(--radius-md);
+    padding: 0 14px;
     font-size: 13px; font-weight: 500;
     color: var(--gray-500);
     text-decoration: none;
-    transition: background 0.12s, color 0.12s;
+    border-bottom: 2px solid transparent;
+    transition: color 0.12s, border-color 0.12s;
+    white-space: nowrap;
   }
-  .dash-nav-link:hover { background: var(--gray-100); color: var(--gray-900); }
+  .dash-nav-link:hover { color: var(--gray-900); }
   .dash-nav-link.active {
-    background: var(--teal-light); color: var(--teal); font-weight: 600;
+    color: var(--teal); font-weight: 600;
+    border-bottom-color: var(--teal);
   }
   .nav-provider-chip {
     display: flex; align-items: center; gap: 8px;
@@ -362,7 +397,7 @@
 
   /* Save bar */
   .save-bar {
-    position: sticky; top: 56px; z-index: 90;
+    position: sticky; top: 100px; z-index: 90;
     background: #fff;
     border-bottom: 1px solid var(--gray-300);
     box-shadow: 0 2px 8px rgb(0 0 0 / 0.06);
@@ -397,7 +432,7 @@
   .btn-preview:hover { background: var(--gray-200); }
 
   /* ─── RIGHT SIDEBAR ─── */
-  .sidebar { position: sticky; top: 106px; }
+  .sidebar { position: sticky; top: 152px; }
 
   /* Listing preview */
   .preview-card {
@@ -533,9 +568,12 @@
   @media (max-width: 900px) {
     /* Nav scrolls horizontally */
     .top-nav-inner { padding: 0 12px; gap: 8px; }
-    .dash-nav { overflow-x: auto; padding: 0 4px; flex-shrink: 1; gap: 0; }
-    .dash-nav-link { font-size: 12px; padding: 8px 10px; white-space: nowrap; }
+    .header-nav a:not(.btn-signup) { display: none; }
+    .provider-subnav-inner { padding: 0 12px; }
+    .dash-nav { overflow-x: auto; }
+    .dash-nav-link { font-size: 12px; padding: 0 10px; }
     .nav-provider-chip span:not(.nav-avatar):not(.nav-verified-dot) { display: none; }
+    .verify-badge { display: none; }
     /* Page stacks: form above sidebar */
     .page { grid-template-columns: 1fr; padding: 16px 16px 60px; gap: 16px; }
     .sidebar { position: static; }
@@ -581,10 +619,10 @@
   </div>
 </div>
 
-<!-- TOP NAV -->
-<nav class="top-nav" aria-label="Dashboard navigation">
+<!-- TOP NAV (same as consumer pages) -->
+<nav class="top-nav" aria-label="Site navigation">
   <div class="top-nav-inner">
-    <a class="wordmark" href="#">
+    <a class="wordmark" href="mockup-filter-panel.html">
       <div class="wordmark-icon">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
@@ -593,36 +631,40 @@
       </div>
       <span class="wordmark-text">Class<span>able</span></span>
     </a>
+    <nav class="header-nav" aria-label="Consumer navigation">
+      <a href="mockup-filter-panel.html">Browse</a>
+      <a href="#">Saved</a>
+      <a href="#">Log in</a>
+      <a href="#" class="btn-signup">Sign up</a>
+    </nav>
+  </div>
+</nav>
 
+<!-- PROVIDER SUB-NAV -->
+<nav class="provider-subnav" aria-label="Provider dashboard navigation">
+  <div class="provider-subnav-inner">
     <div class="dash-nav" role="list">
       <a class="dash-nav-link active" href="#" role="listitem">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
         Dashboard
       </a>
-      <a class="dash-nav-link" href="#" role="listitem">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      <a class="dash-nav-link" href="mockup-program-editor.html" role="listitem">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
         Programs
       </a>
       <a class="dash-nav-link" href="#" role="listitem">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
         Analytics
       </a>
       <a class="dash-nav-link" href="#" role="listitem">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         Reviews
-        <span style="background:var(--teal);color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:8px;line-height:1.4">3</span>
+        <span style="background:var(--teal);color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:8px;line-height:1.4;">3</span>
       </a>
     </div>
-
-    <div style="display:flex;align-items:center;gap:12px;">
-      <!-- Escape hatch: return to consumer side -->
-      <a href="mockup-filter-panel.html" style="font-size:12px;font-weight:500;color:var(--gray-500);text-decoration:none;display:flex;align-items:center;gap:4px;white-space:nowrap;padding:6px 10px;border-radius:var(--radius-md);transition:background 0.12s,color 0.12s;" onmouseover="this.style.background='var(--gray-100)';this.style.color='var(--gray-900)'" onmouseout="this.style.background='';this.style.color='var(--gray-500)'">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
-        Browse Classable
-      </a>
-      <!-- Verified owner indicator -->
-      <div class="verify-badge" style="margin-bottom:0;padding:6px 10px;">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div class="verify-badge" style="margin-bottom:0;padding:4px 10px;font-size:11px;">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         <strong>Verified owner</strong>
       </div>
       <div class="nav-provider-chip" role="button" aria-label="Provider account menu for Hot Shots Basketball NYC">
@@ -974,81 +1016,76 @@
       </div>
     </div>
 
+    <!-- IMPORT PROGRAMS CTA -->
+    <div class="preview-card" style="margin-bottom:16px;">
+      <div class="preview-header" style="margin-bottom:12px;">
+        <div class="preview-header-title">Your programs</div>
+        <a class="preview-link" href="mockup-program-editor.html">Manage →</a>
+      </div>
+      <div style="padding:14px 14px 14px;">
+        <div style="display:flex;gap:8px;">
+          <a href="mockup-program-editor.html" style="flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:10px 14px;background:var(--teal);color:#fff;border-radius:var(--radius-md);font-size:13px;font-weight:600;text-decoration:none;transition:opacity 0.15s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add program
+          </a>
+          <button onclick="alert('Import flow coming soon — paste your website URL and we\'ll pull in your program details.')" style="flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:10px 14px;background:#fff;color:var(--gray-700);border:1.5px solid var(--gray-300);border-radius:var(--radius-md);font-size:13px;font-weight:600;cursor:pointer;transition:border-color 0.15s,background 0.15s;font-family:inherit;" onmouseover="this.style.borderColor='var(--teal)';this.style.background='#F0FAF8'" onmouseout="this.style.borderColor='var(--gray-300)';this.style.background='#fff'">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="8 17 12 21 16 17"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"/></svg>
+            Import from website
+          </button>
+        </div>
+        <div style="margin-top:8px;font-size:11px;color:var(--gray-400);">Paste your website URL and we'll pull in your program details automatically.</div>
+      </div>
+    </div>
+
     <!-- SEO BOOST PANEL -->
     <div class="seo-panel">
       <div class="seo-panel-header">
         <div class="seo-panel-title">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-          Local SEO status
+          Search visibility checklist
         </div>
-        <div style="font-size:11px;color:var(--purple);margin-top:2px;">Structured data powering your visibility</div>
+        <div style="font-size:11px;color:var(--purple);margin-top:2px;">How well Classable can show your listing in search results</div>
       </div>
       <div class="seo-rows">
         <div class="seo-row">
           <svg class="seo-row-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:var(--green)"><polyline points="20 6 9 17 4 12"/></svg>
-          <span class="seo-row-label">schema.org/LocalBusiness</span>
-          <span class="seo-row-status"><span class="seo-status-done">✓ Active</span></span>
+          <span class="seo-row-label">Listing is live on Classable</span>
+          <span class="seo-row-status"><span class="seo-status-done">✓ Live</span></span>
         </div>
         <div class="seo-row">
           <svg class="seo-row-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:var(--green)"><polyline points="20 6 9 17 4 12"/></svg>
-          <span class="seo-row-label">name + url + telephone</span>
-          <span class="seo-row-status"><span class="seo-status-done">✓ Complete</span></span>
+          <span class="seo-row-label">Name, website &amp; phone number</span>
+          <span class="seo-row-status"><span class="seo-status-done">✓ Done</span></span>
         </div>
         <div class="seo-row">
           <svg class="seo-row-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:var(--green)"><polyline points="20 6 9 17 4 12"/></svg>
-          <span class="seo-row-label">address + geo coordinates</span>
-          <span class="seo-row-status"><span class="seo-status-done">✓ Complete</span></span>
+          <span class="seo-row-label">Address &amp; neighborhood</span>
+          <span class="seo-row-status"><span class="seo-status-done">✓ Done</span></span>
         </div>
         <div class="seo-row">
           <svg class="seo-row-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:var(--amber)"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>
-          <span class="seo-row-label">description (keywords)</span>
-          <span class="seo-row-status"><span class="seo-status-missing">⚠ Missing</span></span>
+          <span class="seo-row-label">Short description of what you offer</span>
+          <span class="seo-row-status"><span class="seo-status-missing">⚠ Add it</span></span>
         </div>
         <div class="seo-row">
           <svg class="seo-row-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:var(--amber)"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>
-          <span class="seo-row-label">image (photos)</span>
-          <span class="seo-row-status"><span class="seo-status-missing">⚠ Missing</span></span>
+          <span class="seo-row-label">Photos</span>
+          <span class="seo-row-status"><span class="seo-status-missing">⚠ Add it</span></span>
         </div>
         <div class="seo-row">
           <svg class="seo-row-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:var(--amber)"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>
-          <span class="seo-row-label">areaServed (neighborhoods)</span>
-          <span class="seo-row-status"><span class="seo-status-missing">⚠ Missing</span></span>
+          <span class="seo-row-label">Neighborhoods you serve</span>
+          <span class="seo-row-status"><span class="seo-status-missing">⚠ Add it</span></span>
         </div>
         <div class="seo-row">
           <svg class="seo-row-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:var(--amber)"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>
-          <span class="seo-row-label">keywords</span>
-          <span class="seo-row-status"><span class="seo-status-missing">⚠ Missing</span></span>
+          <span class="seo-row-label">Activity tags (e.g. basketball, youth sports)</span>
+          <span class="seo-row-status"><span class="seo-status-missing">⚠ Add it</span></span>
         </div>
         <div class="seo-row">
           <svg class="seo-row-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:var(--green)"><polyline points="20 6 9 17 4 12"/></svg>
-          <span class="seo-row-label">aggregateRating (reviews)</span>
+          <span class="seo-row-label">Parent reviews</span>
           <span class="seo-row-status"><span class="seo-status-done">✓ 4 reviews</span></span>
-        </div>
-      </div>
-
-      <!-- JSON-LD preview (collapsed state — shows what gets emitted) -->
-      <div style="padding:0 16px 16px;">
-        <div style="font-size:11px;font-weight:700;color:var(--purple);margin-bottom:6px;">
-          JSON-LD output (partial preview)
-        </div>
-        <div class="schema-box" aria-label="Schema.org JSON-LD structured data preview">
-<span class="schema-key">"@type"</span>: <span class="schema-str">"SportsActivityLocation"</span>,
-<span class="schema-key">"name"</span>: <span class="schema-str">"Hot Shots Basketball NYC"</span>,
-<span class="schema-key">"url"</span>: <span class="schema-str">"hotshotsbasketballnyc.com"</span>,
-<span class="schema-key">"telephone"</span>: <span class="schema-str">"(718) 555-0147"</span>,
-<span class="schema-key">"address"</span>: {
-  <span class="schema-key">"streetAddress"</span>: <span class="schema-str">"Juniper Valley Park"</span>,
-  <span class="schema-key">"addressLocality"</span>: <span class="schema-str">"Queens"</span>,
-  <span class="schema-key">"addressRegion"</span>: <span class="schema-str">"NY"</span>
-},
-<span class="schema-key">"description"</span>: <span style="color:#F87171;">"⚠ not set"</span>,
-<span class="schema-key">"image"</span>: <span style="color:#F87171;">"⚠ not set"</span>,
-<span class="schema-key">"areaServed"</span>: <span style="color:#F87171;">"⚠ not set"</span>,
-<span class="schema-key">"keywords"</span>: <span style="color:#F87171;">"⚠ not set"</span>,
-<span class="schema-key">"aggregateRating"</span>: {
-  <span class="schema-key">"ratingValue"</span>: <span class="schema-val">4.9</span>,
-  <span class="schema-key">"reviewCount"</span>: <span class="schema-val">6</span>
-}
         </div>
       </div>
     </div>
