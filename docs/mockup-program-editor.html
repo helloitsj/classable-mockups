@@ -99,12 +99,9 @@
   .toggle.off { background: var(--gray-300); }
   .toggle.off::after { left: 3px; }
 
-  /* ─── PAGE BREADCRUMB ─── */
-  .page-breadcrumb { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--gray-500); margin-bottom: 20px; }
-  .page-breadcrumb a { color: var(--gray-500); text-decoration: none; }
-  .page-breadcrumb a:hover { color: var(--teal); }
-  .page-breadcrumb .crumb-sep { color: var(--gray-300); }
-  .page-breadcrumb .crumb-current { color: var(--gray-900); font-weight: 600; }
+  /* ─── BREADCRUMB (override: inside content container, not a standalone bar) ─── */
+  .breadcrumb { max-width: none; margin: 0; padding: 0; margin-bottom: 20px; }
+  .breadcrumb-current { color: var(--gray-900); font-weight: 600; }
 
   @media (max-width: 680px) {
     .form-row { grid-template-columns: 1fr; }
@@ -182,12 +179,12 @@
 <div class="page-wrap">
 
   <!-- BREADCRUMB -->
-  <nav class="page-breadcrumb" aria-label="Breadcrumb">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
     <a href="mockup-provider-dashboard.html">Dashboard</a>
-    <span class="crumb-sep">›</span>
+    <span class="breadcrumb-sep">›</span>
     <a href="mockup-provider-dashboard.html">Programs</a>
-    <span class="crumb-sep">›</span>
-    <span class="crumb-current">Basketball — Ages 7/8 Group</span>
+    <span class="breadcrumb-sep">›</span>
+    <span class="breadcrumb-current">Basketball — Ages 7/8 Group</span>
   </nav>
 
   <!-- PUBLISH STATUS -->

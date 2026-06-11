@@ -15,18 +15,6 @@
   body { font-family: 'Inter', system-ui, sans-serif; font-size: 15px; background: var(--gray-50); color: var(--gray-700); line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; }
   .body-wrap { flex: 1; }
 
-  /* ─── HEADER SEARCH BAR ─── */
-  .search-bar { flex: 1; display: flex; align-items: center; background: #fff; border: 1.5px solid var(--gray-300); border-radius: 10px; overflow: hidden; max-width: 560px; }
-  .search-input-wrap { display: flex; align-items: center; gap: 8px; flex: 1; padding: 0 14px; border-right: 1.5px solid var(--gray-300); }
-  .search-input { border: none; outline: none; font-size: 14px; font-family: inherit; color: var(--gray-900); background: transparent; width: 100%; padding: 8px 0; }
-  .search-location-wrap { display: flex; align-items: center; gap: 6px; padding: 0 14px; min-width: 130px; color: var(--gray-500); font-size: 13px; }
-  .search-btn { background: var(--teal); color: #fff; border: none; padding: 0 18px; align-self: stretch; cursor: pointer; font-size: 14px; font-weight: 600; font-family: inherit; border-radius: 0; }
-
-  /* ─── BREADCRUMB ─── */
-  .breadcrumb { max-width: 1280px; margin: 0 auto; padding: 12px 24px; display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--gray-500); }
-  .breadcrumb a { color: var(--gray-500); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--teal); }
-  .breadcrumb-sep { color: var(--gray-300); }
 
   /* ─── PROVIDER HERO ─── */
   .provider-hero {
@@ -66,9 +54,6 @@
   /* ─── FILTER SIDEBAR ─── */
   .filter-sidebar { position: sticky; top: 76px; }
   .filter-panel { background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); overflow: hidden; }
-  .filter-section { padding: 16px; border-bottom: 1px solid var(--gray-100); }
-  .filter-section:last-child { border-bottom: none; }
-  .filter-section-title { font-size: 11px; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
   .filter-option { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; cursor: pointer; }
   .filter-option:last-child { margin-bottom: 0; }
   .filter-option input[type="checkbox"] { width: 15px; height: 15px; accent-color: var(--teal); cursor: pointer; flex-shrink: 0; }
