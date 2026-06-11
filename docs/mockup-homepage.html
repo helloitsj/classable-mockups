@@ -580,8 +580,10 @@
 
 <!-- ─── HERO ─── -->
 <section class="hero">
-  <!-- swap src for real video file; fallback gradient shows when src is empty -->
-  <video class="hero-video" autoplay muted loop playsinline poster="" src=""></video>
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source src="assets/hero-bg.webm" type="video/webm">
+    <source src="assets/hero-bg.mp4" type="video/mp4">
+  </video>
   <div class="hero-video-fallback"></div>
   <div class="hero-overlay"></div>
 
