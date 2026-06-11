@@ -399,7 +399,7 @@
     <!-- Step 4 -->
     <div class="step-item" style="flex:0">
       <div class="step-circle pending" id="circle-4">4</div>
-      <span class="step-label pending" id="label-4">Verify</span>
+      <span class="step-label pending" id="label-4">Review</span>
     </div>
 
   </div>
@@ -626,32 +626,41 @@
       <p class="program-note">You can add more programs after setup.</p>
     </section>
 
-    <!-- ══════════ STEP 4: VERIFY YOUR NUMBER ══════════ -->
-    <section class="step-panel" id="step-4" aria-label="Step 4: Verify your phone number">
+    <!-- ══════════ STEP 4: REVIEW & SUBMIT ══════════ -->
+    <section class="step-panel" id="step-4" aria-label="Step 4: Review and submit">
       <div class="wizard-card">
         <div class="section-head">
-          <h1>Verify your phone number</h1>
-          <p>We sent a 6-digit code to the number you provided. Enter it below to go live sooner — unverified listings are held for staff review.</p>
+          <h1>Almost there — review your submission</h1>
+          <p>Your provider account and first program will be reviewed by the Classable team before appearing in search results.</p>
         </div>
 
-        <div style="background:#fff;border:1px solid var(--gray-300);border-radius:12px;padding:28px;margin-bottom:20px;text-align:center;">
-          <p style="font-size:12px;font-weight:600;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:16px;">Enter 6-digit code</p>
-          <div class="otp-wrap" style="justify-content:center;" role="group" aria-label="6-digit verification code">
-            <input class="otp-input" type="text" maxlength="1" aria-label="Digit 1" inputmode="numeric">
-            <input class="otp-input" type="text" maxlength="1" aria-label="Digit 2" inputmode="numeric">
-            <input class="otp-input" type="text" maxlength="1" aria-label="Digit 3" inputmode="numeric">
-            <input class="otp-input" type="text" maxlength="1" aria-label="Digit 4" inputmode="numeric">
-            <input class="otp-input" type="text" maxlength="1" aria-label="Digit 5" inputmode="numeric">
-            <input class="otp-input" type="text" maxlength="1" aria-label="Digit 6" inputmode="numeric">
+        <div style="background:var(--gray-50);border:1px solid var(--gray-200);border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <p style="font-size:11px;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:12px;">What happens next</p>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;gap:12px;align-items:flex-start;">
+              <div style="width:22px;height:22px;background:var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div><span style="font-size:13px;font-weight:600;color:var(--gray-900);">Submission received</span><br><span style="font-size:12px;color:var(--gray-500);">We'll email you a confirmation right away.</span></div>
+            </div>
+            <div style="display:flex;gap:12px;align-items:flex-start;">
+              <div style="width:22px;height:22px;background:var(--gray-200);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">
+                <span style="font-size:11px;font-weight:700;color:var(--gray-500);">2</span>
+              </div>
+              <div><span style="font-size:13px;font-weight:600;color:var(--gray-900);">Staff review</span><br><span style="font-size:12px;color:var(--gray-500);">Our team verifies your organization and program details — usually within 24 hours.</span></div>
+            </div>
+            <div style="display:flex;gap:12px;align-items:flex-start;">
+              <div style="width:22px;height:22px;background:var(--gray-200);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">
+                <span style="font-size:11px;font-weight:700;color:var(--gray-500);">3</span>
+              </div>
+              <div><span style="font-size:13px;font-weight:600;color:var(--gray-900);">You go live</span><br><span style="font-size:12px;color:var(--gray-500);">Once approved, your listing appears in Classable search results and you'll get access to your provider dashboard.</span></div>
+            </div>
           </div>
-          <p style="font-size:12px;color:var(--gray-400);margin-top:14px;">
-            Didn't get it? <a href="#" style="color:var(--teal);font-weight:600;text-decoration:none;">Resend code</a>
-          </p>
         </div>
 
-        <div style="background:var(--teal-light);border:1px solid #b2ddd9;border-radius:10px;padding:14px 16px;font-size:13px;color:var(--teal-dark);margin-bottom:24px;display:flex;gap:10px;align-items:flex-start;">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>
-          <span>Verifying your number moves your listing to <strong>phone_verified</strong> status. A Classable team member will do a final check — usually within a few hours — before it appears in search results.</span>
+        <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:10px;padding:13px 15px;font-size:13px;color:#92400E;margin-bottom:24px;display:flex;gap:10px;align-items:flex-start;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <span>Your listing will <strong>not appear in search results</strong> until the review is complete. We'll email you at the address you provided.</span>
         </div>
 
         <div style="margin-top:8px;">
@@ -662,16 +671,12 @@
             Back
           </button>
           <button class="btn-primary" type="button" onclick="showSuccess()">
-            Verify &amp; submit
+            Submit for review
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path d="M6 12l4-4-4-4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </button>
         </div>
-
-        <p style="text-align:center;margin-top:16px;font-size:13px;color:var(--gray-400);">
-          Can't receive a text? <a href="#" onclick="showSuccess();return false;" style="color:var(--teal);font-weight:600;text-decoration:none;">Skip — submit for manual review</a>
-        </p>
       </div>
     </section>
 
@@ -683,15 +688,14 @@
             <path d="M8 18l7 7 13-14" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
-        <h1>You're all set!</h1>
-        <p>Your listing is under review. We'll notify you within 24 hours once it's approved.</p>
+        <h1>Submitted for review</h1>
+        <p>Your provider account and program listing are under review. We'll email you within 24 hours once approved — your listing will go live at that point.</p>
         <div class="success-actions">
-          <a href="mockup-provider-dashboard.html">
+          <a href="mockup-homepage.html">
             <button class="btn-primary" type="button" style="max-width:100%;width:100%;">
-              Go to your dashboard
+              Back to Classable
             </button>
           </a>
-          <button class="btn-ghost" type="button" onclick="addAnotherProgram()">Add another program</button>
         </div>
         <p class="success-note">Questions? Email <a href="mailto:hello@classable.com">hello@classable.com</a></p>
       </div>
