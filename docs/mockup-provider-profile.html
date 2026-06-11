@@ -30,7 +30,8 @@
     --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.06);
   }
 
-  body { font-family: 'Inter', system-ui, sans-serif; font-size: 15px; background: var(--gray-50); color: var(--gray-700); line-height: 1.6; }
+  body { font-family: 'Inter', system-ui, sans-serif; font-size: 15px; background: var(--gray-50); color: var(--gray-700); line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; }
+  .body-wrap { flex: 1; }
 
   /* ─── HEADER ─── */
   .site-header { background: #fff; border-bottom: 1px solid var(--gray-200); position: sticky; top: 0; z-index: 100; }
@@ -47,9 +48,9 @@
   .header-nav { display: flex; align-items: center; gap: 4px; flex-shrink: 0; margin-left: auto; }
   .header-nav a { text-decoration: none; color: var(--gray-700); font-size: 14px; font-weight: 500; padding: 6px 10px; border-radius: var(--radius-md); white-space: nowrap; }
   .header-nav a:hover { background: var(--gray-100); color: var(--gray-900); }
-  .btn-login { font-size: 14px; font-weight: 600; color: var(--gray-700); background: none; border: 1.5px solid var(--gray-300); padding: 6px 14px; border-radius: 8px; cursor: pointer; font-family: inherit; }
+  .btn-login { font-size: 14px; font-weight: 600; color: var(--gray-700); background: none; border: 1.5px solid var(--gray-300); padding: 7px 14px; border-radius: 8px; cursor: pointer; font-family: inherit; }
   .btn-login:hover { border-color: var(--teal); color: var(--teal); }
-  .btn-signup { background: var(--teal) !important; color: #fff !important; font-weight: 600 !important; padding: 7px 14px !important; border-radius: var(--radius-md) !important; }
+  .btn-signup { background: var(--teal) !important; color: #fff !important; font-weight: 600 !important; padding: 7px 14px !important; border: 1.5px solid transparent !important; border-radius: var(--radius-md) !important; }
   .btn-signup:hover { background: var(--teal-hover) !important; }
 
   /* ─── BREADCRUMB ─── */
