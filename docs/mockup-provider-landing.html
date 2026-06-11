@@ -1,0 +1,603 @@
+<!-- mockup-provider-landing.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Providers — Classable</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --teal: #0D7A6E;
+    --teal-hover: #15A396;
+    --teal-dark: #0A5F56;
+    --teal-light: #E6F5F4;
+    --gray-900: #0F1117;
+    --gray-700: #374151;
+    --gray-500: #6B7280;
+    --gray-300: #D1D5DB;
+    --gray-100: #F3F4F6;
+    --gray-50: #F9FAFB;
+    --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.06);
+    --shadow-card-hover: 0 4px 12px 0 rgb(0 0 0 / 0.10), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 15px;
+    background: var(--gray-50);
+    color: var(--gray-700);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ─── NAV ─── */
+  .site-header {
+    background: #fff;
+    border-bottom: 1px solid var(--gray-300);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .header-inner {
+    max-width: 1280px; margin: 0 auto; padding: 0 24px;
+    height: 56px; display: flex; align-items: center; gap: 20px;
+  }
+  .wordmark {
+    display: flex; align-items: center; gap: 8px;
+    text-decoration: none; flex-shrink: 0;
+  }
+  .wordmark-icon {
+    width: 30px; height: 30px; background: var(--teal); border-radius: 7px;
+    display: flex; align-items: center; justify-content: center; color: #fff;
+  }
+  .wordmark-text { font-size: 17px; font-weight: 700; color: var(--gray-900); letter-spacing: -0.3px; }
+  .wordmark-text span { color: var(--teal); }
+  .header-nav { margin-left: auto; display: flex; align-items: center; gap: 4px; }
+  .nav-link {
+    font-size: 14px; font-weight: 500; color: var(--gray-700);
+    text-decoration: none; padding: 6px 12px; border-radius: 8px;
+    transition: background 0.15s, color 0.15s;
+  }
+  .nav-link:hover { background: var(--gray-100); color: var(--gray-900); }
+  .btn-login {
+    font-size: 14px; font-weight: 600; color: var(--gray-700);
+    background: none; border: 1.5px solid var(--gray-300); padding: 6px 14px;
+    border-radius: 8px; cursor: pointer; font-family: inherit;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .btn-login:hover { border-color: var(--teal); color: var(--teal); }
+  .btn-signup {
+    font-size: 14px; font-weight: 600; color: #fff;
+    background: var(--teal); border: none; padding: 6px 16px;
+    border-radius: 8px; cursor: pointer; font-family: inherit;
+    transition: background 0.15s;
+  }
+  .btn-signup:hover { background: var(--teal-hover); }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: linear-gradient(155deg, #06413A 0%, #0A5F56 40%, #0D7A6E 100%);
+    padding: 80px 24px 88px;
+    text-align: center;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: rgba(255,255,255,0.65); background: rgba(255,255,255,0.1);
+    padding: 5px 14px; border-radius: 20px; margin-bottom: 24px;
+  }
+  .hero-headline {
+    font-size: 48px; font-weight: 800; color: #fff;
+    letter-spacing: -1.2px; line-height: 1.1;
+    margin: 0 auto 18px; max-width: 700px;
+  }
+  .hero-headline em { font-style: normal; color: #5EEAD4; }
+  .hero-sub {
+    font-size: 18px; color: rgba(255,255,255,0.72);
+    max-width: 480px; margin: 0 auto 40px; line-height: 1.55;
+  }
+  .hero-actions {
+    display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;
+  }
+  .btn-hero-primary {
+    background: #fff; color: var(--teal-dark);
+    border: none; padding: 14px 28px; border-radius: 8px;
+    font-size: 15px; font-weight: 800; font-family: inherit; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: box-shadow 0.15s, transform 0.12s;
+    text-decoration: none;
+  }
+  .btn-hero-primary:hover { box-shadow: 0 6px 20px rgb(0 0 0 / 0.18); transform: translateY(-1px); }
+  .btn-hero-ghost {
+    background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.9);
+    border: 1.5px solid rgba(255,255,255,0.28); padding: 14px 24px; border-radius: 8px;
+    font-size: 15px; font-weight: 600; font-family: inherit; cursor: pointer;
+    text-decoration: none; transition: background 0.15s;
+  }
+  .btn-hero-ghost:hover { background: rgba(255,255,255,0.2); }
+  .hero-footnote {
+    margin-top: 16px; font-size: 13px; color: rgba(255,255,255,0.45);
+  }
+
+  /* ─── SECTION SHARED ─── */
+  .section {
+    max-width: 1280px; margin: 0 auto; padding: 72px 24px;
+  }
+  .section-eyebrow {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 10px;
+  }
+  .section-title {
+    font-size: 30px; font-weight: 800; color: var(--gray-900);
+    letter-spacing: -0.6px; line-height: 1.2; margin-bottom: 14px;
+  }
+  .section-sub {
+    font-size: 16px; color: var(--gray-500); max-width: 480px; line-height: 1.6;
+  }
+
+  /* ─── STATS STRIP ─── */
+  .stats-strip {
+    background: #fff; border-top: 1px solid var(--gray-100); border-bottom: 1px solid var(--gray-100);
+    padding: 24px;
+  }
+  .stats-strip-inner {
+    max-width: 1280px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: center; gap: 64px;
+  }
+  .stat-item { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+  .stat-number { font-size: 26px; font-weight: 800; color: var(--gray-900); letter-spacing: -0.6px; }
+  .stat-label { font-size: 12px; color: var(--gray-500); font-weight: 500; }
+
+  /* ─── HOW IT WORKS ─── */
+  .how-section { background: #fff; border-top: 1px solid var(--gray-100); }
+  .how-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;
+    margin-top: 48px;
+  }
+  .how-step { display: flex; flex-direction: column; gap: 14px; }
+  .how-number {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: var(--teal-light); color: var(--teal-dark);
+    font-size: 18px; font-weight: 800; display: flex; align-items: center; justify-content: center;
+  }
+  .how-title { font-size: 17px; font-weight: 700; color: var(--gray-900); }
+  .how-desc { font-size: 14px; color: var(--gray-500); line-height: 1.65; }
+
+  /* ─── PROVIDER TYPES ─── */
+  .types-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    margin-top: 48px;
+  }
+  .type-card {
+    background: #fff; border: 1px solid var(--gray-300); border-radius: 14px; padding: 28px 24px;
+    display: flex; flex-direction: column; gap: 0;
+    transition: box-shadow 0.15s, border-color 0.15s;
+  }
+  .type-card:hover { box-shadow: var(--shadow-card-hover); border-color: var(--teal); }
+  .type-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; margin-bottom: 16px;
+  }
+  .type-tag {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 3px 9px; border-radius: 4px; display: inline-block;
+    margin-bottom: 10px; width: fit-content;
+  }
+  .type-title { font-size: 18px; font-weight: 800; color: var(--gray-900); margin-bottom: 8px; line-height: 1.2; }
+  .type-pain {
+    font-size: 13px; color: var(--gray-500); line-height: 1.6;
+    margin-bottom: 20px; padding-bottom: 20px;
+    border-bottom: 1px solid var(--gray-100);
+    flex: 1;
+  }
+  .type-benefits { display: flex; flex-direction: column; gap: 8px; }
+  .type-benefit {
+    display: flex; align-items: flex-start; gap: 8px;
+    font-size: 13px; color: var(--gray-700); line-height: 1.4;
+  }
+  .type-benefit-check {
+    width: 16px; height: 16px; border-radius: 50%;
+    background: var(--teal-light); color: var(--teal-dark);
+    font-size: 10px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+  }
+
+  /* ─── FEATURES ─── */
+  .features-section { background: var(--gray-50); border-top: 1px solid var(--gray-100); }
+  .features-layout {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    margin-top: 48px;
+  }
+  .features-text {}
+  .features-list { display: flex; flex-direction: column; gap: 24px; margin-top: 32px; }
+  .feature-item { display: flex; gap: 16px; }
+  .feature-icon {
+    width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 20px;
+  }
+  .feature-title { font-size: 15px; font-weight: 700; color: var(--gray-900); margin-bottom: 3px; }
+  .feature-desc { font-size: 13px; color: var(--gray-500); line-height: 1.6; }
+  .features-preview {
+    background: #fff; border: 1px solid var(--gray-300); border-radius: 16px;
+    overflow: hidden; box-shadow: var(--shadow-card-hover);
+  }
+  .preview-topbar {
+    background: var(--gray-900); padding: 12px 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .preview-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .preview-body { padding: 20px; }
+  .preview-stat-row { display: flex; gap: 12px; margin-bottom: 16px; }
+  .preview-stat {
+    flex: 1; background: var(--gray-50); border: 1px solid var(--gray-100);
+    border-radius: 8px; padding: 12px 14px;
+  }
+  .preview-stat-num { font-size: 22px; font-weight: 800; color: var(--gray-900); letter-spacing: -0.4px; }
+  .preview-stat-lbl { font-size: 11px; color: var(--gray-500); margin-top: 2px; }
+  .preview-checklist { display: flex; flex-direction: column; gap: 8px; }
+  .preview-check-item {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; color: var(--gray-700); padding: 8px 10px;
+    background: var(--gray-50); border-radius: 6px; border: 1px solid var(--gray-100);
+  }
+  .preview-check-done { color: var(--teal); font-weight: 700; font-size: 12px; }
+  .preview-check-pend { color: var(--gray-400, #9CA3AF); font-size: 12px; }
+  .preview-bar {
+    height: 6px; background: var(--gray-100); border-radius: 3px; margin-bottom: 8px; overflow: hidden;
+  }
+  .preview-bar-fill { height: 100%; background: var(--teal); border-radius: 3px; }
+  .preview-completeness { font-size: 12px; color: var(--gray-500); margin-bottom: 12px; }
+
+  /* ─── TESTIMONIAL ─── */
+  .testimonial-section {
+    background: var(--teal-dark);
+    padding: 72px 24px;
+    text-align: center;
+  }
+  .testimonial-quote-mark { font-size: 48px; color: rgba(255,255,255,0.2); line-height: 1; margin-bottom: 8px; }
+  .testimonial-text {
+    font-size: 22px; font-weight: 600; color: #fff; line-height: 1.5;
+    max-width: 640px; margin: 0 auto 28px; letter-spacing: -0.2px;
+  }
+  .testimonial-author { display: flex; align-items: center; justify-content: center; gap: 12px; }
+  .testimonial-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    display: flex; align-items: center; justify-content: center; font-size: 20px;
+  }
+  .testimonial-name { font-size: 14px; font-weight: 700; color: #fff; }
+  .testimonial-role { font-size: 13px; color: rgba(255,255,255,0.55); }
+
+  /* ─── BOTTOM CTA ─── */
+  .cta-section {
+    background: #fff; border-top: 1px solid var(--gray-100);
+    padding: 80px 24px; text-align: center;
+  }
+  .cta-headline {
+    font-size: 34px; font-weight: 800; color: var(--gray-900);
+    letter-spacing: -0.7px; margin-bottom: 12px; line-height: 1.2;
+  }
+  .cta-sub { font-size: 16px; color: var(--gray-500); margin-bottom: 36px; }
+  .cta-cards {
+    display: flex; align-items: stretch; justify-content: center; gap: 16px; flex-wrap: wrap;
+    max-width: 680px; margin: 0 auto;
+  }
+  .cta-card {
+    flex: 1; min-width: 280px; max-width: 320px;
+    background: var(--gray-50); border: 1.5px solid var(--gray-300); border-radius: 14px;
+    padding: 28px 24px; text-align: left;
+    display: flex; flex-direction: column; gap: 12px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .cta-card:hover { border-color: var(--teal); box-shadow: var(--shadow-card-hover); }
+  .cta-card-icon { font-size: 28px; }
+  .cta-card-title { font-size: 16px; font-weight: 800; color: var(--gray-900); }
+  .cta-card-desc { font-size: 13px; color: var(--gray-500); line-height: 1.6; flex: 1; }
+  .cta-card-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 14px; font-weight: 700; padding: 10px 18px; border-radius: 8px;
+    border: none; cursor: pointer; font-family: inherit;
+    text-decoration: none; transition: background 0.15s; width: fit-content;
+  }
+  .cta-card-btn-primary { background: var(--teal); color: #fff; }
+  .cta-card-btn-primary:hover { background: var(--teal-hover); }
+  .cta-card-btn-ghost { background: #fff; color: var(--gray-700); border: 1.5px solid var(--gray-300); }
+  .cta-card-btn-ghost:hover { border-color: var(--teal); color: var(--teal); }
+
+  /* ─── FOOTER ─── */
+  .site-footer { background: #0F1117; padding: 40px 24px 32px; }
+  .site-footer-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .footer-brand { display: flex; flex-direction: column; gap: 4px; }
+  .footer-wordmark { font-size: 16px; font-weight: 800; color: #fff; letter-spacing: -0.3px; }
+  .footer-wordmark span { color: #E6F5F4; }
+  .footer-tagline { font-size: 12px; color: rgba(255,255,255,0.4); font-style: italic; }
+  .footer-links { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.15s; }
+  .footer-links a:hover { color: #fff; }
+  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); white-space: nowrap; }
+
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href="mockup-homepage.html">
+      <div class="wordmark-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+        </svg>
+      </div>
+      <span class="wordmark-text">Class<span>able</span></span>
+    </a>
+    <nav class="header-nav">
+      <a class="nav-link" href="mockup-filter-panel.html">Browse</a>
+      <a class="nav-link" href="mockup-provider-landing.html" style="color:var(--teal);font-weight:600;">For Providers</a>
+      <button class="btn-login">Log in</button>
+      <button class="btn-signup">Sign up</button>
+    </nav>
+  </div>
+</header>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-eyebrow">For activity providers · Free to list</div>
+  <h1 class="hero-headline">Reach parents who are <em>actively searching</em></h1>
+  <p class="hero-sub">Classable puts your programs in front of local families at the moment they're looking — no ad budget required.</p>
+  <div class="hero-actions">
+    <a class="btn-hero-primary" href="mockup-claim-flow.html">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Claim your listing
+    </a>
+    <a class="btn-hero-ghost" href="#get-listed">Add your organization →</a>
+  </div>
+  <p class="hero-footnote">Free for providers. No commission. No subscription.</p>
+</section>
+
+<!-- ─── STATS STRIP ─── -->
+<div class="stats-strip">
+  <div class="stats-strip-inner">
+    <div class="stat-item">
+      <span class="stat-number">2,400+</span>
+      <span class="stat-label">Monthly parent searches</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">90+</span>
+      <span class="stat-label">Providers listed</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">Free</span>
+      <span class="stat-label">Always, for providers</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">&lt; 10 min</span>
+      <span class="stat-label">To claim or add a listing</span>
+    </div>
+  </div>
+</div>
+
+<!-- ─── HOW IT WORKS ─── -->
+<div class="how-section">
+  <div class="section">
+    <div class="section-eyebrow">How it works</div>
+    <h2 class="section-title">Three steps to get found</h2>
+    <p class="section-sub">No tech skills needed. If your programs aren't on Classable yet, it takes under 10 minutes to get listed.</p>
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="how-number">1</div>
+        <div class="how-title">Claim or add your listing</div>
+        <div class="how-desc">Search for your organization — we may already have you from public sources. Claim it via SMS verification, or add your organization from scratch in minutes.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-number">2</div>
+        <div class="how-title">Add your programs</div>
+        <div class="how-desc">List each program with age range, schedule, pricing, format, and location. Parents filter by exactly these fields — completeness directly increases your visibility.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-number">3</div>
+        <div class="how-title">Get found and get inquiries</div>
+        <div class="how-desc">Your programs appear in search results for parents in your area. They save programs, ask questions, and click through to your site or contact you directly.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── WHO IT'S FOR ─── -->
+<section class="section">
+  <div class="section-eyebrow">Who it's for</div>
+  <h2 class="section-title">Built for every type of provider</h2>
+  <p class="section-sub">Whether you teach piano out of your home or run a 200-kid sports league, Classable works for you.</p>
+
+  <div class="types-grid">
+
+    <!-- Small / Independent -->
+    <div class="type-card">
+      <div class="type-icon" style="background:#FDF4FF;">🎸</div>
+      <span class="type-tag" style="background:#FDF4FF;color:#7C3AED;">Independent instructor</span>
+      <h3 class="type-title">Solo teachers &amp; coaches</h3>
+      <p class="type-pain">You teach guitar, swim lessons, or karate — but parents searching "kids guitar lessons Queens" can't find you. Word of mouth has a ceiling. Your website doesn't rank.</p>
+      <div class="type-benefits">
+        <div class="type-benefit"><span class="type-benefit-check">✓</span>Get discovered without SEO or ads</div>
+        <div class="type-benefit"><span class="type-benefit-check">✓</span>Free listing, no website required</div>
+        <div class="type-benefit"><span class="type-benefit-check">✓</span>Show age range, schedule, and pricing upfront</div>
+      </div>
+    </div>
+
+    <!-- Mid-size studio / gym -->
+    <div class="type-card">
+      <div class="type-icon" style="background:#EFF6FF;">🏋️</div>
+      <span class="type-tag" style="background:#EFF6FF;color:#1D4ED8;">Studio &amp; gym</span>
+      <h3 class="type-title">Dance studios, martial arts gyms &amp; music schools</h3>
+      <p class="type-pain">You have a website and maybe an Instagram, but parents searching "after-school dance Rego Park" don't find you — they find whoever paid for Google Ads that week.</p>
+      <div class="type-benefits">
+        <div class="type-benefit"><span class="type-benefit-check">✓</span>Appear in neighborhood-level searches</div>
+        <div class="type-benefit"><span class="type-benefit-check">✓</span>List multiple programs under one profile</div>
+        <div class="type-benefit"><span class="type-benefit-check">✓</span>Parents compare you on schedule and age fit — not just price</div>
+      </div>
+    </div>
+
+    <!-- Large / institutional -->
+    <div class="type-card">
+      <div class="type-icon" style="background:#F0FDF4;">🏫</div>
+      <span class="type-tag" style="background:#F0FDF4;color:#166534;">Organization &amp; league</span>
+      <h3 class="type-title">Sports leagues, YMCAs &amp; community orgs</h3>
+      <p class="type-pain">You run 20–50 programs across multiple sites and age groups. Parents call in confused or register for the wrong session. Your staff spends time on intake that shouldn't require a phone call.</p>
+      <div class="type-benefits">
+        <div class="type-benefit"><span class="type-benefit-check">✓</span>List all programs with structured age &amp; schedule data</div>
+        <div class="type-benefit"><span class="type-benefit-check">✓</span>Parents self-filter to the right session before contacting you</div>
+        <div class="type-benefit"><span class="type-benefit-check">✓</span>Import programs in bulk (coming soon)</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── FEATURES ─── -->
+<div class="features-section">
+  <div class="section">
+    <div class="section-eyebrow">What you get</div>
+    <h2 class="section-title">Your provider dashboard</h2>
+
+    <div class="features-layout">
+      <div class="features-text">
+        <p class="section-sub">Everything you need to manage your presence — and nothing you don't.</p>
+        <div class="features-list">
+          <div class="feature-item">
+            <div class="feature-icon" style="background:#E6F5F4;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0D7A6E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <div class="feature-title">Verified listing badge</div>
+              <div class="feature-desc">Parents see you're a real, active provider — not scraped data that might be out of date.</div>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon" style="background:#EFF6FF;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+            </div>
+            <div>
+              <div class="feature-title">Program editor</div>
+              <div class="feature-desc">Add, edit, and update programs. Set age ranges, session schedules, pricing, skill level, and format — the fields parents filter on most.</div>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon" style="background:#FEF3C7;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#92400E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <div>
+              <div class="feature-title">Search visibility checklist</div>
+              <div class="feature-desc">See exactly what's making your listing more (or less) findable — and what to fix to improve your ranking in results.</div>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon" style="background:#F0FDF4;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#166534" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div>
+              <div class="feature-title">Parent inquiry routing</div>
+              <div class="feature-desc">When parents want to learn more, they go directly to your site or contact info — no middleman, no commission.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard preview mockup -->
+      <div class="features-preview">
+        <div class="preview-topbar">
+          <div class="preview-dot" style="background:#EF4444;"></div>
+          <div class="preview-dot" style="background:#F59E0B;"></div>
+          <div class="preview-dot" style="background:#22C55E;"></div>
+          <span style="font-size:12px;color:rgba(255,255,255,0.4);margin-left:8px;">Provider dashboard</span>
+        </div>
+        <div class="preview-body">
+          <div class="preview-completeness">Profile completeness</div>
+          <div class="preview-bar"><div class="preview-bar-fill" style="width:72%;"></div></div>
+          <div style="font-size:11px;color:var(--teal);font-weight:600;margin-bottom:16px;">72% — add a description to reach 90%</div>
+          <div class="preview-stat-row">
+            <div class="preview-stat">
+              <div class="preview-stat-num">148</div>
+              <div class="preview-stat-lbl">Profile views this month</div>
+            </div>
+            <div class="preview-stat">
+              <div class="preview-stat-num">23</div>
+              <div class="preview-stat-lbl">Programs saved by parents</div>
+            </div>
+          </div>
+          <div style="font-size:12px;font-weight:700;color:var(--gray-500);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.06em;">Search visibility checklist</div>
+          <div class="preview-checklist">
+            <div class="preview-check-item"><span class="preview-check-done">✓</span> Organization verified</div>
+            <div class="preview-check-item"><span class="preview-check-done">✓</span> At least one program listed</div>
+            <div class="preview-check-item"><span class="preview-check-done">✓</span> Location &amp; neighborhood set</div>
+            <div class="preview-check-item" style="opacity:0.6;"><span class="preview-check-pend">○</span> Description added</div>
+            <div class="preview-check-item" style="opacity:0.6;"><span class="preview-check-pend">○</span> Age range set on all programs</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── PROVIDER TESTIMONIAL ─── -->
+<div class="testimonial-section">
+  <div class="testimonial-quote-mark">"</div>
+  <p class="testimonial-text">We used to rely entirely on flyers at schools. Now parents find us, check the schedule, and show up already knowing what session fits their kid. Sign-up calls dropped by half.</p>
+  <div class="testimonial-author">
+    <div class="testimonial-avatar">🏀</div>
+    <div style="text-align:left;">
+      <div class="testimonial-name">Marcus T.</div>
+      <div class="testimonial-role">Director, Hot Shots Basketball NYC</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── BOTTOM CTA ─── -->
+<div class="cta-section" id="get-listed">
+  <h2 class="cta-headline">Ready to get listed?</h2>
+  <p class="cta-sub">Free for providers. Takes under 10 minutes. No commitment.</p>
+  <div class="cta-cards">
+    <div class="cta-card">
+      <div class="cta-card-icon">🔍</div>
+      <div class="cta-card-title">Find &amp; claim your listing</div>
+      <div class="cta-card-desc">We may already have your organization from public sources. Search for it, verify via SMS, and take ownership in minutes.</div>
+      <a class="cta-card-btn cta-card-btn-primary" href="mockup-claim-flow.html">
+        Claim your listing
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="cta-card">
+      <div class="cta-card-icon">➕</div>
+      <div class="cta-card-title">Add your organization</div>
+      <div class="cta-card-desc">Not listed yet? Create your organization profile from scratch and add your first program. We'll review and approve within 24 hours.</div>
+      <a class="cta-card-btn cta-card-btn-ghost" href="#">
+        Add your organization →
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ─── FOOTER ─── -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-brand">
+      <span class="footer-wordmark">Class<span>able</span></span>
+      <span class="footer-tagline">Learn it. Play it. Do it.</span>
+    </div>
+    <nav class="footer-links">
+      <a href="#">About</a>
+      <a href="mockup-provider-landing.html">For Providers</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </nav>
+    <span class="footer-copy">© 2026 Classable</span>
+  </div>
+</footer>
+
+</body>
+</html>
