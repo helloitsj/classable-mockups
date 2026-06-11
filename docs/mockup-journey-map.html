@@ -189,13 +189,13 @@
 <main class="main-content">
 
   <!-- ══════════════════════════════════════
-       CONSUMER DISCOVERY
+       1 · CONSUMER DISCOVERY
   ══════════════════════════════════════ -->
   <section class="journey-section">
     <div class="journey-header">
       <span class="journey-badge" style="background:var(--blue-light);color:var(--blue);">Consumer</span>
       <span class="journey-title">Discovery</span>
-      <span class="journey-subtitle">Any visitor browsing for activities</span>
+      <span class="journey-subtitle">Any visitor browsing for activities, logged in or not</span>
     </div>
     <div class="journey-body">
       <div class="flow-row">
@@ -239,18 +239,28 @@
   </section>
 
   <!-- ══════════════════════════════════════
-       PARENT ACCOUNT
+       2 · PARENT — NEW USER
   ══════════════════════════════════════ -->
   <section class="journey-section">
     <div class="journey-header">
-      <span class="journey-badge" style="background:var(--purple-light);color:var(--purple);">Parent</span>
-      <span class="journey-title">Account creation</span>
-      <span class="journey-subtitle">Triggered by "Save" or "Sign up" from Homepage or Activity Detail</span>
+      <span class="journey-badge" style="background:var(--purple-light);color:var(--purple);">Parent · New</span>
+      <span class="journey-title">First-time parent</span>
+      <span class="journey-subtitle">Arrives via Homepage or Activity Detail, creates account, lands on pre-filtered search</span>
     </div>
     <div class="journey-body">
       <div class="flow-row">
 
-        <span class="entry-note">from Homepage or Activity Detail</span>
+        <a class="node consumer" href="mockup-homepage.html" target="_blank">
+          <span class="node-icon">🏠</span>
+          <span class="node-name">Homepage</span>
+          <span class="node-desc">Clicks Sign up or Save on a program</span>
+          <span class="shared-badge">shared</span>
+        </a>
+
+        <div class="arrow">
+          <div class="arrow-line"><div class="arrow-shaft"></div><div class="arrow-head"></div></div>
+          <span class="arrow-label">Sign up CTA</span>
+        </div>
 
         <a class="node parent" href="mockup-parent-signup.html" target="_blank">
           <span class="node-icon">👋</span>
@@ -259,11 +269,54 @@
         </a>
 
         <div class="arrow">
-          <div class="arrow-line">
-            <div class="arrow-shaft"></div>
-            <div class="arrow-head"></div>
-          </div>
-          <span class="arrow-label">Complete both steps</span>
+          <div class="arrow-line"><div class="arrow-shaft"></div><div class="arrow-head"></div></div>
+          <span class="arrow-label">Complete · Start exploring</span>
+        </div>
+
+        <a class="node consumer" href="mockup-filter-panel.html" target="_blank">
+          <span class="node-icon">🔍</span>
+          <span class="node-name">Search &amp; Filter</span>
+          <span class="node-desc">Pre-filtered by kid age &amp; interests</span>
+          <span class="shared-badge">shared</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       3 · PARENT — RETURNING USER
+  ══════════════════════════════════════ -->
+  <section class="journey-section">
+    <div class="journey-header">
+      <span class="journey-badge" style="background:var(--purple-light);color:var(--purple);">Parent · Returning</span>
+      <span class="journey-title">Returning parent</span>
+      <span class="journey-subtitle">Has an account — logs in and goes straight to saved programs</span>
+    </div>
+    <div class="journey-body">
+      <div class="flow-row">
+
+        <a class="node consumer" href="mockup-homepage.html" target="_blank">
+          <span class="node-icon">🏠</span>
+          <span class="node-name">Homepage</span>
+          <span class="node-desc">Clicks Log in in the nav</span>
+          <span class="shared-badge">shared</span>
+        </a>
+
+        <div class="arrow">
+          <div class="arrow-line"><div class="arrow-shaft"></div><div class="arrow-head"></div></div>
+          <span class="arrow-label">Log in</span>
+        </div>
+
+        <a class="node parent" href="mockup-login.html" target="_blank">
+          <span class="node-icon">🔑</span>
+          <span class="node-name">Log In</span>
+          <span class="node-desc">Email / password or Google · Parent tab</span>
+        </a>
+
+        <div class="arrow">
+          <div class="arrow-line"><div class="arrow-shaft"></div><div class="arrow-head"></div></div>
+          <span class="arrow-label">Authenticated</span>
         </div>
 
         <a class="node parent" href="mockup-parent-profile.html" target="_blank">
@@ -277,13 +330,13 @@
   </section>
 
   <!-- ══════════════════════════════════════
-       PROVIDER — CLAIM EXISTING LISTING
+       4 · PROVIDER NEW USER — CLAIM LISTING
   ══════════════════════════════════════ -->
   <section class="journey-section">
     <div class="journey-header">
-      <span class="journey-badge" style="background:var(--teal-light);color:var(--teal-dark);">Provider</span>
-      <span class="journey-title">Claim an existing listing</span>
-      <span class="journey-subtitle">Provider finds their org already in Classable and takes ownership</span>
+      <span class="journey-badge" style="background:var(--teal-light);color:var(--teal-dark);">Provider · New · Claim</span>
+      <span class="journey-title">New provider — claim existing listing</span>
+      <span class="journey-subtitle">Org is already in Classable; provider creates account then verifies ownership via SMS</span>
     </div>
     <div class="journey-body">
       <div class="flow-row">
@@ -295,60 +348,49 @@
         </a>
 
         <div class="arrow">
-          <div class="arrow-line">
-            <div class="arrow-shaft"></div>
-            <div class="arrow-head"></div>
-          </div>
+          <div class="arrow-line"><div class="arrow-shaft"></div><div class="arrow-head"></div></div>
           <span class="arrow-label">Find your listing</span>
         </div>
 
         <a class="node provider" href="mockup-filter-panel.html" target="_blank">
           <span class="node-icon">🔍</span>
           <span class="node-name">Search &amp; Filter</span>
-          <span class="node-desc">Provider searches for their own listing</span>
+          <span class="node-desc">Locate their listing in results</span>
           <span class="shared-badge">shared</span>
         </a>
 
         <div class="arrow">
-          <div class="arrow-line">
-            <div class="arrow-shaft"></div>
-            <div class="arrow-head"></div>
-          </div>
-          <span class="arrow-label">Select their listing</span>
+          <div class="arrow-line"><div class="arrow-shaft"></div><div class="arrow-head"></div></div>
+          <span class="arrow-label">Select listing</span>
         </div>
 
         <a class="node provider" href="mockup-claim-flow.html" target="_blank">
-          <span class="node-icon">🛡️</span>
+          <span class="node-icon">🔐</span>
           <span class="node-name">Claim Flow</span>
-          <span class="node-desc">Confirm listing, SMS verify ownership</span>
+          <span class="node-desc">Auth gate → create account → confirm &amp; SMS verify</span>
         </a>
 
         <div class="arrow">
-          <div class="arrow-line">
-            <div class="arrow-shaft"></div>
-            <div class="arrow-head"></div>
-          </div>
-          <span class="arrow-label">SMS verified</span>
+          <div class="arrow-line"><div class="arrow-shaft"></div><div class="arrow-head"></div></div>
+          <span class="arrow-label">SMS verified · instant</span>
         </div>
 
         <a class="node provider" href="mockup-provider-dashboard.html" target="_blank">
           <span class="node-icon">⚙️</span>
           <span class="node-name">Provider Dashboard</span>
-          <span class="node-desc">Profile completeness, SEO, listing preview</span>
+          <span class="node-desc">Live immediately · profile, SEO, programs</span>
         </a>
 
         <div class="arrow">
-          <div class="arrow-line">
-            <div class="arrow-shaft"></div>
-            <div class="arrow-head"></div>
-          </div>
-          <span class="arrow-label">Manage programs</span>
+          <div class="arrow-line"><div class="arrow-shaft"></div><div class="arrow-head"></div></div>
+          <span class="arrow-label">Manage</span>
         </div>
 
         <a class="node provider" href="mockup-program-editor.html" target="_blank">
           <span class="node-icon">📋</span>
           <span class="node-name">Program Editor</span>
-          <span class="node-desc">Schedule, pricing, age range, format</span>
+          <span class="node-desc">Schedule, pricing, age, format</span>
+          <span class="shared-badge">shared</span>
         </a>
 
       </div>
@@ -356,13 +398,13 @@
   </section>
 
   <!-- ══════════════════════════════════════
-       PROVIDER — NEW LISTING
+       5 · PROVIDER NEW USER — ADD LISTING
   ══════════════════════════════════════ -->
   <section class="journey-section">
     <div class="journey-header">
-      <span class="journey-badge" style="background:var(--teal-light);color:var(--teal-dark);">Provider</span>
-      <span class="journey-title">Add a new listing</span>
-      <span class="journey-subtitle">Provider and program are both new to Classable — requires staff review before going live</span>
+      <span class="journey-badge" style="background:var(--teal-light);color:var(--teal-dark);">Provider · New · Add</span>
+      <span class="journey-title">New provider — add new listing</span>
+      <span class="journey-subtitle">Org is not yet in Classable; onboarding creates account + org + first program, then staff review</span>
     </div>
     <div class="journey-body">
       <div class="flow-row">
@@ -375,60 +417,119 @@
         </a>
 
         <div class="arrow">
-          <div class="arrow-line">
-            <div class="arrow-shaft"></div>
-            <div class="arrow-head"></div>
-          </div>
+          <div class="arrow-line"><div class="arrow-shaft"></div><div class="arrow-head"></div></div>
           <span class="arrow-label">Add now</span>
         </div>
 
         <a class="node provider" href="mockup-provider-onboarding.html" target="_blank">
           <span class="node-icon">➕</span>
           <span class="node-name">Provider Onboarding</span>
-          <span class="node-desc">Account → org → program → submit</span>
+          <span class="node-desc">Account → org → program → review step</span>
         </a>
 
         <div class="arrow">
-          <div class="arrow-line">
-            <div class="arrow-shaft dashed"></div>
-            <div class="arrow-head dashed"></div>
-          </div>
+          <div class="arrow-line"><div class="arrow-shaft dashed"></div><div class="arrow-head dashed"></div></div>
           <span class="arrow-label" style="color:#D97706;">Staff review · up to 24h</span>
         </div>
 
-        <div class="node pending" style="cursor:default;">
+        <div class="node pending">
           <span class="node-icon">⏳</span>
-          <span class="node-name">Under review</span>
-          <span class="node-desc">Org + program pending Classable approval</span>
+          <span class="node-name">Dashboard (locked)</span>
+          <span class="node-desc">Profile editable; programs &amp; analytics locked</span>
         </div>
 
         <div class="arrow">
-          <div class="arrow-line">
-            <div class="arrow-shaft"></div>
-            <div class="arrow-head"></div>
-          </div>
-          <span class="arrow-label">Approved · email notification</span>
+          <div class="arrow-line"><div class="arrow-shaft"></div><div class="arrow-head"></div></div>
+          <span class="arrow-label">Approved · email</span>
         </div>
 
         <a class="node provider" href="mockup-provider-dashboard.html" target="_blank">
           <span class="node-icon">⚙️</span>
           <span class="node-name">Provider Dashboard</span>
-          <span class="node-desc">Profile completeness, SEO, listing preview</span>
+          <span class="node-desc">Fully live · profile, SEO, programs</span>
           <span class="shared-badge">shared</span>
         </a>
 
         <div class="arrow">
-          <div class="arrow-line">
-            <div class="arrow-shaft"></div>
-            <div class="arrow-head"></div>
-          </div>
-          <span class="arrow-label">Manage programs</span>
+          <div class="arrow-line"><div class="arrow-shaft"></div><div class="arrow-head"></div></div>
+          <span class="arrow-label">Manage</span>
         </div>
 
         <a class="node provider" href="mockup-program-editor.html" target="_blank">
           <span class="node-icon">📋</span>
           <span class="node-name">Program Editor</span>
-          <span class="node-desc">Schedule, pricing, age range, format</span>
+          <span class="node-desc">Schedule, pricing, age, format</span>
+          <span class="shared-badge">shared</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       6 · PROVIDER RETURNING USER — CLAIM
+  ══════════════════════════════════════ -->
+  <section class="journey-section">
+    <div class="journey-header">
+      <span class="journey-badge" style="background:var(--teal-light);color:var(--teal-dark);">Provider · Returning · Claim</span>
+      <span class="journey-title">Returning provider — claim listing</span>
+      <span class="journey-subtitle">Has a Classable account; logs in then claims an additional listing</span>
+    </div>
+    <div class="journey-body">
+      <div class="flow-row">
+
+        <a class="node provider" href="mockup-provider-landing.html" target="_blank">
+          <span class="node-icon">🏢</span>
+          <span class="node-name">Provider Landing</span>
+          <span class="node-desc">Value prop, claim or add CTA</span>
+          <span class="shared-badge">shared</span>
+        </a>
+
+        <div class="arrow">
+          <div class="arrow-line"><div class="arrow-shaft"></div><div class="arrow-head"></div></div>
+          <span class="arrow-label">Find your listing</span>
+        </div>
+
+        <a class="node provider" href="mockup-login.html?type=provider" target="_blank">
+          <span class="node-icon">🔑</span>
+          <span class="node-name">Log In</span>
+          <span class="node-desc">Email / password or Google · Provider tab</span>
+          <span class="shared-badge">shared</span>
+        </a>
+
+        <div class="arrow">
+          <div class="arrow-line"><div class="arrow-shaft"></div><div class="arrow-head"></div></div>
+          <span class="arrow-label">Authenticated</span>
+        </div>
+
+        <a class="node provider" href="mockup-filter-panel.html" target="_blank">
+          <span class="node-icon">🔍</span>
+          <span class="node-name">Search &amp; Filter</span>
+          <span class="node-desc">Locate their listing in results</span>
+          <span class="shared-badge">shared</span>
+        </a>
+
+        <div class="arrow">
+          <div class="arrow-line"><div class="arrow-shaft"></div><div class="arrow-head"></div></div>
+          <span class="arrow-label">Select listing</span>
+        </div>
+
+        <a class="node provider" href="mockup-claim-flow.html" target="_blank">
+          <span class="node-icon">🛡️</span>
+          <span class="node-name">Claim Flow</span>
+          <span class="node-desc">Already logged in · confirm &amp; SMS verify</span>
+          <span class="shared-badge">shared</span>
+        </a>
+
+        <div class="arrow">
+          <div class="arrow-line"><div class="arrow-shaft"></div><div class="arrow-head"></div></div>
+          <span class="arrow-label">SMS verified</span>
+        </div>
+
+        <a class="node provider" href="mockup-provider-dashboard.html" target="_blank">
+          <span class="node-icon">⚙️</span>
+          <span class="node-name">Provider Dashboard</span>
+          <span class="node-desc">Live immediately</span>
           <span class="shared-badge">shared</span>
         </a>
 

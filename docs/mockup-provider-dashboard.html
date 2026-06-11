@@ -606,6 +606,41 @@
     .photo-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
+  /* ─── PENDING STATE ─── */
+  .pending-banner {
+    display: none;
+    background: #FFFBEB; border-bottom: 1px solid #FDE68A;
+    padding: 10px 24px; align-items: center; justify-content: center;
+    gap: 10px; font-size: 13px; color: #92400E;
+  }
+  body.pending .pending-banner { display: flex; }
+  .pending-banner strong { font-weight: 700; }
+  .pending-banner-actions { display: flex; gap: 12px; margin-left: 8px; }
+  .pending-banner-actions a { font-size: 12px; font-weight: 600; color: #92400E; text-decoration: underline; cursor: pointer; }
+
+  body.pending .lock-when-pending { opacity: 0.38; pointer-events: none !important; cursor: not-allowed; }
+  .approved-only { display: flex; }
+  .pending-only  { display: none; }
+  body.pending .approved-only { display: none !important; }
+  body.pending .pending-only  { display: flex !important; }
+
+  /* demo toggle chip */
+  .demo-status-toggle {
+    position: fixed; bottom: 24px; right: 24px; z-index: 999;
+    background: var(--gray-900); color: #fff; border-radius: 999px;
+    padding: 8px 4px 8px 14px; font-size: 12px; font-weight: 600;
+    display: flex; align-items: center; gap: 8px;
+    box-shadow: 0 4px 16px rgb(0 0 0 / 0.25);
+  }
+  .demo-status-toggle span { opacity: 0.5; }
+  .demo-toggle-btn {
+    background: #fff; color: var(--gray-900); border: none;
+    border-radius: 999px; padding: 5px 12px; font-size: 11px;
+    font-weight: 700; cursor: pointer; font-family: inherit;
+    transition: background 0.15s;
+  }
+  .demo-toggle-btn:hover { background: var(--gray-100); }
+
   /* ─── FOOTER ─── */
   .site-footer { background: #0F1117; padding: 40px 24px 32px; }
   .site-footer-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
@@ -672,6 +707,15 @@
     </div>
   </div>
 </nav>
+
+<!-- PENDING REVIEW BANNER -->
+<div class="pending-banner" role="alert">
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+  <span><strong>Under review</strong> — Your listing is pending Classable staff approval. You can complete your profile now; it goes live fully set up.</span>
+  <div class="pending-banner-actions">
+    <a href="mailto:hello@classable.com">Questions?</a>
+  </div>
+</div>
 
 <!-- SAVE BAR — sticky below both nav bars -->
 <div class="save-bar" role="region" aria-label="Unsaved changes">
@@ -1009,9 +1053,12 @@
           🏀
           <div class="mini-card-photo-count">3 photos</div>
         </div>
-        <div class="mini-fresh">
+        <div class="mini-fresh approved-only">
           <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
           Verified today
+        </div>
+        <div class="mini-fresh pending-only" style="background:#FFFBEB;color:#92400E;border:1px solid #FDE68A;">
+          ⏳ Pending review
         </div>
         <div class="mini-card-title">Hot Shots Basketball — Ages 7/8</div>
         <div class="mini-card-provider">Hot Shots Basketball NYC</div>
@@ -1035,11 +1082,11 @@
         <a class="preview-link" href="mockup-program-editor.html">Manage →</a>
       </div>
       <div style="padding:12px 14px 14px;display:flex;flex-direction:column;gap:8px;">
-        <a href="mockup-program-editor.html" style="display:flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;background:var(--teal);color:#fff;border-radius:var(--radius-md);font-size:13px;font-weight:600;text-decoration:none;transition:opacity 0.15s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+        <a href="mockup-program-editor.html" class="lock-when-pending" style="display:flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;background:var(--teal);color:#fff;border-radius:var(--radius-md);font-size:13px;font-weight:600;text-decoration:none;transition:opacity 0.15s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           Add program
         </a>
-        <button onclick="alert('Import flow coming soon — paste your website URL and we\'ll pull in your program details.')" style="display:flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;background:#fff;color:var(--gray-700);border:1.5px solid var(--gray-300);border-radius:var(--radius-md);font-size:13px;font-weight:600;cursor:pointer;transition:border-color 0.15s,background 0.15s;font-family:inherit;width:100%;" onmouseover="this.style.borderColor='var(--teal)';this.style.background='#F0FAF8'" onmouseout="this.style.borderColor='var(--gray-300)';this.style.background='#fff'">
+        <button class="lock-when-pending" onclick="alert('Import flow coming soon — paste your website URL and we\'ll pull in your program details.')" style="display:flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;background:#fff;color:var(--gray-700);border:1.5px solid var(--gray-300);border-radius:var(--radius-md);font-size:13px;font-weight:600;cursor:pointer;transition:border-color 0.15s,background 0.15s;font-family:inherit;width:100%;" onmouseover="this.style.borderColor='var(--teal)';this.style.background='#F0FAF8'" onmouseout="this.style.borderColor='var(--gray-300)';this.style.background='#fff'">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="8 17 12 21 16 17"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"/></svg>
           Import from website
         </button>
@@ -1057,10 +1104,15 @@
         <div style="font-size:11px;color:var(--purple);margin-top:2px;">How well Classable can show your listing in search results</div>
       </div>
       <div class="seo-rows">
-        <div class="seo-row">
+        <div class="seo-row approved-only">
           <svg class="seo-row-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:var(--green)"><polyline points="20 6 9 17 4 12"/></svg>
           <span class="seo-row-label">Listing is live on Classable</span>
           <span class="seo-row-status"><span class="seo-status-done">✓ Live</span></span>
+        </div>
+        <div class="seo-row pending-only">
+          <svg class="seo-row-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:var(--amber)"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>
+          <span class="seo-row-label">Listing is live on Classable</span>
+          <span class="seo-row-status"><span class="seo-status-missing">⏳ Pending</span></span>
         </div>
         <div class="seo-row">
           <svg class="seo-row-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:var(--green)"><polyline points="20 6 9 17 4 12"/></svg>
@@ -1131,6 +1183,13 @@
 </div>
 
 
+<!-- DEMO STATUS TOGGLE -->
+<div class="demo-status-toggle">
+  <span>Status:</span>
+  <span id="toggle-label">Approved</span>
+  <button class="demo-toggle-btn" onclick="togglePendingState()" id="toggle-btn">Switch to Pending</button>
+</div>
+
 <!-- ─── FOOTER ─── -->
 <footer class="site-footer">
   <div class="site-footer-inner">
@@ -1147,5 +1206,22 @@
     <span class="footer-copy">&copy; 2026 Classable</span>
   </div>
 </footer>
+<script>
+  var isPending = false;
+
+  function setPending(on) {
+    isPending = on;
+    document.body.classList.toggle('pending', on);
+    document.getElementById('toggle-label').textContent = on ? 'Pending review' : 'Approved';
+    document.getElementById('toggle-btn').textContent   = on ? 'Switch to Approved' : 'Switch to Pending';
+  }
+
+  function togglePendingState() { setPending(!isPending); }
+
+  // Activate pending state if arriving from onboarding (?status=pending)
+  if (new URLSearchParams(window.location.search).get('status') === 'pending') {
+    setPending(true);
+  }
+</script>
 </body>
 </html>
