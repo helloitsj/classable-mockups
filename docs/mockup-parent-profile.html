@@ -17,8 +17,11 @@
       --teal-light: #E6F5F4;
       --gray-900: #0F1117;
       --gray-700: #374151;
+      --gray-600: #4B5563;
       --gray-500: #6B7280;
+      --gray-400: #9CA3AF;
       --gray-300: #D1D5DB;
+      --gray-200: #E5E7EB;
       --gray-100: #F3F4F6;
       --gray-50: #F9FAFB;
     }
@@ -27,533 +30,235 @@
       font-family: 'Inter', sans-serif;
       color: var(--gray-900);
       background: var(--gray-50);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* ── NAV ── */
-    nav {
-      height: 56px;
-      background: #fff;
-      border-bottom: 1px solid var(--gray-300);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 24px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .logo {
-      font-size: 20px;
-      font-weight: 800;
-      color: var(--teal);
-      text-decoration: none;
-      letter-spacing: -0.5px;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-    }
-
-    .nav-links a {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--gray-700);
-      text-decoration: none;
-      transition: color 0.15s;
-    }
-    .nav-links a:hover { color: var(--teal); }
-
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .profile-chip {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--gray-100);
-      border: 1px solid var(--gray-300);
-      border-radius: 20px;
-      padding: 5px 12px 5px 6px;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--gray-700);
-      transition: background 0.15s;
-    }
-    .profile-chip:hover { background: var(--gray-300); }
-
-    .avatar-sm {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: var(--teal);
-      color: #fff;
-      font-size: 11px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    /* ── PAGE LAYOUT ── */
-    main {
-      flex: 1;
-      max-width: 1280px;
-      width: 100%;
-      margin: 0 auto;
-      padding: 32px 24px;
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 28px;
-      align-items: start;
     }
 
     /* ── CARDS ── */
     .card {
       background: #fff;
-      border: 1px solid var(--gray-300);
+      border: 1px solid var(--gray-200);
       border-radius: 12px;
       overflow: hidden;
     }
 
-    .card-body { padding: 20px; }
+    .divider { height: 1px; background: var(--gray-100); }
 
-    .divider {
-      height: 1px;
-      background: var(--gray-100);
-      margin: 0;
+    /* ── PAGE LAYOUT ── */
+    .page-body {
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 32px 24px;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 24px;
+      align-items: start;
     }
 
     /* ── SIDEBAR ── */
+    .sidebar { position: sticky; top: 76px; }
+
     .sidebar-profile {
       padding: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      gap: 6px;
+      gap: 4px;
     }
 
     .avatar-lg {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background: var(--teal);
-      color: #fff;
-      font-size: 18px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 4px;
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--teal); color: #fff;
+      font-size: 17px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 6px;
     }
 
-    .sidebar-name {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--gray-900);
-    }
+    .sidebar-name { font-size: 14px; font-weight: 700; color: var(--gray-900); }
+    .sidebar-email { font-size: 12px; color: var(--gray-500); }
 
-    .sidebar-email {
-      font-size: 13px;
-      color: var(--gray-500);
-    }
-
-    .sidebar-nav {
-      padding: 8px 0;
-    }
+    .sidebar-nav { padding: 6px 0; }
 
     .sidebar-nav a {
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 10px 20px;
-      font-size: 14px;
+      gap: 9px;
+      padding: 9px 16px;
+      font-size: 13px;
       font-weight: 500;
       color: var(--gray-700);
       text-decoration: none;
       transition: background 0.12s, color 0.12s;
       border-left: 3px solid transparent;
     }
-    .sidebar-nav a:hover {
-      background: var(--gray-50);
-      color: var(--gray-900);
-    }
+    .sidebar-nav a:hover { background: var(--gray-50); color: var(--gray-900); }
     .sidebar-nav a.active {
-      color: var(--teal);
-      font-weight: 600;
+      color: var(--teal); font-weight: 600;
       background: var(--teal-light);
       border-left-color: var(--teal);
     }
+    .sidebar-nav a svg { flex-shrink: 0; color: currentColor; opacity: 0.7; }
+    .sidebar-nav a.active svg { opacity: 1; }
 
-    .sidebar-signout {
-      padding: 16px 20px;
-    }
-
-    .sidebar-signout a {
-      font-size: 13px;
-      color: var(--gray-500);
-      text-decoration: none;
-      transition: color 0.15s;
-    }
+    .sidebar-signout { padding: 12px 16px; }
+    .sidebar-signout a { font-size: 12px; color: var(--gray-500); text-decoration: none; }
     .sidebar-signout a:hover { color: var(--gray-900); }
 
-    /* ── MAIN CONTENT ── */
-    .main-col {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
+    /* ── MAIN COLUMN ── */
+    .main-col { display: flex; flex-direction: column; gap: 24px; }
 
     /* Section header */
     .section-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 20px 20px 16px;
+      display: flex; align-items: center; gap: 10px;
+      padding: 18px 20px 14px;
       border-bottom: 1px solid var(--gray-100);
     }
-
-    .section-title {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--gray-900);
-    }
-
+    .section-title { font-size: 15px; font-weight: 700; color: var(--gray-900); }
     .count-badge {
-      background: var(--gray-100);
-      color: var(--gray-700);
-      font-size: 12px;
-      font-weight: 700;
-      padding: 2px 8px;
-      border-radius: 20px;
+      background: var(--gray-100); color: var(--gray-700);
+      font-size: 11px; font-weight: 700;
+      padding: 2px 7px; border-radius: 20px;
     }
 
-    /* ── PROGRAM CARDS GRID ── */
-    .programs-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      padding: 16px 20px 20px;
-    }
+    /* ── SAVED PROGRAMS LIST ── */
+    .program-list { padding: 8px 0; }
 
-    .program-card {
-      border: 1px solid var(--gray-300);
-      border-radius: 12px;
-      overflow: hidden;
-      background: #fff;
-      transition: box-shadow 0.15s;
-    }
-    .program-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
-
-    .program-img {
-      height: 140px;
+    .program-row {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 52px;
-      position: relative;
+      gap: 14px;
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--gray-100);
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.12s;
+    }
+    .program-row:last-child { border-bottom: none; }
+    .program-row:hover { background: var(--gray-50); }
+
+    .program-thumb {
+      width: 48px; height: 48px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; flex-shrink: 0;
     }
 
-    .save-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      width: 32px;
-      height: 32px;
-      background: var(--teal);
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 15px;
-      transition: background 0.15s;
-    }
-    .save-btn:hover { background: var(--teal-dark); }
-
-    .program-body {
-      padding: 12px 14px 14px;
-    }
-
-    .enrolling-badge {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 600;
-      color: #15803D;
-      background: #DCFCE7;
-      padding: 2px 8px;
-      border-radius: 20px;
-      margin-bottom: 6px;
-    }
-
-    .program-title {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--gray-900);
-      margin-bottom: 2px;
-      line-height: 1.3;
-    }
-
-    .program-provider {
-      font-size: 12px;
-      color: var(--gray-500);
-      margin-bottom: 8px;
-    }
-
-    .program-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-      margin-bottom: 8px;
-    }
-
+    .program-row-body { flex: 1; min-width: 0; }
+    .program-row-name { font-size: 14px; font-weight: 700; color: var(--gray-900); margin-bottom: 2px; }
+    .program-row-provider { font-size: 12px; color: var(--gray-500); margin-bottom: 4px; }
+    .program-row-tags { display: flex; flex-wrap: wrap; gap: 4px; }
     .tag {
-      font-size: 11px;
-      font-weight: 500;
-      padding: 2px 8px;
-      border-radius: 20px;
-      background: var(--gray-100);
-      color: var(--gray-700);
+      font-size: 11px; font-weight: 500; padding: 2px 7px;
+      border-radius: 20px; background: var(--gray-100); color: var(--gray-700);
     }
-
     .tag.cat { background: #EFF6FF; color: #1D4ED8; }
     .tag.age { background: #FEF3C7; color: #92400E; }
 
-    .program-meta {
-      font-size: 12px;
-      color: var(--gray-500);
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
+    .program-row-meta {
+      text-align: right;
+      flex-shrink: 0;
+      min-width: 120px;
     }
-
-    .program-meta span {
-      display: flex;
-      align-items: center;
-      gap: 4px;
+    .enrolling-badge {
+      display: inline-block;
+      font-size: 11px; font-weight: 600;
+      color: #15803D; background: #DCFCE7;
+      padding: 2px 8px; border-radius: 20px;
+      margin-bottom: 4px;
     }
+    .program-row-schedule { font-size: 12px; color: var(--gray-500); }
 
-    .browse-more {
-      padding: 0 20px 20px;
+    .unsave-btn {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: none; border: 1.5px solid var(--gray-200);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: #E11D48; flex-shrink: 0;
+      transition: background 0.12s, border-color 0.12s;
     }
+    .unsave-btn:hover { background: #FFF1F2; border-color: #FDA4AF; }
 
+    .browse-more { padding: 14px 20px; }
     .browse-more a {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--teal);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
+      font-size: 13px; font-weight: 600; color: var(--teal);
+      text-decoration: none; display: inline-flex; align-items: center; gap: 4px;
     }
     .browse-more a:hover { text-decoration: underline; }
 
-    /* ── MY KIDS CARD ── */
+    /* ── MY KIDS ── */
     .kid-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 16px 20px;
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 20px;
     }
-
     .kid-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: #FEF3C7;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      flex-shrink: 0;
+      width: 38px; height: 38px; border-radius: 50%;
+      background: #FEF3C7; display: flex; align-items: center;
+      justify-content: center; font-size: 18px; flex-shrink: 0;
     }
-
     .kid-info { flex: 1; }
-
-    .kid-name {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--gray-900);
-      margin-bottom: 4px;
-    }
-
-    .kid-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 4px;
-    }
-
+    .kid-name { font-size: 13px; font-weight: 600; color: var(--gray-900); margin-bottom: 3px; }
+    .kid-tags { display: flex; flex-wrap: wrap; gap: 4px; }
     .kid-tag {
-      font-size: 11px;
-      font-weight: 500;
-      padding: 2px 8px;
-      border-radius: 20px;
-      background: var(--gray-100);
-      color: var(--gray-500);
+      font-size: 11px; font-weight: 500; padding: 2px 7px;
+      border-radius: 20px; background: var(--gray-100); color: var(--gray-500);
     }
-
-    .edit-link {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--teal);
-      text-decoration: none;
-      flex-shrink: 0;
-    }
+    .edit-link { font-size: 12px; font-weight: 600; color: var(--teal); text-decoration: none; flex-shrink: 0; }
     .edit-link:hover { text-decoration: underline; }
 
     .btn-add-kid {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      width: calc(100% - 40px);
-      margin: 0 20px 16px;
-      height: 38px;
-      border: 1.5px dashed var(--gray-300);
-      border-radius: 8px;
-      background: none;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--gray-500);
-      cursor: pointer;
-      font-family: inherit;
-      transition: border-color 0.15s, color 0.15s;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      width: calc(100% - 40px); margin: 0 20px 14px;
+      height: 36px; border: 1.5px dashed var(--gray-300); border-radius: 8px;
+      background: none; font-size: 13px; font-weight: 600; color: var(--gray-500);
+      cursor: pointer; font-family: inherit; transition: border-color 0.15s, color 0.15s;
     }
     .btn-add-kid:hover { border-color: var(--teal); color: var(--teal); }
 
-    /* ── NOTIFICATIONS CARD ── */
+    /* ── NOTIFICATIONS ── */
     .notif-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 20px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 13px 20px;
     }
+    .notif-label { font-size: 13px; color: var(--gray-700); font-weight: 500; }
+    .notif-row + .notif-row { border-top: 1px solid var(--gray-100); }
 
-    .notif-label {
-      font-size: 14px;
-      color: var(--gray-700);
-      font-weight: 500;
-    }
-
-    /* CSS-only toggle switch */
-    .toggle-wrap {
-      position: relative;
-      width: 40px;
-      height: 22px;
-      flex-shrink: 0;
-    }
-
-    .toggle-wrap input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-      position: absolute;
-    }
-
+    .toggle-wrap { position: relative; width: 38px; height: 21px; flex-shrink: 0; }
+    .toggle-wrap input { opacity: 0; width: 0; height: 0; position: absolute; }
     .toggle-track {
-      position: absolute;
-      inset: 0;
-      background: var(--gray-300);
-      border-radius: 20px;
-      cursor: pointer;
-      transition: background 0.2s;
+      position: absolute; inset: 0;
+      background: var(--gray-300); border-radius: 20px;
+      cursor: pointer; transition: background 0.2s;
     }
-
     .toggle-track::after {
-      content: '';
-      position: absolute;
-      width: 16px;
-      height: 16px;
-      background: #fff;
-      border-radius: 50%;
-      top: 3px;
-      left: 3px;
+      content: ''; position: absolute;
+      width: 15px; height: 15px; background: #fff;
+      border-radius: 50%; top: 3px; left: 3px;
       transition: transform 0.2s;
       box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     }
+    .toggle-wrap input:checked + .toggle-track { background: var(--teal); }
+    .toggle-wrap input:checked + .toggle-track::after { transform: translateX(17px); }
 
-    .toggle-wrap input:checked + .toggle-track {
-      background: var(--teal);
+    /* ── PROFILE SECTION ── */
+    .form-group { padding: 16px 20px; border-bottom: 1px solid var(--gray-100); }
+    .form-group:last-child { border-bottom: none; }
+    .form-label { font-size: 11px; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+    .form-value { font-size: 14px; color: var(--gray-900); }
+    .form-value-muted { font-size: 14px; color: var(--gray-500); font-style: italic; }
+    .form-row-split { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 16px 20px; border-bottom: 1px solid var(--gray-100); }
+    .form-row-split:last-child { border-bottom: none; }
+    .form-actions { padding: 14px 20px; display: flex; justify-content: flex-end; gap: 10px; }
+    .btn-edit-profile {
+      font-size: 13px; font-weight: 600; color: var(--gray-700);
+      background: none; border: 1.5px solid var(--gray-300);
+      padding: 7px 16px; border-radius: 8px; cursor: pointer; font-family: inherit;
+      transition: border-color 0.15s, color 0.15s;
     }
-
-    .toggle-wrap input:checked + .toggle-track::after {
-      transform: translateX(18px);
-    }
-
-    .notif-row + .notif-row {
-      border-top: 1px solid var(--gray-100);
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--gray-900);
-      padding: 40px 24px 32px;
-      color: #fff;
-      margin-top: auto;
-    }
-
-    .footer-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-      text-align: center;
-    }
-
-    .footer-logo {
-      font-size: 20px;
-      font-weight: 800;
-      color: var(--teal-hover);
-      letter-spacing: -0.5px;
-    }
-
-    .footer-tagline {
-      font-size: 13px;
-      color: #9CA3AF;
-      margin-top: 2px;
-    }
-
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 6px 24px;
-      margin-top: 4px;
-    }
-
-    .footer-links a {
-      font-size: 13px;
-      color: #9CA3AF;
-      text-decoration: none;
-      transition: color 0.15s;
-    }
-    .footer-links a:hover { color: #fff; }
-
-    .footer-copy {
-      font-size: 12px;
-      color: #6B7280;
-      margin-top: 4px;
-    }
+    .btn-edit-profile:hover { border-color: var(--teal); color: var(--teal); }
   </style>
 </head>
 <body>
 
   <!-- SITE HEADER -->
-  <header style="background:#fff;border-bottom:1px solid var(--gray-300);position:sticky;top:0;z-index:100;">
+  <header style="background:#fff;border-bottom:1px solid var(--gray-200);position:sticky;top:0;z-index:100;">
     <div style="max-width:1280px;margin:0 auto;padding:0 24px;height:56px;display:flex;align-items:center;gap:20px;">
       <a href="mockup-homepage.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;flex-shrink:0;">
         <div style="width:30px;height:30px;background:var(--teal);border-radius:7px;display:flex;align-items:center;justify-content:center;color:#fff;">
@@ -562,21 +267,21 @@
         <span style="font-size:17px;font-weight:700;color:var(--gray-900);letter-spacing:-0.3px;">Class<span style="color:var(--teal);">able</span></span>
       </a>
       <div style="flex:1;display:flex;align-items:center;background:#fff;border:1.5px solid var(--gray-300);border-radius:10px;overflow:hidden;max-width:560px;">
-        <div style="display:flex;align-items:center;gap:8px;flex:1;padding:0 14px;border-right:1px solid var(--gray-300);">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--gray-300);flex-shrink:0;"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <div style="display:flex;align-items:center;gap:8px;flex:1;padding:0 14px;border-right:1.5px solid var(--gray-300);">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--gray-400);flex-shrink:0;"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
           <input type="text" placeholder="Activity, sport, class…" style="border:none;outline:none;font-size:14px;font-family:inherit;color:var(--gray-900);background:transparent;width:100%;padding:8px 0;">
         </div>
         <div style="display:flex;align-items:center;gap:6px;padding:0 14px;min-width:130px;color:var(--gray-500);font-size:13px;">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
           Queens, NY
         </div>
-        <button style="background:var(--teal);color:#fff;border:none;padding:0 18px;align-self:stretch;cursor:pointer;font-size:14px;font-weight:600;font-family:inherit;border-radius:0 8px 8px 0;">Search</button>
+        <button style="background:var(--teal);color:#fff;border:none;padding:0 18px;align-self:stretch;cursor:pointer;font-size:14px;font-weight:600;font-family:inherit;border-radius:0;">Search</button>
       </div>
       <nav style="display:flex;align-items:center;gap:4px;margin-left:auto;" aria-label="Site navigation">
-        <a href="mockup-filter-panel.html" style="text-decoration:none;color:var(--gray-700);font-size:13px;font-weight:500;padding:6px 10px;border-radius:8px;">Browse</a>
-        <a href="#" style="text-decoration:none;color:var(--teal);font-size:13px;font-weight:600;padding:6px 10px;border-radius:8px;background:var(--teal-light);">Saved</a>
-        <a href="mockup-provider-landing.html" style="text-decoration:none;color:var(--gray-700);font-size:13px;font-weight:500;padding:6px 10px;border-radius:8px;">For Providers</a>
-        <div style="display:flex;align-items:center;gap:8px;background:var(--gray-100);border:1px solid var(--gray-300);border-radius:20px;padding:5px 12px 5px 6px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray-700);margin-left:4px;">
+        <a href="mockup-filter-panel.html" style="text-decoration:none;color:var(--gray-700);font-size:14px;font-weight:500;padding:6px 10px;border-radius:8px;">Browse</a>
+        <a href="#saved" style="text-decoration:none;color:var(--teal);font-size:14px;font-weight:600;padding:6px 10px;border-radius:8px;background:var(--teal-light);">Saved</a>
+        <a href="mockup-provider-landing.html" style="text-decoration:none;color:var(--gray-700);font-size:14px;font-weight:500;padding:6px 10px;border-radius:8px;">For Providers</a>
+        <div style="display:flex;align-items:center;gap:8px;background:var(--gray-100);border:1px solid var(--gray-200);border-radius:20px;padding:5px 12px 5px 6px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray-700);margin-left:4px;">
           <div style="width:26px;height:26px;border-radius:50%;background:var(--teal);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;">SL</div>
           Sarah L.
         </div>
@@ -585,10 +290,10 @@
   </header>
 
   <!-- PAGE -->
-  <main>
+  <div class="page-body">
 
     <!-- SIDEBAR -->
-    <aside>
+    <aside class="sidebar">
       <div class="card">
         <div class="sidebar-profile">
           <div class="avatar-lg">SL</div>
@@ -598,20 +303,20 @@
         <div class="divider"></div>
         <nav class="sidebar-nav">
           <a href="#saved" class="active">
-            <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M5 3h10a1 1 0 0 1 1 1v13l-6-3-6 3V4a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            <svg width="15" height="15" viewBox="0 0 20 20" fill="none"><path d="M5 3h10a1 1 0 0 1 1 1v13l-6-3-6 3V4a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
             Saved programs
           </a>
           <a href="#kids">
-            <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="7" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M4 17c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <svg width="15" height="15" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="7" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M4 17c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
             My kids
           </a>
-          <a href="#notifs">
-            <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 2a6 6 0 0 0-6 6c0 3.5-2 5-2 5h16s-2-1.5-2-5a6 6 0 0 0-6-6z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M11.73 17a2 2 0 0 1-3.46 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            Notifications
+          <a href="#profile">
+            <svg width="15" height="15" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="6" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M2 17c0-3.866 3.582-7 8-7s8 3.134 8 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Profile
           </a>
-          <a href="#">
-            <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M10 1v2M10 17v2M1 10h2M17 10h2M3.22 3.22l1.42 1.42M15.36 15.36l1.42 1.42M3.22 16.78l1.42-1.42M15.36 4.64l1.42-1.42" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            Account settings
+          <a href="#notifs">
+            <svg width="15" height="15" viewBox="0 0 20 20" fill="none"><path d="M10 2a6 6 0 0 0-6 6c0 3.5-2 5-2 5h16s-2-1.5-2-5a6 6 0 0 0-6-6z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M11.73 17a2 2 0 0 1-3.46 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Notification settings
           </a>
         </nav>
         <div class="divider"></div>
@@ -631,95 +336,72 @@
           <span class="count-badge">3</span>
         </div>
 
-        <div class="programs-grid">
+        <div class="program-list">
 
-          <!-- Card 1: Basketball -->
-          <div class="program-card">
-            <div class="program-img" style="background: linear-gradient(135deg, #1D4ED8 0%, #3B82F6 100%);">
-              🏀
-              <button class="save-btn" title="Saved">♥</button>
-            </div>
-            <div class="program-body">
-              <div class="enrolling-badge">Enrolling now</div>
-              <div class="program-title">Hot Shots Basketball Ages 7/8</div>
-              <div class="program-provider">City Rec Sports Academy</div>
-              <div class="program-tags">
+          <a class="program-row" href="mockup-detail-page.html">
+            <div class="program-thumb" style="background:linear-gradient(135deg,#1D4ED8,#3B82F6);">🏀</div>
+            <div class="program-row-body">
+              <div class="program-row-name">Hot Shots Basketball Ages 7/8</div>
+              <div class="program-row-provider">Hot Shots Basketball NYC</div>
+              <div class="program-row-tags">
                 <span class="tag cat">Sports</span>
                 <span class="tag age">Ages 7–8</span>
-              </div>
-              <div class="program-meta">
-                <span>
-                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 1.5A5.5 5.5 0 1 0 8 12.5 5.5 5.5 0 0 0 8 1.5zM2 8a6 6 0 1 1 12 0A6 6 0 0 1 2 8z" fill="currentColor"/><path d="M8 4.5v3.25l2 2" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg>
-                  Saturdays 9–10:30am
-                </span>
-                <span>
-                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 1a5 5 0 0 0-5 5c0 4 5 9 5 9s5-5 5-9a5 5 0 0 0-5-5z" stroke="currentColor" stroke-width="1.25"/><circle cx="8" cy="6" r="1.5" fill="currentColor"/></svg>
-                  Riverside Community Center
-                </span>
+                <span class="tag">Outdoor</span>
               </div>
             </div>
-          </div>
-
-          <!-- Card 2: Art -->
-          <div class="program-card">
-            <div class="program-img" style="background: linear-gradient(135deg, #7C3AED 0%, #A78BFA 100%);">
-              🎨
-              <button class="save-btn" title="Saved">♥</button>
-            </div>
-            <div class="program-body">
+            <div class="program-row-meta">
               <div class="enrolling-badge">Enrolling now</div>
-              <div class="program-title">After-School Drawing &amp; Painting</div>
-              <div class="program-provider">The Creative Studio</div>
-              <div class="program-tags">
+              <div class="program-row-schedule">Sat 9–10am · $90/6 sessions</div>
+            </div>
+            <button class="unsave-btn" title="Unsave" onclick="event.preventDefault()">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </button>
+          </a>
+
+          <a class="program-row" href="#">
+            <div class="program-thumb" style="background:linear-gradient(135deg,#7C3AED,#A78BFA);">🎨</div>
+            <div class="program-row-body">
+              <div class="program-row-name">After-School Drawing &amp; Painting</div>
+              <div class="program-row-provider">The Creative Studio</div>
+              <div class="program-row-tags">
                 <span class="tag cat">Arts</span>
                 <span class="tag age">Ages 6–12</span>
               </div>
-              <div class="program-meta">
-                <span>
-                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 1.5A5.5 5.5 0 1 0 8 12.5 5.5 5.5 0 0 0 8 1.5zM2 8a6 6 0 1 1 12 0A6 6 0 0 1 2 8z" fill="currentColor"/><path d="M8 4.5v3.25l2 2" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg>
-                  Mon &amp; Wed 3:30–5pm
-                </span>
-                <span>
-                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 1a5 5 0 0 0-5 5c0 4 5 9 5 9s5-5 5-9a5 5 0 0 0-5-5z" stroke="currentColor" stroke-width="1.25"/><circle cx="8" cy="6" r="1.5" fill="currentColor"/></svg>
-                  Maple St Arts Hub
-                </span>
-              </div>
             </div>
-          </div>
-
-          <!-- Card 3: Robotics -->
-          <div class="program-card">
-            <div class="program-img" style="background: linear-gradient(135deg, #B45309 0%, #F59E0B 100%);">
-              🤖
-              <button class="save-btn" title="Saved">♥</button>
-            </div>
-            <div class="program-body">
+            <div class="program-row-meta">
               <div class="enrolling-badge">Enrolling now</div>
-              <div class="program-title">Beginner Robotics &amp; Coding</div>
-              <div class="program-provider">NextGen STEM Lab</div>
-              <div class="program-tags">
+              <div class="program-row-schedule">Mon &amp; Wed 3:30–5pm</div>
+            </div>
+            <button class="unsave-btn" title="Unsave" onclick="event.preventDefault()">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </button>
+          </a>
+
+          <a class="program-row" href="#">
+            <div class="program-thumb" style="background:linear-gradient(135deg,#B45309,#F59E0B);">🤖</div>
+            <div class="program-row-body">
+              <div class="program-row-name">Beginner Robotics &amp; Coding</div>
+              <div class="program-row-provider">NextGen STEM Lab</div>
+              <div class="program-row-tags">
                 <span class="tag cat">STEM</span>
                 <span class="tag age">Ages 8–11</span>
               </div>
-              <div class="program-meta">
-                <span>
-                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 1.5A5.5 5.5 0 1 0 8 12.5 5.5 5.5 0 0 0 8 1.5zM2 8a6 6 0 1 1 12 0A6 6 0 0 1 2 8z" fill="currentColor"/><path d="M8 4.5v3.25l2 2" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg>
-                  Thursdays 4–5:30pm
-                </span>
-                <span>
-                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 1a5 5 0 0 0-5 5c0 4 5 9 5 9s5-5 5-9a5 5 0 0 0-5-5z" stroke="currentColor" stroke-width="1.25"/><circle cx="8" cy="6" r="1.5" fill="currentColor"/></svg>
-                  Innovation Park Campus
-                </span>
-              </div>
             </div>
-          </div>
+            <div class="program-row-meta">
+              <div class="enrolling-badge">Enrolling now</div>
+              <div class="program-row-schedule">Thu 4–5:30pm · $120/8 sessions</div>
+            </div>
+            <button class="unsave-btn" title="Unsave" onclick="event.preventDefault()">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </button>
+          </a>
 
         </div>
 
         <div class="browse-more">
           <a href="mockup-filter-panel.html">
             Browse more programs
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
       </div>
@@ -746,15 +428,57 @@
         <div class="divider"></div>
 
         <button class="btn-add-kid" type="button">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           Add another kid
         </button>
       </div>
 
-      <!-- NOTIFICATIONS -->
+      <!-- PROFILE -->
+      <div class="card" id="profile">
+        <div class="section-header">
+          <span class="section-title">Profile</span>
+        </div>
+
+        <div class="form-row-split">
+          <div>
+            <div class="form-label">First name</div>
+            <div class="form-value">Sarah</div>
+          </div>
+          <div>
+            <div class="form-label">Last name</div>
+            <div class="form-value">L.</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-label">Email address</div>
+          <div class="form-value">sarah@email.com</div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-label">Phone number</div>
+          <div class="form-value-muted">Not added</div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-label">Location</div>
+          <div class="form-value">Queens, NY</div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-label">Password</div>
+          <div class="form-value">••••••••••</div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn-edit-profile">Edit profile</button>
+        </div>
+      </div>
+
+      <!-- NOTIFICATION SETTINGS -->
       <div class="card" id="notifs">
         <div class="section-header">
-          <span class="section-title">Notifications</span>
+          <span class="section-title">Notification settings</span>
         </div>
 
         <div class="notif-row">
@@ -774,6 +498,14 @@
         </div>
 
         <div class="notif-row">
+          <span class="notif-label">Saved program updates</span>
+          <label class="toggle-wrap">
+            <input type="checkbox" checked />
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+
+        <div class="notif-row">
           <span class="notif-label">Classable updates &amp; tips</span>
           <label class="toggle-wrap">
             <input type="checkbox" />
@@ -783,7 +515,7 @@
       </div>
 
     </div><!-- /main-col -->
-  </main>
+  </div><!-- /page-body -->
 
   <!-- FOOTER -->
   <footer style="background:#0F1117;padding:40px 24px 32px;">
