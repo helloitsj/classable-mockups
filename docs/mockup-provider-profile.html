@@ -1,0 +1,573 @@
+<!-- mockup-provider-profile.html — Classable Provider Public Profile -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hot Shots Basketball NYC — Classable</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --teal: #0D7A6E;
+    --teal-hover: #15A396;
+    --teal-dark: #0A5F56;
+    --teal-light: #E6F5F4;
+    --gray-900: #0F1117;
+    --gray-700: #374151;
+    --gray-600: #4B5563;
+    --gray-500: #6B7280;
+    --gray-400: #9CA3AF;
+    --gray-300: #D1D5DB;
+    --gray-200: #E5E7EB;
+    --gray-100: #F3F4F6;
+    --gray-50:  #F9FAFB;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.06);
+  }
+
+  body { font-family: 'Inter', system-ui, sans-serif; font-size: 15px; background: var(--gray-50); color: var(--gray-700); line-height: 1.6; }
+
+  /* ─── HEADER ─── */
+  .site-header { background: #fff; border-bottom: 1px solid var(--gray-200); position: sticky; top: 0; z-index: 100; }
+  .header-inner { max-width: 1280px; margin: 0 auto; padding: 0 24px; height: 56px; display: flex; align-items: center; gap: 20px; }
+  .wordmark { display: flex; align-items: center; gap: 8px; text-decoration: none; flex-shrink: 0; }
+  .wordmark-icon { width: 30px; height: 30px; background: var(--teal); border-radius: 7px; display: flex; align-items: center; justify-content: center; color: #fff; }
+  .wordmark-text { font-size: 17px; font-weight: 700; color: var(--gray-900); letter-spacing: -0.3px; }
+  .wordmark-text span { color: var(--teal); }
+  .search-bar { flex: 1; display: flex; align-items: center; background: #fff; border: 1.5px solid var(--gray-300); border-radius: 10px; overflow: hidden; max-width: 560px; }
+  .search-input-wrap { display: flex; align-items: center; gap: 8px; flex: 1; padding: 0 14px; border-right: 1px solid var(--gray-300); }
+  .search-input { border: none; outline: none; font-size: 14px; font-family: inherit; color: var(--gray-900); background: transparent; width: 100%; padding: 8px 0; }
+  .search-location-wrap { display: flex; align-items: center; gap: 6px; padding: 0 14px; min-width: 130px; color: var(--gray-500); font-size: 13px; }
+  .search-btn { background: var(--teal); color: #fff; border: none; padding: 0 18px; align-self: stretch; cursor: pointer; font-size: 14px; font-weight: 600; font-family: inherit; border-radius: 0 8px 8px 0; }
+  .header-nav { display: flex; align-items: center; gap: 4px; flex-shrink: 0; margin-left: auto; }
+  .header-nav a { text-decoration: none; color: var(--gray-600); font-size: 13px; font-weight: 500; padding: 6px 10px; border-radius: var(--radius-md); white-space: nowrap; }
+  .header-nav a:hover { background: var(--gray-100); color: var(--gray-900); }
+  .btn-login { font-size: 14px; font-weight: 600; color: var(--gray-700); background: none; border: 1.5px solid var(--gray-300); padding: 6px 14px; border-radius: 8px; cursor: pointer; font-family: inherit; }
+  .btn-login:hover { border-color: var(--teal); color: var(--teal); }
+  .btn-signup { background: var(--teal) !important; color: #fff !important; font-weight: 600 !important; padding: 7px 14px !important; border-radius: var(--radius-md) !important; }
+  .btn-signup:hover { background: var(--teal-hover) !important; }
+
+  /* ─── BREADCRUMB ─── */
+  .breadcrumb { max-width: 1280px; margin: 0 auto; padding: 12px 24px; display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--gray-500); }
+  .breadcrumb a { color: var(--gray-500); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--teal); }
+  .breadcrumb-sep { color: var(--gray-300); }
+
+  /* ─── PROVIDER HERO ─── */
+  .provider-hero {
+    background: #fff;
+    border-bottom: 1px solid var(--gray-200);
+    padding: 24px;
+  }
+  .provider-hero-inner { max-width: 1280px; margin: 0 auto; display: flex; gap: 20px; align-items: flex-start; }
+  .provider-avatar-lg {
+    width: 68px; height: 68px; background: var(--teal); border-radius: 14px;
+    color: #fff; font-size: 20px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; letter-spacing: 0.5px;
+  }
+  .provider-hero-body { flex: 1; min-width: 0; }
+  .provider-hero-row1 { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 4px; }
+  .provider-hero-name { font-size: 22px; font-weight: 800; color: var(--gray-900); letter-spacing: -0.3px; line-height: 1.2; }
+  .verified-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; color: #1D4ED8; background: #EFF6FF; border: 1px solid #BFDBFE; padding: 4px 10px; border-radius: 20px; flex-shrink: 0; }
+  .provider-hero-meta { font-size: 13px; color: var(--gray-500); margin-bottom: 10px; }
+  .provider-hero-desc { font-size: 14px; color: var(--gray-700); line-height: 1.65; margin-bottom: 14px; max-width: 700px; }
+
+  /* contact chips row */
+  .contact-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .contact-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--gray-700); background: var(--gray-50); border: 1px solid var(--gray-200); padding: 5px 12px; border-radius: 20px; text-decoration: none; transition: border-color 0.15s, color 0.15s; }
+  .contact-chip:hover { border-color: var(--teal); color: var(--teal); }
+  .contact-chip svg { flex-shrink: 0; color: var(--gray-400); }
+
+  /* stats row */
+  .stats-row { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 14px; }
+  .provider-stat { display: flex; flex-direction: column; }
+  .provider-stat-value { font-size: 18px; font-weight: 800; color: var(--gray-900); letter-spacing: -0.4px; }
+  .provider-stat-label { font-size: 11px; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* ─── BODY LAYOUT ─── */
+  .body-wrap { max-width: 1280px; margin: 0 auto; padding: 24px; display: grid; grid-template-columns: 220px 1fr; gap: 24px; align-items: start; }
+
+  /* ─── FILTER SIDEBAR ─── */
+  .filter-sidebar { position: sticky; top: 76px; }
+  .filter-panel { background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); overflow: hidden; }
+  .filter-section { padding: 16px; border-bottom: 1px solid var(--gray-100); }
+  .filter-section:last-child { border-bottom: none; }
+  .filter-section-title { font-size: 11px; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
+  .filter-option { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; cursor: pointer; }
+  .filter-option:last-child { margin-bottom: 0; }
+  .filter-option input[type="checkbox"] { width: 15px; height: 15px; accent-color: var(--teal); cursor: pointer; flex-shrink: 0; }
+  .filter-option label { font-size: 13px; color: var(--gray-700); cursor: pointer; display: flex; align-items: center; justify-content: space-between; width: 100%; }
+  .filter-count { font-size: 11px; color: var(--gray-400); background: var(--gray-100); padding: 1px 6px; border-radius: 10px; }
+  .age-range-inputs { display: flex; align-items: center; gap: 8px; }
+  .age-input { width: 60px; font-size: 13px; font-family: inherit; color: var(--gray-900); border: 1.5px solid var(--gray-300); border-radius: 6px; padding: 6px 8px; outline: none; text-align: center; }
+  .age-input:focus { border-color: var(--teal); }
+  .age-sep { font-size: 12px; color: var(--gray-500); }
+  .filter-clear { display: block; width: 100%; font-size: 12px; font-weight: 600; color: var(--gray-500); background: none; border: none; cursor: pointer; padding: 10px 16px; text-align: left; font-family: inherit; transition: color 0.12s; }
+  .filter-clear:hover { color: var(--gray-900); }
+
+  /* ─── PROGRAMS AREA ─── */
+  .programs-area { min-width: 0; }
+  .programs-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+  .programs-count { font-size: 13px; color: var(--gray-500); }
+  .programs-count strong { color: var(--gray-900); }
+  .toolbar-right { display: flex; align-items: center; gap: 8px; }
+  .sort-select { font-size: 13px; font-family: inherit; color: var(--gray-700); border: 1.5px solid var(--gray-200); border-radius: var(--radius-md); padding: 6px 28px 6px 10px; background: #fff; outline: none; appearance: none; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%239CA3AF' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; }
+
+  /* view toggle */
+  .view-toggle { display: flex; border: 1.5px solid var(--gray-200); border-radius: var(--radius-md); overflow: hidden; }
+  .view-btn { width: 34px; height: 32px; display: flex; align-items: center; justify-content: center; background: #fff; border: none; cursor: pointer; color: var(--gray-400); transition: background 0.12s, color 0.12s; }
+  .view-btn.active { background: var(--teal-light); color: var(--teal); }
+  .view-btn + .view-btn { border-left: 1.5px solid var(--gray-200); }
+
+  /* ─── TILE GRID ─── */
+  .programs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+
+  .program-card {
+    background: #fff; border: 1.5px solid var(--gray-200); border-radius: var(--radius-lg);
+    overflow: hidden; text-decoration: none; color: inherit;
+    transition: border-color 0.15s, box-shadow 0.15s, transform 0.12s;
+    display: flex; flex-direction: column;
+  }
+  .program-card:hover { border-color: var(--teal); box-shadow: 0 4px 16px rgb(0 0 0 / 0.09); transform: translateY(-2px); }
+  .program-thumb { height: 80px; display: flex; align-items: center; justify-content: center; font-size: 30px; color: rgba(255,255,255,0.25); flex-shrink: 0; }
+  .program-body { padding: 12px 14px; flex: 1; display: flex; flex-direction: column; gap: 3px; }
+  .program-name { font-size: 13px; font-weight: 700; color: var(--gray-900); line-height: 1.3; }
+  .program-meta { font-size: 12px; color: var(--gray-500); }
+  .program-price { font-size: 12px; font-weight: 600; color: var(--gray-700); }
+  .program-footer { padding: 9px 14px; border-top: 1px solid var(--gray-100); display: flex; align-items: center; justify-content: space-between; }
+  .freshness-pill { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 3px; }
+  .freshness-pill.fresh { background: #D1FAE5; color: #059669; }
+  .freshness-pill.aging { background: #FEF3C7; color: #B45309; }
+  .age-pill { font-size: 11px; font-weight: 600; color: var(--gray-500); background: var(--gray-100); padding: 2px 7px; border-radius: 3px; }
+
+  /* ─── LIST VIEW ─── */
+  .programs-list { display: none; flex-direction: column; gap: 10px; }
+  .programs-list.active { display: flex; }
+  .programs-grid.active { display: grid; }
+  .programs-grid.hidden { display: none; }
+
+  .program-row {
+    background: #fff; border: 1.5px solid var(--gray-200); border-radius: var(--radius-lg);
+    display: flex; align-items: stretch; text-decoration: none; color: inherit;
+    overflow: hidden; transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .program-row:hover { border-color: var(--teal); box-shadow: 0 2px 12px rgb(0 0 0 / 0.07); }
+  .program-row-thumb { width: 80px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 26px; color: rgba(255,255,255,0.25); }
+  .program-row-body { flex: 1; padding: 14px 16px; display: flex; flex-direction: column; justify-content: center; gap: 3px; min-width: 0; }
+  .program-row-name { font-size: 14px; font-weight: 700; color: var(--gray-900); }
+  .program-row-meta { font-size: 13px; color: var(--gray-500); }
+  .program-row-right { padding: 14px 16px; display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 6px; flex-shrink: 0; }
+  .program-row-price { font-size: 13px; font-weight: 700; color: var(--gray-900); }
+  .program-row-age { font-size: 12px; color: var(--gray-500); background: var(--gray-100); padding: 2px 8px; border-radius: 3px; font-weight: 600; }
+
+  /* ─── DATA SOURCE ─── */
+  .data-source { background: var(--gray-100); border-radius: 8px; padding: 12px 14px; display: flex; align-items: flex-start; gap: 10px; margin-top: 20px; }
+  .data-source-icon { color: var(--gray-400); flex-shrink: 0; margin-top: 1px; }
+  .data-source-text { font-size: 13px; color: var(--gray-500); line-height: 1.5; }
+  .data-source-text a { color: var(--teal); text-decoration: none; }
+
+  /* ─── FOOTER ─── */
+  .site-footer { background: #0F1117; padding: 40px 24px 32px; }
+  .site-footer-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .footer-brand { display: flex; flex-direction: column; gap: 4px; }
+  .footer-wordmark { font-size: 16px; font-weight: 800; color: #fff; letter-spacing: -0.3px; }
+  .footer-wordmark span { color: #E6F5F4; }
+  .footer-tagline { font-size: 12px; color: rgba(255,255,255,0.4); font-style: italic; }
+  .footer-links { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.15s; }
+  .footer-links a:hover { color: #fff; }
+  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); white-space: nowrap; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1024px) {
+    .programs-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 860px) {
+    .body-wrap { grid-template-columns: 1fr; }
+    .filter-sidebar { position: static; }
+    .filter-panel { display: flex; flex-wrap: wrap; gap: 0; flex-direction: row; }
+    .filter-section { flex: 1; min-width: 160px; }
+  }
+  @media (max-width: 600px) {
+    .programs-grid { grid-template-columns: 1fr; }
+    .provider-hero-inner { flex-direction: column; gap: 14px; }
+    .body-wrap { padding: 16px; }
+    .breadcrumb { padding: 10px 16px; }
+    .header-inner { padding: 0 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href="mockup-homepage.html">
+      <div class="wordmark-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+        </svg>
+      </div>
+      <span class="wordmark-text">Class<span>able</span></span>
+    </a>
+    <div class="search-bar">
+      <div class="search-input-wrap">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--gray-400);flex-shrink:0"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input class="search-input" type="text" placeholder="Activity, sport, class…">
+      </div>
+      <div class="search-location-wrap">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Queens, NY
+      </div>
+      <button class="search-btn">Search</button>
+    </div>
+    <nav class="header-nav" aria-label="Site navigation">
+      <a href="mockup-filter-panel.html">Browse</a>
+      <a href="#">Saved</a>
+      <a href="mockup-provider-landing.html">For Providers</a>
+      <button class="btn-login">Log in</button>
+      <a href="mockup-parent-signup.html" class="btn-signup">Sign up</a>
+    </nav>
+  </div>
+</header>
+
+<!-- BREADCRUMB -->
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="mockup-homepage.html">Home</a>
+  <span class="breadcrumb-sep" aria-hidden="true">›</span>
+  <a href="mockup-filter-panel.html">Queens</a>
+  <span class="breadcrumb-sep" aria-hidden="true">›</span>
+  <a href="mockup-filter-panel.html">Sports &amp; Athletics</a>
+  <span class="breadcrumb-sep" aria-hidden="true">›</span>
+  <span style="color:var(--gray-700);font-weight:500;" aria-current="page">Hot Shots Basketball NYC</span>
+</nav>
+
+<!-- PROVIDER HERO -->
+<div class="provider-hero">
+  <div class="provider-hero-inner">
+    <div class="provider-avatar-lg" aria-hidden="true">HS</div>
+    <div class="provider-hero-body">
+      <div class="provider-hero-row1">
+        <h1 class="provider-hero-name">Hot Shots Basketball NYC</h1>
+        <span class="verified-badge">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          Verified by owner
+        </span>
+      </div>
+      <div class="provider-hero-meta">Independent youth sports provider · Co-ed · Middle Village, Queens, NY · Est. 2018</div>
+
+      <div class="stats-row">
+        <div class="provider-stat"><span class="provider-stat-value">5</span><span class="provider-stat-label">Programs</span></div>
+        <div class="provider-stat"><span class="provider-stat-value">3</span><span class="provider-stat-label">Sports</span></div>
+        <div class="provider-stat"><span class="provider-stat-value">5–12</span><span class="provider-stat-label">Ages served</span></div>
+      </div>
+
+      <p class="provider-hero-desc">Co-ed outdoor clinics at Juniper Valley Park for kids ages 5–12. Kid-sized adjustable hoops and mini balls so every age group can shoot and score. Small class sizes, positive coaching, all skill levels welcome. Sibling discounts available.</p>
+
+      <div class="contact-row">
+        <a class="contact-chip" href="https://hotshotsbasketballnyc.com" target="_blank" rel="noopener noreferrer">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          hotshotsbasketballnyc.com
+        </a>
+        <a class="contact-chip" href="#" target="_blank" rel="noopener noreferrer">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          @hotshotsnyc
+        </a>
+        <a class="contact-chip" href="tel:7185550192">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.42 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.54a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          (718) 555-0192
+        </a>
+        <a class="contact-chip" href="#">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Juniper Valley Park, Middle Village
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="body-wrap">
+
+  <!-- FILTER SIDEBAR -->
+  <aside class="filter-sidebar" aria-label="Filter programs">
+    <div class="filter-panel">
+
+      <div class="filter-section">
+        <div class="filter-section-title">Age Range</div>
+        <div class="age-range-inputs">
+          <input class="age-input" type="number" value="5" min="0" max="25" aria-label="Minimum age">
+          <span class="age-sep">to</span>
+          <input class="age-input" type="number" value="12" min="0" max="25" aria-label="Maximum age">
+        </div>
+      </div>
+
+      <div class="filter-section">
+        <div class="filter-section-title">Category</div>
+        <div class="filter-option">
+          <input type="checkbox" id="f-basketball" checked>
+          <label for="f-basketball">🏀 Basketball <span class="filter-count">3</span></label>
+        </div>
+        <div class="filter-option">
+          <input type="checkbox" id="f-soccer" checked>
+          <label for="f-soccer">⚽ Soccer <span class="filter-count">1</span></label>
+        </div>
+        <div class="filter-option">
+          <input type="checkbox" id="f-volleyball" checked>
+          <label for="f-volleyball">🏐 Volleyball <span class="filter-count">1</span></label>
+        </div>
+      </div>
+
+      <div class="filter-section">
+        <div class="filter-section-title">Format</div>
+        <div class="filter-option">
+          <input type="checkbox" id="f-outdoor" checked>
+          <label for="f-outdoor">Outdoor <span class="filter-count">4</span></label>
+        </div>
+        <div class="filter-option">
+          <input type="checkbox" id="f-indoor">
+          <label for="f-indoor">Indoor <span class="filter-count">1</span></label>
+        </div>
+      </div>
+
+      <div class="filter-section">
+        <div class="filter-section-title">Price</div>
+        <div class="filter-option">
+          <input type="checkbox" id="f-free">
+          <label for="f-free">Free <span class="filter-count">0</span></label>
+        </div>
+        <div class="filter-option">
+          <input type="checkbox" id="f-under50">
+          <label for="f-under50">Under $50 <span class="filter-count">0</span></label>
+        </div>
+        <div class="filter-option">
+          <input type="checkbox" id="f-50-100" checked>
+          <label for="f-50-100">$50 – $100 <span class="filter-count">4</span></label>
+        </div>
+        <div class="filter-option">
+          <input type="checkbox" id="f-over100">
+          <label for="f-over100">Over $100 <span class="filter-count">1</span></label>
+        </div>
+      </div>
+
+      <button class="filter-clear" onclick="clearFilters()">Clear all filters</button>
+    </div>
+  </aside>
+
+  <!-- PROGRAMS AREA -->
+  <section class="programs-area" aria-label="Programs">
+
+    <div class="programs-toolbar">
+      <div class="programs-count"><strong>5 programs</strong> · Fall 2026</div>
+      <div class="toolbar-right">
+        <select class="sort-select" aria-label="Sort programs">
+          <option>Newest first</option>
+          <option>Price: low to high</option>
+          <option>Price: high to low</option>
+          <option>Age: youngest first</option>
+        </select>
+        <div class="view-toggle" role="group" aria-label="View layout">
+          <button class="view-btn active" id="btn-tile" onclick="setView('tile')" aria-label="Tile view" title="Tile view">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          </button>
+          <button class="view-btn" id="btn-list" onclick="setView('list')" aria-label="List view" title="List view">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TILE VIEW -->
+    <div class="programs-grid active" id="view-tile">
+
+      <a class="program-card" href="mockup-detail-page.html" data-category="basketball" data-age-min="5" data-age-max="6">
+        <div class="program-thumb" style="background:linear-gradient(135deg,#FB923C,#F97316);">🏀</div>
+        <div class="program-body">
+          <div class="program-name">Basketball — Ages 5/6 Group</div>
+          <div class="program-meta">Sat 9:00–10:00 AM · 6 sessions</div>
+          <div class="program-price">$75 / 6 sessions</div>
+        </div>
+        <div class="program-footer">
+          <span class="freshness-pill fresh"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Fresh</span>
+          <span class="age-pill">Ages 5–6</span>
+        </div>
+      </a>
+
+      <a class="program-card" href="mockup-detail-page.html" data-category="basketball" data-age-min="7" data-age-max="8">
+        <div class="program-thumb" style="background:linear-gradient(135deg,#F97316,#EA580C);">🏀</div>
+        <div class="program-body">
+          <div class="program-name">Basketball — Ages 7/8 Group</div>
+          <div class="program-meta">Sat 10:00–11:00 AM · 6 sessions</div>
+          <div class="program-price">$90 / 6 sessions</div>
+        </div>
+        <div class="program-footer">
+          <span class="freshness-pill fresh"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Fresh</span>
+          <span class="age-pill">Ages 7–8</span>
+        </div>
+      </a>
+
+      <a class="program-card" href="#" data-category="basketball" data-age-min="9" data-age-max="10">
+        <div class="program-thumb" style="background:linear-gradient(135deg,#EA580C,#C2410C);">🏀</div>
+        <div class="program-body">
+          <div class="program-name">Basketball — Ages 9/10 Group</div>
+          <div class="program-meta">Sat 11:00 AM–12:00 PM · 6 sessions</div>
+          <div class="program-price">$90 / 6 sessions</div>
+        </div>
+        <div class="program-footer">
+          <span class="freshness-pill fresh"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Fresh</span>
+          <span class="age-pill">Ages 9–10</span>
+        </div>
+      </a>
+
+      <a class="program-card" href="#" data-category="soccer" data-age-min="6" data-age-max="10">
+        <div class="program-thumb" style="background:linear-gradient(135deg,#22C55E,#16A34A);">⚽</div>
+        <div class="program-body">
+          <div class="program-name">Soccer — Mixed Ages Clinic</div>
+          <div class="program-meta">Sun 10:00–11:00 AM · 6 sessions</div>
+          <div class="program-price">$80 / 6 sessions</div>
+        </div>
+        <div class="program-footer">
+          <span class="freshness-pill aging"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>22 days ago</span>
+          <span class="age-pill">Ages 6–10</span>
+        </div>
+      </a>
+
+      <a class="program-card" href="#" data-category="volleyball" data-age-min="8" data-age-max="12">
+        <div class="program-thumb" style="background:linear-gradient(135deg,#8B5CF6,#7C3AED);">🏐</div>
+        <div class="program-body">
+          <div class="program-name">Volleyball — Beginner Clinic</div>
+          <div class="program-meta">Sat 1:00–2:00 PM · 4 sessions</div>
+          <div class="program-price">$60 / 4 sessions</div>
+        </div>
+        <div class="program-footer">
+          <span class="freshness-pill fresh"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Fresh</span>
+          <span class="age-pill">Ages 8–12</span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- LIST VIEW -->
+    <div class="programs-list" id="view-list">
+
+      <a class="program-row" href="mockup-detail-page.html">
+        <div class="program-row-thumb" style="background:linear-gradient(135deg,#FB923C,#F97316);">🏀</div>
+        <div class="program-row-body">
+          <div class="program-row-name">Basketball — Ages 5/6 Group</div>
+          <div class="program-row-meta">Sat 9:00–10:00 AM · 6 sessions · Outdoor · Juniper Valley Park</div>
+        </div>
+        <div class="program-row-right">
+          <div class="program-row-price">$75 / 6 sessions</div>
+          <span class="program-row-age">Ages 5–6</span>
+          <span class="freshness-pill fresh" style="margin-top:2px;"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Fresh</span>
+        </div>
+      </a>
+
+      <a class="program-row" href="mockup-detail-page.html">
+        <div class="program-row-thumb" style="background:linear-gradient(135deg,#F97316,#EA580C);">🏀</div>
+        <div class="program-row-body">
+          <div class="program-row-name">Basketball — Ages 7/8 Group</div>
+          <div class="program-row-meta">Sat 10:00–11:00 AM · 6 sessions · Outdoor · Juniper Valley Park</div>
+        </div>
+        <div class="program-row-right">
+          <div class="program-row-price">$90 / 6 sessions</div>
+          <span class="program-row-age">Ages 7–8</span>
+          <span class="freshness-pill fresh" style="margin-top:2px;"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Fresh</span>
+        </div>
+      </a>
+
+      <a class="program-row" href="#">
+        <div class="program-row-thumb" style="background:linear-gradient(135deg,#EA580C,#C2410C);">🏀</div>
+        <div class="program-row-body">
+          <div class="program-row-name">Basketball — Ages 9/10 Group</div>
+          <div class="program-row-meta">Sat 11:00 AM–12:00 PM · 6 sessions · Outdoor · Juniper Valley Park</div>
+        </div>
+        <div class="program-row-right">
+          <div class="program-row-price">$90 / 6 sessions</div>
+          <span class="program-row-age">Ages 9–10</span>
+          <span class="freshness-pill fresh" style="margin-top:2px;"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Fresh</span>
+        </div>
+      </a>
+
+      <a class="program-row" href="#">
+        <div class="program-row-thumb" style="background:linear-gradient(135deg,#22C55E,#16A34A);">⚽</div>
+        <div class="program-row-body">
+          <div class="program-row-name">Soccer — Mixed Ages Clinic</div>
+          <div class="program-row-meta">Sun 10:00–11:00 AM · 6 sessions · Outdoor · Juniper Valley Park</div>
+        </div>
+        <div class="program-row-right">
+          <div class="program-row-price">$80 / 6 sessions</div>
+          <span class="program-row-age">Ages 6–10</span>
+          <span class="freshness-pill aging" style="margin-top:2px;"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>22 days ago</span>
+        </div>
+      </a>
+
+      <a class="program-row" href="#">
+        <div class="program-row-thumb" style="background:linear-gradient(135deg,#8B5CF6,#7C3AED);">🏐</div>
+        <div class="program-row-body">
+          <div class="program-row-name">Volleyball — Beginner Clinic</div>
+          <div class="program-row-meta">Sat 1:00–2:00 PM · 4 sessions · Outdoor · Juniper Valley Park</div>
+        </div>
+        <div class="program-row-right">
+          <div class="program-row-price">$60 / 4 sessions</div>
+          <span class="program-row-age">Ages 8–12</span>
+          <span class="freshness-pill fresh" style="margin-top:2px;"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Fresh</span>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="data-source">
+      <svg class="data-source-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>
+      <div class="data-source-text">
+        Provider info last verified <strong>4 days ago</strong> via <a href="https://hotshotsbasketballnyc.com" target="_blank" rel="noopener noreferrer">hotshotsbasketballnyc.com</a>.
+        See something wrong? <a href="#">Suggest an edit</a>.
+      </div>
+    </div>
+
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-brand">
+      <span class="footer-wordmark">Class<span>able</span></span>
+      <span class="footer-tagline">Learn it. Play it. Do it.</span>
+    </div>
+    <nav class="footer-links">
+      <a href="#">About</a>
+      <a href="mockup-provider-landing.html">For Providers</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </nav>
+    <span class="footer-copy">&copy; 2026 Classable</span>
+  </div>
+</footer>
+
+<script>
+  function setView(v) {
+    document.getElementById('view-tile').classList.toggle('active', v === 'tile');
+    document.getElementById('view-tile').classList.toggle('hidden', v === 'list');
+    document.getElementById('view-list').classList.toggle('active', v === 'list');
+    document.getElementById('btn-tile').classList.toggle('active', v === 'tile');
+    document.getElementById('btn-list').classList.toggle('active', v === 'list');
+  }
+
+  function clearFilters() {
+    document.querySelectorAll('.filter-panel input[type="checkbox"]').forEach(cb => { cb.checked = true; });
+    document.querySelector('.age-input[aria-label="Minimum age"]').value = 5;
+    document.querySelector('.age-input[aria-label="Maximum age"]').value = 12;
+  }
+</script>
+
+</body>
+</html>

@@ -1138,7 +1138,7 @@
 
       </div>
       <div style="margin-top:12px;">
-        <a href="#" style="font-size:13px;font-weight:600;color:var(--teal);text-decoration:none;">View all Hot Shots Basketball NYC programs →</a>
+        <a href="mockup-provider-profile.html" style="font-size:13px;font-weight:600;color:var(--teal);text-decoration:none;">View all Hot Shots Basketball NYC programs →</a>
       </div>
     </div>
 
@@ -1152,7 +1152,7 @@
         <div class="provider-avatar" aria-hidden="true">HS</div>
         <div class="provider-info">
           <div class="provider-fullname">Hot Shots Basketball NYC</div>
-          <div class="provider-meta">Independent youth sports org · Co-ed · Middle Village, Queens, NY 11379</div>
+          <div class="provider-meta">Independent youth sports provider · Co-ed · Middle Village, Queens, NY 11379</div>
           <div class="provider-stats">
             <div class="provider-stat">
               <span class="provider-stat-value">3</span>
@@ -1168,7 +1168,7 @@
             </div>
           </div>
           <div style="font-size:12px;color:var(--gray-500);margin-bottom:8px;">Also offers: ⚽ Soccer &nbsp;·&nbsp; 🏐 Volleyball</div>
-          <a class="provider-link" href="#">View all programs by Hot Shots Basketball NYC →</a>
+          <a class="provider-link" href="mockup-provider-profile.html">View all programs by Hot Shots Basketball NYC →</a>
 
           <!-- ── CLAIMED STATE ── -->
           <div class="owner-verified-badge">
@@ -1239,10 +1239,10 @@
         </div>
       </div>
 
-      <!-- Save for later — anonymous users see auth modal -->
-      <button class="btn-save-program" id="save-btn" onclick="openAuthModal('save');" aria-label="Save this program for later">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-        Save program
+      <!-- Save for later — anonymous users see auth modal; logged-in users toggle saved state -->
+      <button class="btn-save-program" id="save-btn" onclick="toggleSave();" aria-label="Save this program for later">
+        <svg id="save-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span id="save-label">Save program</span>
       </button>
 
       <!-- Register / Visit provider site — external link -->
@@ -1345,7 +1345,7 @@
     <a href="#" class="auth-modal-btn-primary" onclick="closeAuthModal();">Create free account</a>
     <div class="auth-modal-divider">Already have an account?</div>
     <a href="#" class="auth-modal-btn-secondary" onclick="closeAuthModal();">Log in</a>
-    <div class="auth-modal-note">Free forever for parents · No credit card needed</div>
+    <div class="auth-modal-note">Free forever for parents &amp; guardians · No credit card needed</div>
   </div>
 </div>
 
@@ -1373,6 +1373,26 @@ function closeAuthModal() {
   document.body.style.overflow = '';
 }
 document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeAuthModal(); });
+
+// Demo: toggle saved state (production would check auth first)
+var isSaved = false;
+function toggleSave() {
+  isSaved = !isSaved;
+  var btn = document.getElementById('save-btn');
+  var icon = document.getElementById('save-icon');
+  var label = document.getElementById('save-label');
+  if (isSaved) {
+    btn.classList.add('saved');
+    btn.setAttribute('aria-label', 'Saved — click to unsave');
+    icon.setAttribute('fill', '#E11D48');
+    label.textContent = 'Saved';
+  } else {
+    btn.classList.remove('saved');
+    btn.setAttribute('aria-label', 'Save this program for later');
+    icon.setAttribute('fill', 'none');
+    label.textContent = 'Save program';
+  }
+}
 </script>
 
 <!-- MOBILE STICKY BOTTOM BAR -->
