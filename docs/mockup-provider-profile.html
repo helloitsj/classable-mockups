@@ -13,9 +13,6 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body { font-family: 'Inter', system-ui, sans-serif; font-size: 15px; background: var(--gray-50); color: var(--gray-700); line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; }
-  .body-wrap { flex: 1; }
-
-
   /* ─── PROVIDER HERO ─── */
   .provider-hero {
     background: #fff;
@@ -49,7 +46,7 @@
   .provider-stat-label { font-size: 11px; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.06em; }
 
   /* ─── BODY LAYOUT ─── */
-  .body-wrap { max-width: 1280px; margin: 0 auto; padding: 24px; display: grid; grid-template-columns: 300px 1fr; gap: 24px; align-items: start; }
+  .body-wrap { width: 100%; max-width: 1280px; margin: 0 auto; padding: 24px; display: grid; grid-template-columns: 300px 1fr; gap: 24px; align-items: start; }
 
   /* ─── FILTER SIDEBAR ─── */
   .filter-sidebar { position: sticky; top: 76px; }
@@ -169,7 +166,10 @@
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
         Queens, NY
       </div>
-      <button class="search-btn">Search</button>
+      <button class="search-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        Search
+      </button>
     </div>
     <nav class="header-nav" aria-label="Site navigation">
       <a href="mockup-filter-panel.html" class="nav-link">Browse</a>

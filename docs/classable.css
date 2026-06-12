@@ -91,6 +91,7 @@
 
 /* ─── Provider account chip ─── */
 .nav-provider-chip {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -104,6 +105,54 @@
   transition: background 0.12s;
 }
 .nav-provider-chip:hover { background: var(--gray-200); }
+
+/* ─── Account dropdown ─── */
+.account-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.12);
+  min-width: 210px;
+  z-index: 200;
+  overflow: hidden;
+}
+.nav-provider-chip:hover .account-dropdown,
+.nav-provider-chip:focus-within .account-dropdown { display: block; }
+.account-dropdown-section { padding: 6px 0; }
+.account-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-700);
+  text-decoration: none;
+  transition: background 0.1s;
+  white-space: nowrap;
+}
+.account-dropdown-item:hover { background: var(--gray-50); color: var(--gray-900); }
+.account-dropdown-item.active { color: var(--teal); font-weight: 600; background: var(--teal-light); }
+.account-dropdown-item svg { flex-shrink: 0; color: var(--gray-400); }
+.account-dropdown-item.active svg { color: var(--teal); }
+.account-dropdown-divider { height: 1px; background: var(--gray-100); }
+.account-dropdown-footer { padding: 6px 0; }
+.account-dropdown-signout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-500);
+  text-decoration: none;
+  transition: background 0.1s, color 0.1s;
+}
+.account-dropdown-signout:hover { background: var(--gray-50); color: var(--gray-900); }
 .nav-avatar {
   width: 28px;
   height: 28px;
@@ -211,6 +260,7 @@
 
 .btn-signup {
   display: inline-block;
+  line-height: 1;
   font-size: 14px;
   font-weight: 600;
   color: #fff;
