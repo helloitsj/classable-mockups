@@ -499,6 +499,54 @@
   }
   .demo-toggle-btn:hover { background: var(--gray-100); }
 
+  /* ─── First-run onboarding banner ─── */
+  .onboarding-banner {
+    background: linear-gradient(135deg, #0D7A6E 0%, #0A5F56 100%);
+    border-radius: var(--radius-lg); padding: 22px 24px; margin-bottom: 24px;
+    color: #fff; position: relative; overflow: hidden;
+  }
+  .onboarding-banner::before {
+    content: ''; position: absolute; top: -50px; right: -50px;
+    width: 220px; height: 220px; background: rgba(255,255,255,0.05); border-radius: 50%;
+    pointer-events: none;
+  }
+  .onboarding-dismiss {
+    position: absolute; top: 14px; right: 14px; width: 28px; height: 28px;
+    background: rgba(255,255,255,0.15); border: none; border-radius: 50%; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.8); font-family: inherit; transition: background 0.12s; z-index: 1;
+  }
+  .onboarding-dismiss:hover { background: rgba(255,255,255,0.25); color: #fff; }
+  .onboarding-eyebrow {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: rgba(255,255,255,0.65); margin-bottom: 4px;
+  }
+  .onboarding-title { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 6px; }
+  .onboarding-subtitle { font-size: 13px; color: rgba(255,255,255,0.75); line-height: 1.5; margin-bottom: 16px; }
+  .onboarding-progress-label {
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 12px; color: rgba(255,255,255,0.7); margin-bottom: 6px; font-weight: 500;
+  }
+  .onboarding-progress-track { height: 6px; background: rgba(255,255,255,0.2); border-radius: 3px; overflow: hidden; margin-bottom: 16px; }
+  .onboarding-progress-fill { height: 100%; width: 40%; background: rgba(255,255,255,0.85); border-radius: 3px; }
+  .onboarding-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; margin-bottom: 18px; }
+  .onboarding-step { display: flex; align-items: center; gap: 8px; }
+  .onboarding-step-icon {
+    width: 20px; height: 20px; border-radius: 50%; display: flex;
+    align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .onboarding-step.done .onboarding-step-icon { background: rgba(255,255,255,0.2); color: rgba(255,255,255,0.9); }
+  .onboarding-step.done .onboarding-step-label { font-size: 12px; color: rgba(255,255,255,0.6); text-decoration: line-through; text-decoration-color: rgba(255,255,255,0.35); }
+  .onboarding-step.todo .onboarding-step-icon { background: rgba(255,255,255,0.08); border: 1.5px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.5); }
+  .onboarding-step.todo .onboarding-step-label { font-size: 12px; color: rgba(255,255,255,0.9); font-weight: 500; }
+  .onboarding-next-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 16px; background: #fff; color: var(--teal); border: none; border-radius: 8px;
+    font-size: 13px; font-weight: 700; cursor: pointer; font-family: inherit;
+    text-decoration: none; transition: opacity 0.15s;
+  }
+  .onboarding-next-btn:hover { opacity: 0.9; }
+
 </style>
 </head>
 <body>
@@ -613,6 +661,59 @@
 
   <!-- MAIN FORM COLUMN -->
   <main>
+
+    <!-- FIRST-RUN ONBOARDING BANNER (shown on first login; dismissible) -->
+    <div class="onboarding-banner" id="onboarding-banner">
+      <button class="onboarding-dismiss" onclick="dismissOnboarding()" aria-label="Dismiss welcome checklist" title="Dismiss">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="onboarding-eyebrow">Welcome to Classable</div>
+      <div class="onboarding-title">Your listing is live — now complete it 🎉</div>
+      <div class="onboarding-subtitle">Finish a few more steps to reach more families and rank higher in local searches.</div>
+      <div class="onboarding-progress-label">
+        <span>Setup progress</span>
+        <span>2 of 5 steps complete</span>
+      </div>
+      <div class="onboarding-progress-track">
+        <div class="onboarding-progress-fill"></div>
+      </div>
+      <div class="onboarding-steps">
+        <div class="onboarding-step done">
+          <div class="onboarding-step-icon">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span class="onboarding-step-label">Claim your listing</span>
+        </div>
+        <div class="onboarding-step done">
+          <div class="onboarding-step-icon">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span class="onboarding-step-label">Add contact info</span>
+        </div>
+        <div class="onboarding-step todo">
+          <div class="onboarding-step-icon">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <span class="onboarding-step-label">Add a cover photo</span>
+        </div>
+        <div class="onboarding-step todo">
+          <div class="onboarding-step-icon">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <span class="onboarding-step-label">Write a description</span>
+        </div>
+        <div class="onboarding-step todo">
+          <div class="onboarding-step-icon">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <span class="onboarding-step-label">Add your first program</span>
+        </div>
+      </div>
+      <a class="onboarding-next-btn" href="#photos-section">
+        Next: Add a cover photo
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
 
     <!-- PROFILE COMPLETENESS -->
     <div class="card">
@@ -1088,6 +1189,14 @@
   }
 
   function togglePendingState() { setPending(!isPending); }
+
+  function dismissOnboarding() {
+    var banner = document.getElementById('onboarding-banner');
+    banner.style.transition = 'opacity 0.2s, transform 0.2s';
+    banner.style.opacity = '0';
+    banner.style.transform = 'translateY(-6px)';
+    setTimeout(function() { banner.style.display = 'none'; }, 210);
+  }
 
   // Activate pending state if arriving from onboarding (?status=pending)
   if (new URLSearchParams(window.location.search).get('status') === 'pending') {

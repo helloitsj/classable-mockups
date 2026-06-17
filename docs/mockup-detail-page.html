@@ -799,6 +799,67 @@
     [style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
   }
 
+  /* ─── Contact provider modal ─── */
+  .contact-modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.5); z-index: 500;
+    align-items: center; justify-content: center; padding: 20px;
+  }
+  .contact-modal-overlay.open { display: flex; }
+  .contact-modal {
+    background: #fff; border-radius: 16px; width: 100%; max-width: 480px;
+    box-shadow: 0 20px 60px rgb(0 0 0 / 0.2); overflow: hidden;
+  }
+  .contact-modal-header {
+    padding: 20px 24px 16px; border-bottom: 1px solid var(--gray-100);
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+  }
+  .contact-modal-title { font-size: 17px; font-weight: 800; color: var(--gray-900); margin-bottom: 4px; }
+  .contact-modal-subtitle { font-size: 13px; color: var(--gray-500); line-height: 1.4; }
+  .contact-modal-close {
+    width: 32px; height: 32px; background: var(--gray-100); border: none; border-radius: 50%;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    color: var(--gray-500); flex-shrink: 0; font-family: inherit; transition: background 0.12s;
+  }
+  .contact-modal-close:hover { background: var(--gray-200); color: var(--gray-900); }
+  .contact-modal-body { padding: 20px 24px; }
+  .contact-field { margin-bottom: 14px; }
+  .contact-label {
+    display: block; font-size: 12px; font-weight: 700; color: var(--gray-700);
+    margin-bottom: 5px; letter-spacing: 0.02em;
+  }
+  .contact-input, .contact-select, .contact-textarea {
+    width: 100%; padding: 9px 12px; border: 1.5px solid var(--gray-300); border-radius: 8px;
+    font-size: 14px; font-family: inherit; color: var(--gray-900); background: #fff;
+    box-sizing: border-box; transition: border-color 0.15s; outline: none;
+  }
+  .contact-input:focus, .contact-select:focus, .contact-textarea:focus {
+    border-color: var(--teal); box-shadow: 0 0 0 3px var(--teal-light);
+  }
+  .contact-textarea { resize: vertical; min-height: 86px; line-height: 1.5; }
+  .contact-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .contact-modal-footer { padding: 0 24px 20px; display: flex; flex-direction: column; gap: 8px; }
+  .btn-contact-submit {
+    width: 100%; padding: 11px 16px; background: var(--teal); color: #fff; border: none;
+    border-radius: 10px; font-size: 14px; font-weight: 700; font-family: inherit;
+    cursor: pointer; transition: background 0.15s;
+  }
+  .btn-contact-submit:hover { background: var(--teal-hover); }
+  .contact-privacy-note { font-size: 11px; color: var(--gray-400); text-align: center; line-height: 1.5; }
+  /* "No website" indicator on CTA card */
+  .cta-no-website-note {
+    display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--gray-500);
+    background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 6px;
+    padding: 7px 10px; margin-bottom: 10px;
+  }
+  .btn-contact-provider {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; padding: 11px 16px; background: var(--teal); color: #fff; border: none;
+    border-radius: 10px; font-size: 14px; font-weight: 700; font-family: inherit;
+    cursor: pointer; transition: background 0.15s;
+  }
+  .btn-contact-provider:hover { background: var(--teal-hover); }
+
 </style>
 </head>
 <body>
@@ -1124,18 +1185,16 @@
         <span id="save-label">Save program</span>
       </button>
 
-      <!-- Register / Visit provider site — external link -->
-      <a
-        class="btn-register"
-        href="https://hotshotsbasketballnyc.com/register"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Visit Hot Shots Basketball NYC to register (opens provider website in new tab)"
-      >
-        Learn More
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-      </a>
-      <div class="btn-register-sub">Opens hotshotsbasketballnyc.com in a new tab</div>
+      <!-- No-website provider state: contact lead form replaces "Learn More" -->
+      <div class="cta-no-website-note" aria-label="No external website on file">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>
+        No website on file for this provider
+      </div>
+      <button class="btn-contact-provider" onclick="openContactModal()" aria-haspopup="dialog">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Contact this provider
+      </button>
+      <div class="btn-register-sub">We'll forward your message to Hot Shots Basketball NYC</div>
 
       <div class="sidebar-schedule-summary">
         <div class="sidebar-schedule-row">
@@ -1272,6 +1331,28 @@ function toggleSave() {
     label.textContent = 'Save program';
   }
 }
+
+function openContactModal() {
+  var overlay = document.getElementById('contact-modal-overlay');
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  overlay.querySelector('.contact-modal-close').focus();
+}
+function closeContactModal() {
+  document.getElementById('contact-modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeContactModal();
+});
+function submitContactForm(e) {
+  e.preventDefault();
+  var btn = document.getElementById('contact-submit-btn');
+  btn.textContent = 'Message sent!';
+  btn.style.background = '#10B981';
+  btn.disabled = true;
+  setTimeout(closeContactModal, 1400);
+}
 </script>
 
 <!-- MOBILE STICKY BOTTOM BAR -->
@@ -1315,5 +1396,53 @@ function toggleSave() {
     <span class="footer-copy">&copy; 2026 Classable</span>
   </div>
 </footer>
+
+<!-- CONTACT PROVIDER MODAL -->
+<div class="contact-modal-overlay" id="contact-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title" onclick="if(event.target===this)closeContactModal();">
+  <div class="contact-modal">
+    <div class="contact-modal-header">
+      <div>
+        <div class="contact-modal-title" id="contact-modal-title">Contact Hot Shots Basketball NYC</div>
+        <div class="contact-modal-subtitle">Your message will be forwarded to the provider. Expect a reply within 1–2 business days.</div>
+      </div>
+      <button class="contact-modal-close" onclick="closeContactModal()" aria-label="Close contact form">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <form class="contact-modal-body" onsubmit="submitContactForm(event)" novalidate>
+      <div class="contact-field-row">
+        <div class="contact-field">
+          <label class="contact-label" for="contact-name">Your name</label>
+          <input class="contact-input" id="contact-name" type="text" placeholder="Sarah L." autocomplete="name" required>
+        </div>
+        <div class="contact-field">
+          <label class="contact-label" for="contact-email">Email address</label>
+          <input class="contact-input" id="contact-email" type="email" placeholder="you@email.com" autocomplete="email" required>
+        </div>
+      </div>
+      <div class="contact-field">
+        <label class="contact-label" for="contact-age">Kid's age</label>
+        <select class="contact-select" id="contact-age">
+          <option value="">Select an age</option>
+          <option>Under 3</option>
+          <option>3–4 years old</option>
+          <option>5–6 years old</option>
+          <option>7–8 years old</option>
+          <option>9–10 years old</option>
+          <option>11–12 years old</option>
+          <option>13+ years old</option>
+        </select>
+      </div>
+      <div class="contact-field">
+        <label class="contact-label" for="contact-message">Message <span style="font-weight:400;color:var(--gray-400);">(optional)</span></label>
+        <textarea class="contact-textarea" id="contact-message" placeholder="Hi! I'm interested in the Saturday basketball clinic for my 6-year-old. Do you have spots available for fall?"></textarea>
+      </div>
+      <div class="contact-modal-footer" style="padding:0;">
+        <button class="btn-contact-submit" id="contact-submit-btn" type="submit">Send message</button>
+        <p class="contact-privacy-note">Classable will never share your contact info without permission.</p>
+      </div>
+    </form>
+  </div>
+</div>
 </body>
 </html>
