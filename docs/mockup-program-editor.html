@@ -214,7 +214,7 @@
     <span class="breadcrumb-sep">›</span>
     <a href="mockup-provider-dashboard.html">Programs</a>
     <span class="breadcrumb-sep">›</span>
-    <span class="breadcrumb-current">Basketball — Ages 7/8 Group</span>
+    <span class="breadcrumb-current">Basketball — Youth Clinics</span>
   </nav>
 
   <!-- PUBLISH STATUS -->
@@ -242,7 +242,7 @@
     </div>
     <div class="form-group">
       <label class="form-label" for="prog-name">Program name <span style="color:#DC2626;">*</span></label>
-      <input class="form-input" type="text" id="prog-name" value="Basketball — Ages 7/8 Group">
+      <input class="form-input" type="text" id="prog-name" value="Basketball — Youth Clinics">
     </div>
     <div class="form-row">
       <div class="form-group">
@@ -268,7 +268,7 @@
     </div>
     <div class="form-group">
       <label class="form-label" for="prog-desc">Description</label>
-      <textarea class="form-textarea" id="prog-desc" maxlength="400" oninput="updateCharCount(this,'desc-count')">Co-ed outdoor basketball clinics at Juniper Valley Park for kids ages 7 and 8. Hot Shots uses kid-sized adjustable hoops (5.5–7.5 ft) and mini basketballs so players at this age can actually shoot and score. Sessions mix fundamental drills with small-sided games in a safe, positive, and fun environment. No prior experience needed — all skill levels welcome.</textarea>
+      <textarea class="form-textarea" id="prog-desc" maxlength="400" oninput="updateCharCount(this,'desc-count')">Co-ed outdoor basketball clinics at Juniper Valley Park for kids ages 3–6. Sessions focus on fundamentals, fun, and building an "I can" attitude, using kid-sized hoops and mini basketballs so young players can actually shoot and score. A parent or guardian stays for each 45-minute session, and a Hot Shots t-shirt is provided on the first day. Free trial class available — no prior experience needed.</textarea>
       <div class="char-count"><span id="desc-count">340</span> / 400</div>
     </div>
   </div>
@@ -283,9 +283,9 @@
       <div class="form-group">
         <label class="form-label">Age range</label>
         <div style="display:flex;align-items:center;gap:10px;">
-          <input class="form-input" type="number" value="7" min="0" max="25" style="width:72px;text-align:center;" aria-label="Minimum age">
+          <input class="form-input" type="number" value="3" min="0" max="25" style="width:72px;text-align:center;" aria-label="Minimum age">
           <span style="font-size:13px;color:var(--gray-500);">to</span>
-          <input class="form-input" type="number" value="8" min="0" max="25" style="width:72px;text-align:center;" aria-label="Maximum age">
+          <input class="form-input" type="number" value="6" min="0" max="25" style="width:72px;text-align:center;" aria-label="Maximum age">
           <span style="font-size:13px;color:var(--gray-500);">years</span>
         </div>
       </div>
@@ -348,7 +348,7 @@
           </div>
           <div class="form-group">
             <label class="form-label" for="s1-end">End time</label>
-            <input class="form-input" type="time" id="s1-end" value="11:00">
+            <input class="form-input" type="time" id="s1-end" value="10:45">
           </div>
         </div>
         <div class="form-row">
@@ -364,7 +364,7 @@
         <div class="form-group">
           <label class="form-label" for="s1-count">Number of sessions</label>
           <input class="form-input" type="number" id="s1-count" value="6" min="1" style="width:100px;">
-          <span class="form-hint">6 Saturdays · Sept 13 – Oct 18</span>
+          <span class="form-hint">6 Saturdays · 45-minute sessions</span>
         </div>
       </div>
     </div>
@@ -422,15 +422,15 @@
           <label class="form-label">Price</label>
           <div class="price-input-wrap">
             <span class="currency">$</span>
-            <input class="form-input price-field" type="number" value="90" min="0" step="0.01">
+            <input class="form-input price-field" type="number" placeholder="0.00" min="0" step="0.01">
           </div>
         </div>
         <div class="form-group">
           <label class="form-label" for="price-per">Per</label>
           <div class="form-select-wrap">
             <select class="form-select" id="price-per">
-              <option>Session</option>
-              <option selected>6-session block</option>
+              <option selected>Session</option>
+              <option>6-session block</option>
               <option>Month</option>
               <option>Semester</option>
               <option>Year</option>
@@ -440,7 +440,7 @@
       </div>
       <div class="form-group">
         <label class="form-label" for="price-note">Pricing note <span class="form-label-opt">(optional)</span></label>
-        <input class="form-input" type="text" id="price-note" value="Sibling discount available ($10 off a second child)">
+        <input class="form-input" type="text" id="price-note" value="Free trial class available for new players">
       </div>
     </div>
     <div id="pricing-free" style="display:none;">
