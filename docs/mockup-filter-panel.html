@@ -615,6 +615,12 @@
     .mobile-filter-btn { display: flex; }
     .active-chips-bar { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; }
     .results-topbar { flex-wrap: wrap; gap: 8px; }
+    /* Unpin the results header on mobile — a sticky 380px map would cover the listings */
+    .results-sticky {
+      position: static;
+      z-index: auto;
+      padding-bottom: 0;
+    }
   }
 
   @media (max-width: 480px) {
@@ -742,6 +748,24 @@
     outline: 2.5px solid var(--teal);
     box-shadow: 0 0 0 4px var(--teal-light), 0 4px 16px rgb(0 0 0 / 0.1);
     border-radius: var(--radius-lg);
+  }
+
+  /* ─── Map responsive sizing ───
+     Declared after the base .map-container rule so these win on source order
+     (media queries add no specificity). Shorter map on small screens keeps the
+     listings visible without scrolling past a full-height map. */
+  @media (max-width: 860px) {
+    .map-container { height: 240px; }
+    .map-view { margin-bottom: 16px; }
+  }
+  @media (max-width: 480px) {
+    .map-container { height: 190px; }
+    /* Scale pins/labels down so a denser map stays readable at phone width */
+    .map-pin-bubble { width: 24px; height: 24px; }
+    .map-pin-num { font-size: 10px; }
+    .map-park-label { font-size: 9px; }
+    .map-street-label { font-size: 8px; }
+    .map-attr { font-size: 9px; }
   }
 
 </style>
